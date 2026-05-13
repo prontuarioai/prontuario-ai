@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prontuario.ai — Demo</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#0d9488', 600: '#0d9488', 700: '#0b6360' }
+      }
+    }
+  }
+}
+</script>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .screen { display: none; }
+  .screen.active { display: flex; }
+  .nav-item.active { background: #f0fafa; color: #0d9488; }
+  .nav-item.active svg { color: #0d9488; }
+  input[type=range] { accent-color: #0d9488; }
+  .animate-spin { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .fade-in { animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .modal-bg { background: rgba(0,0,0,0.4); }
+  details summary { cursor: pointer; }
+</style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+
+<!-- ═══════════════════ TELA: LOGIN ═══════════════════ -->
+<div id="screen-login" class="screen active min-h-screen flex">
+  <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-teal-600 to-teal-800 flex-col justify-between p-12 text-white">
+    <span class="text-2xl font-bold">Prontuario.ai</span>
+    <div class="space-y-4">
+      <h1 class="text-4xl font-bold leading-tight">Gestão clínica inteligente para terapeutas</h1>
+      <p class="text-teal-100 text-lg">Prontuário digital, triagens automáticas, transcrição por IA e muito mais.</p>
+      <div class="flex flex-col gap-3 pt-4">
+        <div class="flex items-center gap-2 text-teal-100"><svg class="w-5 h-5 text-teal-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Triagem pré-sessão via WhatsApp</div>
+        <div class="flex items-center gap-2 text-teal-100"><svg class="w-5 h-5 text-teal-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Transcrição e resumo com IA</div>
+        <div class="flex items-center gap-2 text-teal-100"><svg class="w-5 h-5 text-teal-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Agenda integrada ao Google Calendar</div>
+        <div class="flex items-center gap-2 text-teal-100"><svg class="w-5 h-5 text-teal-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Avaliação pós-sessão automática</div>
+      </div>
+    </div>
+    <p class="text-teal-300 text-sm">© 2026 Prontuario.ai</p>
+  </div>
+  <div class="flex-1 flex items-center justify-center p-6">
+    <div class="w-full max-w-sm space-y-8">
+      <div class="lg:hidden text-center"><span class="text-2xl font-bold text-teal-700">Prontuario.ai</span></div>
+      <div><h2 class="text-2xl font-bold text-gray-900">Bem-vindo de volta</h2><p class="mt-1 text-sm text-gray-500">Entre com sua conta para continuar</p></div>
+      <div class="space-y-4">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email</label><input type="email" value="demo@prontuario.ai" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Senha</label><input type="password" value="••••••••" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+        <button onclick="goTo('dashboard')" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm">Entrar</button>
+        <div class="relative"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div><div class="relative flex justify-center text-xs text-gray-400 bg-gray-50 px-2">ou continue com</div></div>
+        <button onclick="goTo('dashboard')" class="w-full flex items-center justify-center gap-2 border border-gray-300 rounded-xl py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"><svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Google</button>
+      </div>
+      <p class="text-center text-sm text-gray-500">Não tem conta? <button onclick="goTo('cadastro')" class="text-teal-600 font-medium hover:underline">Criar conta grátis</button></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ LAYOUT DASHBOARD ═══════════════════ -->
+<div id="screen-app" class="screen min-h-screen flex">
+  <!-- Sidebar -->
+  <aside class="w-60 bg-white border-r border-gray-100 flex flex-col h-screen sticky top-0 shrink-0">
+    <div class="px-5 py-5 border-b border-gray-100"><span class="text-lg font-bold text-teal-700">Prontuario.ai</span></div>
+    <nav class="flex-1 overflow-y-auto py-3 space-y-0.5 px-2">
+      <button onclick="goTo('dashboard')" id="nav-dashboard" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors text-gray-600 hover:bg-gray-50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+        Dashboard
+      </button>
+      <button onclick="goTo('pacientes')" id="nav-pacientes" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors text-gray-600 hover:bg-gray-50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+        Pacientes
+      </button>
+      <button onclick="goTo('agenda')" id="nav-agenda" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors text-gray-600 hover:bg-gray-50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+        Agenda
+      </button>
+      <button onclick="goTo('sessoes')" id="nav-sessoes" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors text-gray-600 hover:bg-gray-50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg>
+        Sessões
+      </button>
+      <button onclick="goTo('triagens')" id="nav-triagens" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors text-gray-600 hover:bg-gray-50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        Triagens
+      </button>
+      <button onclick="goTo('eventos')" id="nav-eventos" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors text-gray-600 hover:bg-gray-50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
+        Eventos
+        <span class="ml-auto bg-teal-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+      </button>
+      <button onclick="goTo('config')" id="nav-config" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors text-gray-600 hover:bg-gray-50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Configurações
+      </button>
+    </nav>
+    <div class="border-t border-gray-100 p-3 flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm">D</div>
+      <div class="flex-1 min-w-0"><p class="text-xs font-medium text-gray-900 truncate">Dra. Ana Lima</p><p class="text-xs text-gray-400">trial</p></div>
+      <button onclick="goTo('login')" class="text-gray-400 hover:text-red-500 transition-colors p-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Conteúdo principal -->
+  <main class="flex-1 overflow-y-auto">
+
+    <!-- DASHBOARD -->
+    <div id="page-dashboard" class="page hidden p-6 max-w-6xl mx-auto space-y-6 fade-in">
+      <div><h1 class="text-2xl font-bold text-gray-900">Olá, Ana 👋</h1><p class="text-sm text-gray-500 mt-0.5">Segunda-feira, 12 de maio</p></div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div onclick="goTo('pacientes')" class="bg-white rounded-2xl border border-gray-100 p-5 cursor-pointer hover:border-teal-200"><p class="text-2xl font-bold">12</p><p class="text-xs text-gray-500">Pacientes ativos</p></div>
+        <div onclick="goTo('agenda')" class="bg-white rounded-2xl border border-gray-100 p-5 cursor-pointer hover:border-teal-200"><p class="text-2xl font-bold">3</p><p class="text-xs text-gray-500">Sessões hoje</p></div>
+        <div onclick="goTo('sessoes')" class="bg-white rounded-2xl border border-gray-100 p-5 cursor-pointer hover:border-teal-200"><p class="text-2xl font-bold">28</p><p class="text-xs text-gray-500">Sessões no mês</p></div>
+        <div onclick="goTo('eventos')" class="bg-white rounded-2xl border border-gray-100 p-5 cursor-pointer hover:border-teal-200"><p class="text-2xl font-bold text-teal-600">3</p><p class="text-xs text-gray-500">Eventos não lidos</p></div>
+      </div>
+      <div class="bg-red-50 border border-red-200 rounded-2xl p-4 space-y-2">
+        <h2 class="text-sm font-semibold text-red-800">⚠️ Triagens com risco alto</h2>
+        <div onclick="goTo('triagem-detalhe')" class="flex items-center justify-between bg-white rounded-xl px-4 py-3 border border-red-100 hover:border-red-300 cursor-pointer"><span class="text-sm">Carlos Mendes</span><span class="text-xs font-medium text-red-600 bg-red-100 px-2 py-0.5 rounded-full">Ver triagem →</span></div>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+          <div class="flex items-center justify-between"><h2 class="font-semibold text-gray-900">Próximas sessões</h2><button onclick="goTo('agenda')" class="text-xs text-teal-600 hover:underline">Ver agenda →</button></div>
+          <div class="space-y-2">
+            <div onclick="goTo('sessao-detalhe')" class="flex items-center justify-between py-2.5 border-b border-gray-50 cursor-pointer hover:text-teal-700"><div><p class="text-sm font-medium">Maria Souza</p><p class="text-xs text-gray-400">presencial</p></div><div class="text-right"><p class="text-xs font-medium">14:00</p><p class="text-xs text-gray-400">hoje</p></div></div>
+            <div class="flex items-center justify-between py-2.5 border-b border-gray-50"><div><p class="text-sm font-medium">João Alves</p><p class="text-xs text-gray-400">online</p></div><div class="text-right"><p class="text-xs font-medium">15:30</p><p class="text-xs text-gray-400">hoje</p></div></div>
+            <div class="flex items-center justify-between py-2.5"><div><p class="text-sm font-medium">Ana Paula</p><p class="text-xs text-gray-400">presencial</p></div><div class="text-right"><p class="text-xs font-medium">10:00</p><p class="text-xs text-gray-400">amanhã</p></div></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-2">
+          <h2 class="font-semibold text-gray-900">Evolução emocional</h2>
+          <p class="text-xs text-gray-500">Últimos 30 dias</p>
+          <div class="flex items-end gap-1 h-28 pt-4">
+            <div class="flex-1 bg-teal-100 rounded-t" style="height:40%"></div>
+            <div class="flex-1 bg-teal-200 rounded-t" style="height:55%"></div>
+            <div class="flex-1 bg-teal-200 rounded-t" style="height:50%"></div>
+            <div class="flex-1 bg-teal-300 rounded-t" style="height:65%"></div>
+            <div class="flex-1 bg-teal-200 rounded-t" style="height:60%"></div>
+            <div class="flex-1 bg-teal-400 rounded-t" style="height:72%"></div>
+            <div class="flex-1 bg-teal-500 rounded-t" style="height:78%"></div>
+            <div class="flex-1 bg-teal-400 rounded-t" style="height:75%"></div>
+            <div class="flex-1 bg-teal-500 rounded-t" style="height:82%"></div>
+            <div class="flex-1 bg-teal-600 rounded-t" style="height:88%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-300 mt-1"><span>12 abr</span><span>12 mai</span></div>
+          <p class="text-sm font-semibold text-green-600">↑ Melhora</p>
+        </div>
+        <div class="space-y-4">
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
+            <h2 class="font-semibold text-gray-900">Notificações</h2>
+            <div class="flex items-start gap-2 py-1.5 border-b border-gray-50"><span class="text-base mt-0.5">⚠️</span><p class="text-xs text-gray-600">Carlos Mendes respondeu a triagem. Risco: alto.</p></div>
+            <div class="flex items-start gap-2 py-1.5 border-b border-gray-50"><span class="text-base mt-0.5">⭐</span><p class="text-xs text-gray-600">Maria Souza avaliou a sessão: ⭐⭐⭐⭐⭐ (5/5)</p></div>
+            <div class="flex items-start gap-2 py-1.5"><span class="text-base mt-0.5">ℹ️</span><p class="text-xs text-gray-600">João Alves enviou uma mensagem pelo WhatsApp.</p></div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 space-y-3">
+            <div class="flex items-center justify-between"><p class="text-sm font-semibold text-amber-900">Trial gratuito</p><span class="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">9 dias restantes</span></div>
+            <p class="text-xs text-amber-700">R$ 29,90 base + R$ 2,99 por paciente após o trial.</p>
+            <button onclick="goTo('config')" class="block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 rounded-xl text-sm">Assinar agora</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACIENTES -->
+    <div id="page-pacientes" class="page hidden p-6 max-w-5xl mx-auto space-y-6 fade-in">
+      <div class="flex items-center justify-between"><div><h1 class="text-2xl font-bold">Pacientes</h1><p class="text-sm text-gray-500">12 encontrados</p></div><button onclick="goTo('paciente-novo')" class="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-xl">+ Novo paciente</button></div>
+      <div class="flex items-center gap-3"><input placeholder="Buscar por nome…" class="flex-1 rounded-xl border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"><div class="flex gap-1 bg-gray-100 rounded-xl p-1"><button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-900 shadow-sm">Ativos</button><button class="px-3 py-1.5 rounded-lg text-sm font-medium text-gray-500">Inativos</button></div></div>
+      <div class="bg-white rounded-2xl border border-gray-100 divide-y divide-gray-50">
+        <div onclick="goTo('paciente-detalhe')" class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer"><div class="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm">M</div><div class="flex-1 min-w-0"><p class="text-sm font-medium">Maria Souza</p><p class="text-xs text-gray-400">maria@email.com</p></div><div class="text-xs text-gray-400">Desde jan 2025</div><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+        <div class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer"><div class="w-9 h-9 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 font-semibold text-sm">J</div><div class="flex-1 min-w-0"><p class="text-sm font-medium">João Alves</p><p class="text-xs text-gray-400">11988881234</p></div><div class="text-xs text-gray-400">Desde fev 2025</div><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+        <div onclick="goTo('paciente-detalhe')" class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer"><div class="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-semibold text-sm">C</div><div class="flex-1 min-w-0"><p class="text-sm font-medium">Carlos Mendes</p><p class="text-xs text-gray-400">carlos@email.com</p></div><div class="text-xs text-gray-400">Desde mar 2025</div><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+        <div class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer"><div class="w-9 h-9 rounded-full bg-pink-100 flex items-center justify-center text-pink-700 font-semibold text-sm">A</div><div class="flex-1 min-w-0"><p class="text-sm font-medium">Ana Paula Costa</p><p class="text-xs text-gray-400">ana@email.com</p></div><div class="text-xs text-gray-400">Desde abr 2025</div><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+      </div>
+    </div>
+
+    <!-- PACIENTE DETALHE -->
+    <div id="page-paciente-detalhe" class="page hidden p-6 max-w-4xl mx-auto space-y-6 fade-in">
+      <div class="flex items-start justify-between">
+        <div><button onclick="goTo('pacientes')" class="text-sm text-gray-400 hover:text-gray-600">← Pacientes</button><h1 class="text-2xl font-bold mt-2">Maria Souza</h1><p class="text-sm text-gray-400">18 sessões realizadas · Desde jan 2025</p></div>
+        <button onclick="goTo('agenda')" class="text-sm font-medium text-teal-600 border border-teal-200 px-4 py-2 rounded-xl hover:bg-teal-50">Agendar sessão</button>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
+          <h2 class="font-semibold text-gray-900">Dados do paciente</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div><label class="block text-xs font-medium text-gray-500 mb-1">Nome</label><input value="Maria Souza" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+            <div><label class="block text-xs font-medium text-gray-500 mb-1">WhatsApp</label><input value="11999991234" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+            <div class="col-span-2"><label class="block text-xs font-medium text-gray-500 mb-1">Queixa principal</label><textarea class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none" rows="3">Ansiedade generalizada, dificuldade para dormir e sobrecarga no trabalho.</textarea></div>
+          </div>
+          <button class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-2.5 rounded-xl text-sm">Salvar</button>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+          <h2 class="font-semibold text-gray-900">Sessões recentes</h2>
+          <div class="space-y-2">
+            <div onclick="goTo('sessao-detalhe')" class="flex items-center justify-between py-2 border-b border-gray-50 cursor-pointer hover:text-teal-700"><div><p class="text-xs font-medium">05/05/2025</p><p class="text-xs text-gray-400">presencial</p></div><span class="text-xs font-medium bg-green-50 text-green-700 px-2 py-0.5 rounded-full">Realizada</span></div>
+            <div class="flex items-center justify-between py-2 border-b border-gray-50"><div><p class="text-xs font-medium">28/04/2025</p><p class="text-xs text-gray-400">presencial</p></div><span class="text-xs font-medium bg-green-50 text-green-700 px-2 py-0.5 rounded-full">Realizada</span></div>
+            <div class="flex items-center justify-between py-2"><div><p class="text-xs font-medium">21/04/2025</p><p class="text-xs text-gray-400">online</p></div><span class="text-xs font-medium bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">Cancelada</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACIENTE NOVO -->
+    <div id="page-paciente-novo" class="page hidden p-6 max-w-2xl mx-auto space-y-6 fade-in">
+      <div><button onclick="goTo('pacientes')" class="text-sm text-gray-400 hover:text-gray-600">← Pacientes</button><h1 class="text-2xl font-bold mt-2">Novo paciente</h1></div>
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 space-y-5">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2"><label class="block text-sm font-medium text-gray-700 mb-1">Nome completo *</label><input placeholder="Maria da Silva" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">Email</label><input type="email" placeholder="maria@email.com" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">WhatsApp</label><input placeholder="11999999999" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">Data de nascimento</label><input type="date" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">Gênero</label><select class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"><option>Selecionar</option><option>Feminino</option><option>Masculino</option><option>Outro</option></select></div>
+          <div class="col-span-2"><label class="block text-sm font-medium text-gray-700 mb-1">Queixa principal</label><textarea rows="3" placeholder="Motivo da consulta…" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"></textarea></div>
+        </div>
+        <button onclick="goTo('pacientes')" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-2.5 rounded-xl text-sm">Salvar paciente</button>
+      </div>
+    </div>
+
+    <!-- AGENDA -->
+    <div id="page-agenda" class="page hidden p-6 max-w-6xl mx-auto space-y-4 fade-in">
+      <div class="flex items-center justify-between">
+        <div><h1 class="text-2xl font-bold">Agenda</h1><p class="text-sm text-gray-500">12 mai — 18 mai 2025</p></div>
+        <div class="flex items-center gap-2">
+          <button class="p-2 rounded-xl border border-gray-200 hover:bg-gray-50"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg></button>
+          <button class="px-3 py-2 text-sm rounded-xl border border-gray-200 hover:bg-gray-50">Hoje</button>
+          <button class="p-2 rounded-xl border border-gray-200 hover:bg-gray-50"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></button>
+          <button onclick="document.getElementById('modal-agendar').classList.remove('hidden')" class="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-xl ml-2">+ Agendar</button>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+        <div class="grid grid-cols-8 border-b border-gray-100">
+          <div class="p-3"></div>
+          <div class="p-3 text-center border-l border-gray-100 bg-teal-50"><p class="text-xs text-gray-400">Seg</p><p class="text-lg font-semibold text-teal-700">12</p></div>
+          <div class="p-3 text-center border-l border-gray-100"><p class="text-xs text-gray-400">Ter</p><p class="text-lg font-semibold text-gray-900">13</p></div>
+          <div class="p-3 text-center border-l border-gray-100"><p class="text-xs text-gray-400">Qua</p><p class="text-lg font-semibold text-gray-900">14</p></div>
+          <div class="p-3 text-center border-l border-gray-100"><p class="text-xs text-gray-400">Qui</p><p class="text-lg font-semibold text-gray-900">15</p></div>
+          <div class="p-3 text-center border-l border-gray-100"><p class="text-xs text-gray-400">Sex</p><p class="text-lg font-semibold text-gray-900">16</p></div>
+          <div class="p-3 text-center border-l border-gray-100"><p class="text-xs text-gray-400">Sáb</p><p class="text-lg font-semibold text-gray-900">17</p></div>
+          <div class="p-3 text-center border-l border-gray-100"><p class="text-xs text-gray-400">Dom</p><p class="text-lg font-semibold text-gray-900">18</p></div>
+        </div>
+        <div class="overflow-y-auto" style="max-height:500px">
+          <div class="grid grid-cols-8 border-b border-gray-50 min-h-16"><div class="px-3 py-2 text-xs text-gray-400 text-right">8:00</div><div class="border-l border-gray-50 bg-teal-50/30 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div></div>
+          <div class="grid grid-cols-8 border-b border-gray-50 min-h-16"><div class="px-3 py-2 text-xs text-gray-400 text-right">9:00</div><div class="border-l border-gray-50 bg-teal-50/30 p-1"><div class="bg-green-100 text-green-800 border border-green-200 rounded-lg px-2 py-1 text-xs font-medium">09:00 Ana Paula</div></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"><div class="bg-blue-100 text-blue-800 border border-blue-200 rounded-lg px-2 py-1 text-xs font-medium">09:00 João Alves</div></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div></div>
+          <div class="grid grid-cols-8 border-b border-gray-50 min-h-16"><div class="px-3 py-2 text-xs text-gray-400 text-right">10:00</div><div class="border-l border-gray-50 bg-teal-50/30 p-1"></div><div class="border-l border-gray-50 p-1"><div class="bg-blue-100 text-blue-800 border border-blue-200 rounded-lg px-2 py-1 text-xs font-medium">10:00 Carlos M.</div></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"><div class="bg-blue-100 text-blue-800 border border-blue-200 rounded-lg px-2 py-1 text-xs font-medium">10:00 Maria S.</div></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div></div>
+          <div class="grid grid-cols-8 border-b border-gray-50 min-h-16"><div class="px-3 py-2 text-xs text-gray-400 text-right">14:00</div><div class="border-l border-gray-50 bg-teal-50/30 p-1"><div onclick="goTo('sessao-detalhe')" class="bg-blue-100 text-blue-800 border border-blue-200 rounded-lg px-2 py-1 text-xs font-medium cursor-pointer">14:00 Maria S.</div></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div></div>
+          <div class="grid grid-cols-8 border-b border-gray-50 min-h-16"><div class="px-3 py-2 text-xs text-gray-400 text-right">15:00</div><div class="border-l border-gray-50 bg-teal-50/30 p-1"><div class="bg-blue-100 text-blue-800 border border-blue-200 rounded-lg px-2 py-1 text-xs font-medium">15:30 João A.</div></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"><div class="bg-blue-100 text-blue-800 border border-blue-200 rounded-lg px-2 py-1 text-xs font-medium">15:00 Ana Paula</div></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div><div class="border-l border-gray-50 p-1"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SESSÕES -->
+    <div id="page-sessoes" class="page hidden p-6 max-w-4xl mx-auto space-y-6 fade-in">
+      <div class="flex items-center justify-between"><div><h1 class="text-2xl font-bold">Sessões</h1><p class="text-sm text-gray-500">32 encontradas</p></div><button onclick="goTo('agenda')" class="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-xl">+ Agendar</button></div>
+      <div class="flex gap-3"><input placeholder="Buscar por paciente…" class="flex-1 rounded-xl border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"><div class="flex gap-1 bg-gray-100 rounded-xl p-1"><button class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-gray-900 shadow-sm">Todas</button><button class="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500">Agendadas</button><button class="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500">Realizadas</button></div></div>
+      <div class="bg-white rounded-2xl border border-gray-100 divide-y divide-gray-50">
+        <div onclick="goTo('sessao-detalhe')" class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer"><div class="text-center min-w-12"><p class="text-xs text-gray-400">mai</p><p class="text-xl font-bold leading-none">12</p></div><div class="flex-1"><p class="text-sm font-medium">Maria Souza</p><p class="text-xs text-gray-400">14:00 – 15:00 · presencial</p></div><span class="text-xs font-medium px-2.5 py-1 rounded-full bg-blue-50 text-blue-700">Agendada</span><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+        <div class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer"><div class="text-center min-w-12"><p class="text-xs text-gray-400">mai</p><p class="text-xl font-bold leading-none">12</p></div><div class="flex-1"><p class="text-sm font-medium">João Alves</p><p class="text-xs text-gray-400">15:30 – 16:30 · online</p></div><span class="text-xs font-medium px-2.5 py-1 rounded-full bg-blue-50 text-blue-700">Agendada</span><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+        <div class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer"><div class="text-center min-w-12"><p class="text-xs text-gray-400">mai</p><p class="text-xl font-bold leading-none">09</p></div><div class="flex-1"><p class="text-sm font-medium">Carlos Mendes</p><p class="text-xs text-gray-400">10:00 – 11:00 · presencial</p></div><span class="text-xs font-medium px-2.5 py-1 rounded-full bg-green-50 text-green-700">Realizada</span><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+        <div class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer"><div class="text-center min-w-12"><p class="text-xs text-gray-400">mai</p><p class="text-xl font-bold leading-none">07</p></div><div class="flex-1"><p class="text-sm font-medium">Ana Paula Costa</p><p class="text-xs text-gray-400">09:00 – 10:00 · presencial</p></div><span class="text-xs font-medium px-2.5 py-1 rounded-full bg-green-50 text-green-700">Realizada</span><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+      </div>
+    </div>
+
+    <!-- SESSÃO DETALHE -->
+    <div id="page-sessao-detalhe" class="page hidden p-6 max-w-4xl mx-auto space-y-6 fade-in">
+      <div class="flex items-start justify-between">
+        <div><button onclick="goTo('sessoes')" class="text-sm text-gray-400 hover:text-gray-600">← Sessões</button><h1 class="text-2xl font-bold mt-2">Sessão — Maria Souza</h1><p class="text-sm text-gray-400 mt-0.5">Segunda-feira, 12 de maio · 14:00 – 15:00 · 60 min</p></div>
+        <span class="text-xs font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">Agendada</span>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 space-y-6">
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+            <div class="flex items-center justify-between"><h2 class="font-semibold">Triagem pré-sessão</h2><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">Risco médio</span></div>
+            <div class="flex items-center gap-3"><span class="text-sm text-gray-500">Humor geral:</span><div class="flex-1 bg-gray-100 rounded-full h-2"><div class="bg-teal-500 h-2 rounded-full" style="width:70%"></div></div><span class="text-sm font-bold">7/10</span></div>
+            <div><p class="text-xs font-medium text-gray-500 mb-1">Eventos relevantes</p><p class="text-sm text-gray-700">Tive uma semana difícil no trabalho, muita cobrança do chefe. Senti bastante ansiedade.</p></div>
+            <div><p class="text-xs font-medium text-gray-500 mb-1">Foco da sessão</p><p class="text-sm text-gray-700">Quero trabalhar os gatilhos de ansiedade no trabalho.</p></div>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+            <h2 class="font-semibold">Gravação da sessão</h2>
+            <div id="upload-area" class="border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center cursor-pointer hover:border-teal-300 hover:bg-gray-50" onclick="simularUpload()">
+              <p class="text-3xl mb-2">🎙️</p>
+              <p class="text-sm font-medium text-gray-700">Arraste o áudio ou clique para selecionar</p>
+              <p class="text-xs text-gray-400 mt-1">mp3, mp4, m4a, wav · máx 200MB</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
+            <h2 class="font-semibold">Notas da sessão</h2>
+            <textarea rows="5" placeholder="Anotações clínicas, observações…" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none">Paciente relatou melhora em relação à semana passada. Trabalhamos técnicas de respiração para momentos de ansiedade aguda. Percebeu padrão de autopressão relacionado a expectativas parentais.</textarea>
+            <button class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-5 py-2 rounded-xl text-sm">Salvar notas</button>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
+            <h2 class="font-semibold">Paciente</h2>
+            <div onclick="goTo('paciente-detalhe')" class="flex items-center gap-3 cursor-pointer hover:text-teal-700"><div class="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm">M</div><div><p class="text-sm font-medium">Maria Souza</p><p class="text-xs text-gray-400">maria@email.com</p></div></div>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
+            <h2 class="font-semibold">Detalhes</h2>
+            <div class="space-y-2 text-sm"><div class="flex justify-between"><span class="text-gray-500">Modalidade</span><span class="font-medium">Presencial</span></div><div class="flex justify-between"><span class="text-gray-500">Valor</span><span class="font-medium">R$ 150,00</span></div></div>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-2">
+            <h2 class="font-semibold">Avaliação pós-sessão</h2>
+            <p class="text-sm text-gray-400">Será enviada automaticamente após a sessão.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRIAGENS -->
+    <div id="page-triagens" class="page hidden p-6 max-w-4xl mx-auto space-y-6 fade-in">
+      <div><h1 class="text-2xl font-bold">Triagens</h1><p class="text-sm text-gray-500">Respostas pré-sessão dos pacientes</p></div>
+      <div class="bg-white rounded-2xl border border-gray-100 divide-y divide-gray-50">
+        <div onclick="goTo('triagem-detalhe')" class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer">
+          <div class="relative"><div class="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-semibold text-sm">C</div><div class="absolute -top-0.5 -right-0.5 w-3 h-3 bg-teal-500 rounded-full border-2 border-white"></div></div>
+          <div class="flex-1"><p class="text-sm font-medium">Carlos Mendes</p><p class="text-xs text-gray-400">Sessão: 12/05 · 10:32</p></div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-red-100 text-red-700">Alto</span>
+          <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer">
+          <div class="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm">M</div>
+          <div class="flex-1"><p class="text-sm font-medium">Maria Souza</p><p class="text-xs text-gray-400">Sessão: 12/05 · 09:15</p></div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">Médio</span>
+          <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 cursor-pointer">
+          <div class="w-9 h-9 rounded-full bg-pink-100 flex items-center justify-center text-pink-700 font-semibold text-sm">A</div>
+          <div class="flex-1"><p class="text-sm font-medium">Ana Paula Costa</p><p class="text-xs text-gray-400">Sessão: 07/05 · 08:45</p></div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-green-100 text-green-700">Baixo</span>
+          <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRIAGEM DETALHE -->
+    <div id="page-triagem-detalhe" class="page hidden p-6 max-w-3xl mx-auto space-y-6 fade-in">
+      <div><button onclick="goTo('triagens')" class="text-sm text-gray-400 hover:text-gray-600">← Triagens</button>
+        <div class="flex items-start justify-between mt-2"><div><h1 class="text-2xl font-bold">Triagem — Carlos Mendes</h1><p class="text-sm text-gray-400">Sessão em segunda-feira, 12 de maio</p></div><button onclick="goTo('sessao-detalhe')" class="text-sm text-teal-600 border border-teal-200 px-4 py-2 rounded-xl hover:bg-teal-50">Ver sessão</button></div></div>
+      <div class="rounded-2xl border p-4 bg-red-50 border-red-200"><p class="font-semibold text-red-700">Risco alto</p><p class="text-sm text-red-600 opacity-80 mt-1">Paciente relatou pensamentos recorrentes de desistência e dificuldade intensa para sair de casa. Requer atenção imediata.</p></div>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+          <h2 class="font-semibold">Respostas do paciente</h2>
+          <div><p class="text-xs font-medium text-gray-500 mb-2">Humor geral</p><div class="flex items-center gap-3"><div class="flex-1 bg-gray-100 rounded-full h-2.5"><div class="bg-teal-500 h-2.5 rounded-full" style="width:30%"></div></div><span class="text-sm font-bold">3/10</span></div></div>
+          <div><p class="text-xs font-medium text-gray-500 mb-1">Eventos relevantes</p><p class="text-sm text-gray-700">Não consegui sair de casa nos últimos três dias. Sinto que não consigo lidar com nada mais. Pensamentos muito pesados.</p></div>
+          <div><p class="text-xs font-medium text-gray-500 mb-1">Foco desejado</p><p class="text-sm text-gray-700">Preciso de ajuda urgente.</p></div>
+          <p class="text-xs text-gray-400">Respondido em 12/05 às 10:32</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+          <h2 class="font-semibold">Análise por IA</h2>
+          <div><p class="text-xs font-medium text-gray-500 mb-2">Emoções detectadas</p><div class="flex flex-wrap gap-1.5"><span class="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Desespero</span><span class="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Isolamento</span><span class="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Impotência</span></div></div>
+          <div><p class="text-xs font-medium text-gray-500 mb-1">Valência emocional</p><div class="relative h-2 bg-gray-100 rounded-full"><div class="absolute h-2 rounded-full bg-red-400" style="left:30%;width:20%"></div><div class="absolute top-0 left-1/2 w-px h-2 bg-gray-300"></div></div><div class="flex justify-between text-xs text-gray-300 mt-0.5"><span>Negativo</span><span>Positivo</span></div></div>
+          <div><p class="text-xs font-medium text-gray-500 mb-1">Ativação (arousal)</p><div class="relative h-2 bg-gray-100 rounded-full"><div class="h-2 rounded-full bg-teal-400" style="width:25%"></div></div><div class="flex justify-between text-xs text-gray-300 mt-0.5"><span>Baixo</span><span>Alto</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENTOS -->
+    <div id="page-eventos" class="page hidden p-6 max-w-4xl mx-auto space-y-6 fade-in">
+      <div class="flex items-center justify-between"><div><h1 class="text-2xl font-bold">Eventos entre sessões</h1><p class="text-sm text-gray-500">Mensagens dos pacientes fora das sessões <span class="ml-2 bg-teal-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">3 novos</span></p></div><button class="text-sm text-gray-500 border border-gray-200 px-4 py-2 rounded-xl hover:bg-gray-50">Marcar todos como lidos</button></div>
+      <div class="space-y-3">
+        <div class="rounded-2xl border-l-4 border-l-red-500 border border-gray-100 bg-red-50 p-4">
+          <div class="flex items-start gap-3">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1"><span class="text-sm font-semibold">Carlos Mendes</span><div class="w-2 h-2 bg-teal-500 rounded-full"></div><span class="text-xs text-gray-400 ml-auto">12 mai, 08:42</span></div>
+              <p class="text-sm text-gray-700">Não consigo mais. Sinto que não há saída. Tô precisando muito da sessão.</p>
+              <div class="flex items-center gap-2 mt-2"><span class="text-xs text-gray-500">🔴 Crise</span><span class="text-xs text-gray-400">· Intensidade: 9/10</span></div>
+            </div>
+            <span class="text-xs text-teal-600 font-medium cursor-pointer hover:underline shrink-0">Categorizar</span>
+          </div>
+        </div>
+        <div class="rounded-2xl border-l-4 border-l-green-500 border border-gray-100 bg-green-50 p-4">
+          <div class="flex items-start gap-3">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1"><span class="text-sm font-semibold">Ana Paula Costa</span><div class="w-2 h-2 bg-teal-500 rounded-full"></div><span class="text-xs text-gray-400 ml-auto">11 mai, 19:10</span></div>
+              <p class="text-sm text-gray-700">Hoje consegui fazer a caminhada que a gente combinou! Me senti muito melhor depois 🌟</p>
+              <div class="flex items-center gap-2 mt-2"><span class="text-xs text-gray-500">🟢 Progresso</span><span class="text-xs text-gray-400">· Intensidade: 7/10</span></div>
+            </div>
+            <span class="text-xs text-teal-600 font-medium cursor-pointer hover:underline shrink-0">Categorizar</span>
+          </div>
+        </div>
+        <div class="rounded-2xl border-l-4 border-l-blue-400 border border-gray-100 bg-blue-50 p-4">
+          <div class="flex items-start gap-3">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1"><span class="text-sm font-semibold">João Alves</span><div class="w-2 h-2 bg-teal-500 rounded-full"></div><span class="text-xs text-gray-400 ml-auto">10 mai, 14:30</span></div>
+              <p class="text-sm text-gray-700">Oi doutora, queria confirmar a sessão de quinta. Posso mudar para as 16h?</p>
+              <div class="flex items-center gap-2 mt-2"><span class="text-xs text-gray-500">🔵 Cotidiano</span><span class="text-xs text-gray-400">· Intensidade: 3/10</span></div>
+            </div>
+            <span class="text-xs text-teal-600 font-medium cursor-pointer hover:underline shrink-0">Categorizar</span>
+          </div>
+        </div>
+        <div class="rounded-2xl border-l-4 border-l-gray-300 border border-gray-100 bg-white p-4 opacity-60">
+          <div class="flex items-start gap-3">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1"><span class="text-sm font-semibold">Maria Souza</span><span class="text-xs text-gray-400 ml-auto">08 mai, 10:05</span></div>
+              <p class="text-sm text-gray-700">Obrigada pela sessão de hoje! Me ajudou muito a clarear as coisas.</p>
+              <div class="flex items-center gap-2 mt-2"><span class="text-xs text-gray-500">⚪ Outro</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIGURAÇÕES -->
+    <div id="page-config" class="page hidden p-6 max-w-3xl mx-auto space-y-6 fade-in">
+      <div><h1 class="text-2xl font-bold">Configurações</h1><p class="text-sm text-gray-500">Gerencie seu perfil e integrações</p></div>
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 space-y-5">
+        <h2 class="font-semibold">Perfil profissional</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">Nome</label><input value="Dra. Ana Lima" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">CRP</label><input value="06/98765" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+          <div class="col-span-2"><label class="block text-sm font-medium text-gray-700 mb-1">Slug (URL pública)</label><div class="flex items-center rounded-xl border border-gray-300 overflow-hidden"><span class="px-3 py-2.5 text-xs text-gray-400 bg-gray-50 border-r border-gray-200">/agendar/</span><input value="dra-ana-lima" class="flex-1 px-3 py-2.5 text-sm focus:outline-none"></div></div>
+        </div>
+        <button class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-2.5 rounded-xl text-sm">Salvar perfil</button>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
+        <div class="flex items-center justify-between"><h2 class="font-semibold">WhatsApp</h2><span class="text-xs font-medium px-2.5 py-1 rounded-full bg-green-100 text-green-700">Conectado</span></div>
+        <p class="text-sm text-gray-600">WhatsApp conectado. Lembretes e triagens são enviados automaticamente.</p>
+        <button class="text-sm text-red-500 border border-red-200 px-4 py-2 rounded-xl hover:bg-red-50">Desconectar</button>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
+        <div class="flex items-center justify-between"><h2 class="font-semibold">Google Calendar</h2><span class="text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">Desconectado</span></div>
+        <p class="text-sm text-gray-600">Conecte para sincronizar suas sessões automaticamente.</p>
+        <button class="flex items-center gap-2 border border-gray-300 text-gray-700 font-medium px-4 py-2.5 rounded-xl hover:bg-gray-50 text-sm"><svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Conectar Google Calendar</button>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 space-y-5">
+        <div class="flex items-center justify-between"><h2 class="font-semibold">Plano e cobrança</h2><span class="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">Trial</span></div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4"><p class="text-sm font-medium text-amber-900">9 dias restantes no trial</p><p class="text-xs text-amber-700 mt-0.5">Após o trial: R$ 29,90 base + R$ 2,99 por paciente.</p></div>
+        <div class="space-y-2 text-sm text-gray-600"><div class="flex justify-between"><span>Taxa base</span><span>R$ 29,90/mês</span></div><div class="flex justify-between"><span>12 pacientes × R$ 2,99</span><span>R$ 35,88/mês</span></div><div class="flex justify-between font-semibold text-gray-900 pt-2 border-t border-gray-100"><span>Estimado</span><span>R$ 65,78/mês</span></div></div>
+        <button class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 rounded-xl text-sm">Assinar agora</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ═══════════════════ TELAS PÚBLICAS ═══════════════════ -->
+<div id="screen-cadastro" class="screen min-h-screen flex">
+  <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-teal-600 to-teal-800 flex-col justify-between p-12 text-white">
+    <span class="text-2xl font-bold">Prontuario.ai</span>
+    <div class="space-y-6">
+      <div class="bg-white/10 rounded-2xl p-6"><p class="text-3xl font-bold">14 dias grátis</p><p class="text-teal-100">Sem cartão. Cancele quando quiser.</p></div>
+    </div>
+    <p class="text-teal-300 text-sm">© 2026 Prontuario.ai</p>
+  </div>
+  <div class="flex-1 flex items-center justify-center p-6">
+    <div class="w-full max-w-sm space-y-8">
+      <div><h2 class="text-2xl font-bold">Criar conta grátis</h2><p class="mt-1 text-sm text-gray-500">14 dias de teste, sem cartão</p></div>
+      <div class="space-y-4">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Nome completo</label><input placeholder="Dra. Maria Silva" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">CRP <span class="text-gray-400">(opcional)</span></label><input placeholder="06/123456" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email profissional</label><input type="email" placeholder="voce@email.com" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Senha</label><input type="password" placeholder="mínimo 8 caracteres" class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+        <button onclick="goTo('dashboard')" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 rounded-xl text-sm">Criar conta grátis</button>
+      </div>
+      <p class="text-center text-sm text-gray-500">Já tem conta? <button onclick="goTo('login')" class="text-teal-600 font-medium hover:underline">Entrar</button></p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Agendar Sessão -->
+<div id="modal-agendar" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-bg p-4">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-5">
+    <div class="flex items-center justify-between"><h2 class="text-lg font-bold">Agendar sessão</h2><button onclick="document.getElementById('modal-agendar').classList.add('hidden')" class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button></div>
+    <div class="space-y-4">
+      <div><label class="block text-sm font-medium text-gray-700 mb-1">Paciente *</label><select class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"><option>Selecionar paciente</option><option>Maria Souza</option><option>João Alves</option><option>Carlos Mendes</option><option>Ana Paula Costa</option></select></div>
+      <div class="grid grid-cols-2 gap-3">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Início *</label><input type="datetime-local" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Fim *</label><input type="datetime-local" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Modalidade</label><select class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"><option>Presencial</option><option>Online</option></select></div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Valor (R$)</label><input type="number" placeholder="150,00" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"></div>
+      </div>
+      <div class="flex gap-3 pt-1">
+        <button onclick="document.getElementById('modal-agendar').classList.add('hidden')" class="flex-1 border border-gray-200 text-gray-700 font-medium py-2.5 rounded-xl text-sm hover:bg-gray-50">Cancelar</button>
+        <button onclick="document.getElementById('modal-agendar').classList.add('hidden');goTo('sessoes')" class="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 rounded-xl text-sm">Agendar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TELA: Triagem pública -->
+<div id="screen-triagem" class="screen min-h-screen bg-gray-50">
+  <div class="max-w-lg mx-auto px-4 py-12">
+    <div class="text-center mb-8"><p class="text-sm text-gray-400">Triagem pré-sessão</p><h1 class="text-2xl font-bold">Olá, Carlos!</h1><p class="text-sm text-gray-500">Sessão com Dra. Ana Lima em segunda, 12 de maio</p></div>
+    <div class="bg-white rounded-2xl border border-gray-100 p-6 space-y-6" id="triagem-steps">
+      <div class="flex gap-2"><div class="flex-1 h-1.5 rounded-full bg-teal-500"></div><div class="flex-1 h-1.5 rounded-full bg-gray-100"></div><div class="flex-1 h-1.5 rounded-full bg-gray-100"></div></div>
+      <div class="space-y-6">
+        <div><h2 class="font-semibold mb-1">Como você está se sentindo hoje?</h2><p class="text-sm text-gray-500">Selecione um número de 1 a 10</p></div>
+        <div class="space-y-4">
+          <div class="flex justify-center"><span id="humor-val" class="text-4xl font-bold text-teal-600">5</span></div>
+          <input type="range" min="1" max="10" value="5" oninput="document.getElementById('humor-val').textContent=this.value" class="w-full">
+          <div class="flex justify-between text-xs text-gray-400"><span>1 — Muito mal</span><span>10 — Excelente</span></div>
+          <div class="text-center text-sm text-gray-600 bg-gray-50 rounded-xl py-2">😐 Neutro</div>
+        </div>
+        <button onclick="goTo('triagem-step2')" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl">Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TELA: Avaliação pública -->
+<div id="screen-avaliacao" class="screen min-h-screen bg-gray-50">
+  <div class="max-w-md mx-auto px-4 py-12">
+    <div class="text-center mb-8"><p class="text-sm text-gray-400">Avaliação pós-sessão</p><h1 class="text-2xl font-bold">Como foi a sessão?</h1><p class="text-sm text-gray-500">Maria, sua opinião é muito importante para Dra. Ana Lima.</p></div>
+    <div class="bg-white rounded-2xl border border-gray-100 p-6 space-y-6">
+      <div class="text-center space-y-3">
+        <p class="text-sm text-gray-600">Toque nas estrelas para avaliar</p>
+        <div class="flex justify-center gap-2" id="stars">
+          <span onclick="setStar(1)" class="text-4xl cursor-pointer hover:scale-110 transition-transform">⭐</span>
+          <span onclick="setStar(2)" class="text-4xl cursor-pointer hover:scale-110 transition-transform opacity-30">⭐</span>
+          <span onclick="setStar(3)" class="text-4xl cursor-pointer hover:scale-110 transition-transform opacity-30">⭐</span>
+          <span onclick="setStar(4)" class="text-4xl cursor-pointer hover:scale-110 transition-transform opacity-30">⭐</span>
+          <span onclick="setStar(5)" class="text-4xl cursor-pointer hover:scale-110 transition-transform opacity-30">⭐</span>
+        </div>
+        <p id="star-label" class="text-sm font-medium text-gray-700">Muito ruim</p>
+      </div>
+      <div><label class="block text-sm font-medium text-gray-700 mb-1">Comentário <span class="text-gray-400">(opcional)</span></label><textarea rows="4" placeholder="O que achou da sessão?" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"></textarea></div>
+      <button onclick="goTo('avaliacao-done')" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl">Enviar avaliação</button>
+    </div>
+  </div>
+</div>
+
+<div id="screen-avaliacao-done" class="screen min-h-screen bg-gray-50 items-center justify-center">
+  <div class="text-center space-y-4 max-w-sm px-4"><p class="text-5xl">💙</p><h2 class="text-xl font-bold">Obrigado pelo feedback!</h2><p class="text-sm text-gray-500">Sua avaliação foi enviada. Até a próxima!</p><button onclick="goTo('login')" class="text-sm text-teal-600 hover:underline">← Voltar ao início</button></div>
+</div>
+
+<script>
+const screens = ['login','app','cadastro','triagem','avaliacao','avaliacao-done']
+const pages = ['dashboard','pacientes','paciente-detalhe','paciente-novo','agenda','sessoes','sessao-detalhe','triagens','triagem-detalhe','eventos','config']
+
+function goTo(target) {
+  // Esconde tudo
+  screens.forEach(s => {
+    const el = document.getElementById('screen-'+s)
+    if (el) { el.classList.remove('active'); el.classList.add('hidden') || true }
+  })
+
+  // Remove display flex de todos
+  document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'))
+
+  if (target === 'login') {
+    show('screen-login')
+  } else if (target === 'cadastro') {
+    show('screen-cadastro')
+  } else if (target === 'triagem' || target === 'triagem-step2') {
+    show('screen-triagem')
+  } else if (target === 'avaliacao') {
+    show('screen-avaliacao')
+  } else if (target === 'avaliacao-done') {
+    show('screen-avaliacao-done')
+  } else {
+    // É uma página do dashboard
+    show('screen-app')
+    pages.forEach(p => {
+      const el = document.getElementById('page-'+p)
+      if (el) el.classList.add('hidden')
+    })
+    const page = document.getElementById('page-'+target)
+    if (page) {
+      page.classList.remove('hidden')
+    }
+    // Atualiza nav ativo
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'))
+    const navMap = {
+      'dashboard': 'nav-dashboard',
+      'pacientes': 'nav-pacientes', 'paciente-detalhe': 'nav-pacientes', 'paciente-novo': 'nav-pacientes',
+      'agenda': 'nav-agenda',
+      'sessoes': 'nav-sessoes', 'sessao-detalhe': 'nav-sessoes',
+      'triagens': 'nav-triagens', 'triagem-detalhe': 'nav-triagens',
+      'eventos': 'nav-eventos',
+      'config': 'nav-config',
+    }
+    const navId = navMap[target]
+    if (navId) document.getElementById(navId)?.classList.add('active')
+  }
+}
+
+function show(id) {
+  const el = document.getElementById(id)
+  if (el) el.classList.add('active')
+}
+
+let starCount = 1
+const starLabels = ['', 'Muito ruim', 'Ruim', 'Regular', 'Bom', 'Excelente']
+function setStar(n) {
+  starCount = n
+  const stars = document.getElementById('stars')?.children
+  if (!stars) return
+  for (let i = 0; i < 5; i++) {
+    stars[i].classList.toggle('opacity-30', i >= n)
+  }
+  document.getElementById('star-label').textContent = starLabels[n]
+}
+
+function simularUpload() {
+  const area = document.getElementById('upload-area')
+  if (!area) return
+  area.innerHTML = `<div class="space-y-3"><div class="flex justify-between text-sm text-gray-600"><span>Enviando…</span><span id="pct">0%</span></div><div class="w-full bg-gray-100 rounded-full h-2"><div id="bar" class="bg-teal-500 h-2 rounded-full transition-all" style="width:0%"></div></div></div>`
+  let p = 0
+  const iv = setInterval(() => {
+    p += 8
+    if (p >= 100) { p = 100; clearInterval(iv); mostrarResumoIA() }
+    document.getElementById('pct').textContent = p + '%'
+    document.getElementById('bar').style.width = p + '%'
+  }, 200)
+}
+
+function mostrarResumoIA() {
+  const area = document.getElementById('upload-area')
+  if (!area) return
+  area.outerHTML = `
+  <div class="space-y-4 fade-in">
+    <div class="bg-white rounded-xl border border-gray-100 p-4 space-y-4">
+      <h3 class="font-semibold flex items-center gap-2 text-gray-900"><span>✨</span>Resumo gerado por IA</h3>
+      <div><p class="text-xs font-medium text-gray-500 mb-2">Principais temas</p><div class="flex flex-wrap gap-2"><span class="bg-teal-50 text-teal-700 text-xs px-2.5 py-1 rounded-full">Ansiedade</span><span class="bg-teal-50 text-teal-700 text-xs px-2.5 py-1 rounded-full">Pressão no trabalho</span><span class="bg-teal-50 text-teal-700 text-xs px-2.5 py-1 rounded-full">Autocobrança</span></div></div>
+      <div><p class="text-xs font-medium text-gray-500 mb-2">Emoções detectadas</p><div class="flex flex-wrap gap-2"><span class="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Ansiedade</span><span class="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Sobrecarga</span><span class="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Esperança</span></div></div>
+      <div><p class="text-xs font-medium text-gray-500 mb-1">Pontos trabalhados</p><p class="text-sm text-gray-700">Paciente explorou a relação entre autoexigência e expectativas parentais. Identificou padrão de comparação social no ambiente de trabalho.</p></div>
+      <div><p class="text-xs font-medium text-gray-500 mb-1">Plano para próxima sessão</p><p class="text-sm text-gray-700">Aprofundar técnicas de regulação emocional. Propor exercício de autobservação dos gatilhos de ansiedade.</p></div>
+    </div>
+    <details class="bg-white rounded-xl border border-gray-100 p-4">
+      <summary class="text-sm font-medium text-gray-700">Ver transcrição completa</summary>
+      <p class="mt-3 text-sm text-gray-500 text-xs leading-relaxed border-t border-gray-50 pt-3">Terapeuta: Como você se sentiu durante essa semana? Paciente: Olha, foi bem difícil. Tive muita pressão no trabalho, o chefe cobrou bastante e eu fiquei me sentindo insuficiente... Terapeuta: Quando você diz insuficiente, o que passa pela sua cabeça nesse momento?...</p>
+    </details>
+  </div>`
+}
+
+// Init
+goTo('login')
+</script>
+</body>
+</html>

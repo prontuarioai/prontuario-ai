@@ -1,0 +1,9 @@
+{
+  "regions": ["gru1"],
+  "headers": [
+    {
+      "source": "/api/stripe/webhook",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /precos
+Allow: /agendar/
+
+Disallow: /dashboard
+Disallow: /pacientes
+Disallow: /agenda
+Disallow: /sessoes
+Disallow: /eventos
+Disallow: /triagens
+Disallow: /configuracoes
+Disallow: /api/
+Disallow: /triagem/
+Disallow: /avaliacao/
