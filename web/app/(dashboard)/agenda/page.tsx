@@ -33,7 +33,7 @@ export default async function AgendaPage({
 
   return (
     <AgendaView
-      sessoes={sessoes ?? []}
+      sessoes={(sessoes ?? []) as any}
       pacientes={pacientes ?? []}
       semanaBase={segunda.toISOString()}
       pacientePreSelecionado={searchParams.paciente}
