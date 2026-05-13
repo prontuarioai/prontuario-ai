@@ -18,7 +18,7 @@ export async function salvarDisponibilidadesAction(formData: FormData) {
   // Reconstrói a partir do formData (formato: dia_{0-6}_{horaInicio}_{horaFim} = "on")
   const novas: { terapeuta_id: string; dia_semana: number; hora_inicio: string; hora_fim: string }[] = []
 
-  for (const [key] of formData.entries()) {
+  for (const [key] of Array.from(formData.entries())) {
     const match = key.match(/^dia_(\d)_(\d{2}:\d{2})_(\d{2}:\d{2})$/)
     if (match) {
       novas.push({

@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
   ])
 
   // Notifica terapeuta via WhatsApp em background
-  supabase
+  void supabase
     .from('terapeutas')
     .select('nome, whatsapp_number')
     .eq('id', terapeutaId)
@@ -82,7 +82,6 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({ terapeutaId, to: terapeuta.whatsapp_number, text: msg }),
       })
     })
-    .catch(console.error)
 
   return NextResponse.json({ ok: true })
 }
