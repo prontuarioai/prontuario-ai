@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { cancelarSessaoAction } from '@/app/actions/sessoes'
+import { cancelarSessaoAction, marcarRealizadaAction, enviarTriagemAction, enviarAvaliacaoAction } from '@/app/actions/sessoes'
 import NotasForm from './NotasForm'
 import AudioUploadSection from './AudioUploadSection'
 import TranscricaoPanel from '@/components/sessoes/TranscricaoPanel'
+import SessaoActions from './SessaoActions'
 
 export default async function SessaoPage({ params }: { params: { id: string } }) {
   const supabase = createClient()
@@ -20,13 +21,16 @@ export default async function SessaoPage({ params }: { params: { id: string } })
   if (!sessao) notFound()
 
   const [{ data: triagem }, { data: avaliacao }, { data: resumo }, { data: transcricao }] = await Promise.all([
-    supabase.from('triagens').select('*').eq('sessao_id', params.id).maybeSingle(),
+    supabase.from('triagens').select('*, enviada_em').eq('sessao_id', params.id).maybeSingle(),
     supabase.from('avaliacoes_pos_sessao').select('*').eq('sessao_id', params.id).maybeSingle(),
     supabase.from('resumos_ia').select('*').eq('sessao_id', params.id).maybeSingle(),
     supabase.from('transcricoes').select('status, texto').eq('sessao_id', params.id).maybeSingle(),
   ])
 
   const cancelarAction = cancelarSessaoAction.bind(null, params.id)
+  const marcarAction = marcarRealizadaAction.bind(null, params.id)
+  const envTriagemAction = enviarTriagemAction.bind(null, params.id)
+  const envAvaliacaoAction = enviarAvaliacaoAction.bind(null, params.id)
   const paciente = (sessao as any).pacientes
 
   const duracao = Math.round(
@@ -198,6 +202,17 @@ export default async function SessaoPage({ params }: { params: { id: string } })
               )}
             </dl>
           </div>
+
+          {/* Ações manuais */}
+          <SessaoActions
+            sessaoId={params.id}
+            status={sessao.status}
+            triagemEnviada={!!triagem?.enviada_em}
+            avaliacaoRespondida={!!avaliacao?.respondida_em}
+            marcarRealizadaAction={marcarAction}
+            enviarTriagemAction={envTriagemAction}
+            enviarAvaliacaoAction={envAvaliacaoAction}
+          />
 
           {/* Avaliação pós-sessão */}
           {avaliacao && (

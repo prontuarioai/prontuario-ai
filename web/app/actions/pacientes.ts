@@ -10,7 +10,7 @@ const PacienteSchema = z.object({
   email: z.string().email().optional().or(z.literal('')),
   whatsapp: z.string().optional().or(z.literal('')),
   data_nascimento: z.string().optional().or(z.literal('')),
-  genero: z.enum(['masculino', 'feminino', 'outro', 'prefiro_nao_informar']).optional(),
+  genero: z.enum(['masculino', 'feminino', 'outro', 'prefiro_nao_informar']).optional().or(z.literal('')),
   queixa_principal: z.string().optional().or(z.literal('')),
   historico_medico: z.string().optional().or(z.literal('')),
   medicamentos: z.string().optional().or(z.literal('')),
@@ -23,18 +23,26 @@ export async function criarPacienteAction(formData: FormData) {
   if (!user) redirect('/login')
 
   const parsed = PacienteSchema.safeParse(Object.fromEntries(formData))
-  if (!parsed.success) return { error: 'Dados inválidos.' }
+  if (!parsed.success) return { error: 'Dados inválidos: ' + parsed.error.issues.map(i => i.message).join(', ') }
+
+  const payload = {
+    ...parsed.data,
+    terapeuta_id: user.id,
+    genero: parsed.data.genero || null,
+    email: parsed.data.email || null,
+    data_nascimento: parsed.data.data_nascimento || null,
+  }
 
   const { data, error } = await supabase
     .from('pacientes')
-    .insert({ ...parsed.data, terapeuta_id: user.id })
+    .insert(payload)
     .select('id')
     .single()
 
-  if (error) return { error: 'Erro ao criar paciente.' }
+  if (error) return { error: `Erro ao criar paciente: ${error.message}` }
 
   revalidatePath('/pacientes')
-  redirect(`/pacientes/${data.id}`)
+  return { ok: true, id: data.id }
 }
 
 export async function atualizarPacienteAction(id: string, formData: FormData) {
@@ -43,15 +51,22 @@ export async function atualizarPacienteAction(id: string, formData: FormData) {
   if (!user) redirect('/login')
 
   const parsed = PacienteSchema.safeParse(Object.fromEntries(formData))
-  if (!parsed.success) return { error: 'Dados inválidos.' }
+  if (!parsed.success) return { error: 'Dados inválidos: ' + parsed.error.issues.map(i => i.message).join(', ') }
+
+  const payload = {
+    ...parsed.data,
+    genero: parsed.data.genero || null,
+    email: parsed.data.email || null,
+    data_nascimento: parsed.data.data_nascimento || null,
+  }
 
   const { error } = await supabase
     .from('pacientes')
-    .update(parsed.data)
+    .update(payload)
     .eq('id', id)
     .eq('terapeuta_id', user.id)
 
-  if (error) return { error: 'Erro ao atualizar.' }
+  if (error) return { error: `Erro ao atualizar: ${error.message}` }
 
   revalidatePath(`/pacientes/${id}`)
   revalidatePath('/pacientes')

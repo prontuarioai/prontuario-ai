@@ -2,6 +2,7 @@
 
 import { useFormStatus } from 'react-dom'
 import { useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface PacienteDefaults {
   nome?: string
@@ -16,7 +17,7 @@ interface PacienteDefaults {
 }
 
 interface Props {
-  action: (formData: FormData) => Promise<{ error?: string; ok?: boolean } | void>
+  action: (formData: FormData) => Promise<{ error?: string; ok?: boolean; id?: string } | void>
   defaultValues?: PacienteDefaults
 }
 
@@ -24,6 +25,7 @@ export default function PacienteForm({ action, defaultValues }: Props) {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [isPending, startTransition] = useTransition()
+  const router = useRouter()
 
   async function handleAction(formData: FormData) {
     setError('')
@@ -31,6 +33,7 @@ export default function PacienteForm({ action, defaultValues }: Props) {
     startTransition(async () => {
       const result = await action(formData)
       if (result?.error) setError(result.error)
+      else if (result?.id) router.push(`/pacientes/${result.id}`)
       else if (result?.ok) setSuccess(true)
     })
   }

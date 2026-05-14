@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { getSessions, getQR, disconnectSession } from '../whatsapp/manager'
+import { getSessions, getQR, disconnectSession, sendMessage, createSession } from '../whatsapp/manager'
 
 const router = Router()
 
@@ -24,6 +24,15 @@ router.get('/qr/:terapeutaId', authMiddleware, (req, res) => {
     return
   }
   res.json({ qr })
+})
+
+router.post('/connect/:terapeutaId', authMiddleware, async (req, res) => {
+  const { terapeutaId } = req.params
+  const sessions = getSessions()
+  if (!sessions.has(terapeutaId)) {
+    await createSession(terapeutaId)
+  }
+  res.json({ ok: true })
 })
 
 router.post('/disconnect/:terapeutaId', authMiddleware, async (req, res) => {

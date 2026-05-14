@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   terapeutaId: string
@@ -11,29 +11,54 @@ export default function IntegracaoWhatsApp({ terapeutaId, whatsappNumber }: Prop
   const [connected, setConnected] = useState(false)
   const [qr, setQr] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
-    checkStatus()
+    init()
+    return () => { if (pollRef.current) clearInterval(pollRef.current) }
   }, [])
 
-  async function checkStatus() {
+  async function init() {
     setLoading(true)
     const res = await fetch('/api/whatsapp/status')
     const data = await res.json()
-    setConnected(data.connected)
-    if (!data.connected) {
-      const qrRes = await fetch('/api/whatsapp/qr')
-      const qrData = await qrRes.json()
-      setQr(qrData.qr)
+    if (data.connected) {
+      setConnected(true)
+      setLoading(false)
+      return
     }
+    await fetch('/api/whatsapp/connect', { method: 'POST' })
     setLoading(false)
+    startPolling()
+  }
+
+  function startPolling() {
+    if (pollRef.current) clearInterval(pollRef.current)
+    pollRef.current = setInterval(async () => {
+      const [statusRes, qrRes] = await Promise.all([
+        fetch('/api/whatsapp/status'),
+        fetch('/api/whatsapp/qr'),
+      ])
+      const { connected: isConnected } = await statusRes.json()
+      const { qr: qrCode } = await qrRes.json()
+
+      if (isConnected) {
+        setConnected(true)
+        setQr(null)
+        clearInterval(pollRef.current!)
+      } else {
+        setQr(qrCode)
+      }
+    }, 3000)
   }
 
   async function handleDisconnect() {
+    if (pollRef.current) clearInterval(pollRef.current)
     await fetch('/api/whatsapp/disconnect', { method: 'POST' })
     setConnected(false)
     setQr(null)
-    checkStatus()
+    await fetch('/api/whatsapp/connect', { method: 'POST' })
+    startPolling()
   }
 
   return (
@@ -75,7 +100,7 @@ export default function IntegracaoWhatsApp({ terapeutaId, whatsappNumber }: Prop
               </div>
             </div>
           )}
-          <button onClick={checkStatus} className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+          <button onClick={startPolling} className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
             Atualizar
           </button>
         </div>
