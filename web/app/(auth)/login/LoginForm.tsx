@@ -33,7 +33,16 @@ export default function LoginForm() {
     const supabase = createClient()
     await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${location.origin}/api/auth/callback` },
+      options: {
+        redirectTo: `${location.origin}/api/auth/callback`,
+        scopes: [
+          'email',
+          'profile',
+          'https://www.googleapis.com/auth/calendar',
+          'https://www.googleapis.com/auth/business.manage',
+        ].join(' '),
+        queryParams: { access_type: 'offline', prompt: 'consent' },
+      },
     })
   }
 
