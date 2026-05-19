@@ -29,9 +29,16 @@ router.get('/qr/:terapeutaId', authMiddleware, (req, res) => {
 router.post('/connect/:terapeutaId', authMiddleware, async (req, res) => {
   const { terapeutaId } = req.params
   const sessions = getSessions()
-  if (!sessions.has(terapeutaId)) {
-    await createSession(terapeutaId)
+  const existing = sessions.get(terapeutaId)
+  if (existing?.connected) {
+    res.json({ ok: true, connected: true })
+    return
   }
+  // Recreate session to force fresh QR
+  if (existing) {
+    await disconnectSession(terapeutaId)
+  }
+  await createSession(terapeutaId)
   res.json({ ok: true })
 })
 

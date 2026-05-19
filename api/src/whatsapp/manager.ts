@@ -89,10 +89,14 @@ export async function createSession(terapeutaId: string) {
 
 export async function disconnectSession(terapeutaId: string) {
   const session = sessions.get(terapeutaId)
+  sessions.delete(terapeutaId)
+  pendingQRs.delete(terapeutaId)
   if (session?.socket) {
-    await session.socket.logout()
-    sessions.delete(terapeutaId)
-    pendingQRs.delete(terapeutaId)
+    try {
+      await session.socket.logout()
+    } catch {
+      try { session.socket.end(undefined) } catch { /* ignore */ }
+    }
   }
 }
 
