@@ -9,7 +9,7 @@ interface Local {
 export default function EscolherNegocioPage({
   searchParams,
 }: {
-  searchParams: { locations?: string }
+  searchParams: { locations?: string; from?: string }
 }) {
   let locais: Local[] = []
   try {
@@ -19,6 +19,8 @@ export default function EscolherNegocioPage({
   }
 
   if (!locais.length) redirect('/dashboard')
+
+  const redirectTo = searchParams.from === 'configuracoes' ? '/configuracoes' : '/dashboard'
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -36,7 +38,7 @@ export default function EscolherNegocioPage({
         </div>
 
         <div className="bg-white rounded-2xl border border-gray-100 p-6">
-          <EscolherNegocio locais={locais} />
+          <EscolherNegocio locais={locais} redirectTo={redirectTo} />
         </div>
       </div>
     </div>

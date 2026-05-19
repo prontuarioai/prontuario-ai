@@ -46,6 +46,7 @@ export default async function ConfiguracoesPage({
       <IntegracaoGoogle
         connected={terapeuta.google_calendar_connected}
         calendarId={terapeuta.google_calendar_id}
+        placeId={terapeuta.google_place_id}
       />
       <PlanoSection
         plano={terapeuta.plano}

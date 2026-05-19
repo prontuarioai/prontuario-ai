@@ -9,7 +9,7 @@ interface Local {
   placeId: string | null
 }
 
-export default function EscolherNegocio({ locais }: { locais: Local[] }) {
+export default function EscolherNegocio({ locais, redirectTo }: { locais: Local[]; redirectTo: string }) {
   const [selecionado, setSelecionado] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState('')
@@ -21,12 +21,8 @@ export default function EscolherNegocio({ locais }: { locais: Local[] }) {
     startTransition(async () => {
       const res = await salvarLocalNegocioAction(selecionado)
       if (res?.error) setError(res.error)
-      else router.push('/dashboard')
+      else router.push(redirectTo)
     })
-  }
-
-  function handlePular() {
-    router.push('/dashboard')
   }
 
   return (
@@ -61,7 +57,7 @@ export default function EscolherNegocio({ locais }: { locais: Local[] }) {
           {isPending ? 'Salvando…' : 'Usar este negócio'}
         </button>
         <button
-          onClick={handlePular}
+          onClick={() => router.push(redirectTo)}
           className="w-full text-sm text-gray-400 hover:text-gray-600 py-2 transition-colors"
         >
           Pular por agora

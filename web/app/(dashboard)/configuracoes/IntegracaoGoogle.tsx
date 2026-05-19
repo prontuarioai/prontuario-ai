@@ -5,9 +5,10 @@ import { useTransition } from 'react'
 interface Props {
   connected: boolean
   calendarId?: string | null
+  placeId?: string | null
 }
 
-export default function IntegracaoGoogle({ connected, calendarId }: Props) {
+export default function IntegracaoGoogle({ connected, calendarId, placeId }: Props) {
   const [isPending, startTransition] = useTransition()
 
   function handleConnect() {
@@ -24,7 +25,7 @@ export default function IntegracaoGoogle({ connected, calendarId }: Props) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-gray-900">Google Calendar</h2>
+        <h2 className="font-semibold text-gray-900">Google</h2>
         <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
           {connected ? 'Conectado' : 'Desconectado'}
         </span>
@@ -32,10 +33,27 @@ export default function IntegracaoGoogle({ connected, calendarId }: Props) {
 
       {connected ? (
         <div className="space-y-3">
-          <p className="text-sm text-gray-600">
-            Calendário sincronizado. Sessões agendadas aparecem no Google Calendar automaticamente.
-            {calendarId && <span className="text-gray-400 block text-xs mt-0.5">{calendarId}</span>}
-          </p>
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <svg className="w-4 h-4 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Google Calendar sincronizado</span>
+              {calendarId && <span className="text-gray-400 text-xs">({calendarId})</span>}
+            </div>
+            <div className={`flex items-center gap-2 text-sm ${placeId ? 'text-gray-600' : 'text-gray-400'}`}>
+              {placeId ? (
+                <svg className="w-4 h-4 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4 text-gray-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                </svg>
+              )}
+              <span>{placeId ? 'Google Meus Negócios conectado' : 'Google Meus Negócios não encontrado'}</span>
+            </div>
+          </div>
           <button onClick={handleDisconnect} disabled={isPending}
             className="text-sm text-red-500 border border-red-200 px-4 py-2 rounded-xl hover:bg-red-50 transition-colors disabled:opacity-60">
             {isPending ? 'Desconectando…' : 'Desconectar'}
@@ -44,7 +62,7 @@ export default function IntegracaoGoogle({ connected, calendarId }: Props) {
       ) : (
         <div className="space-y-3">
           <p className="text-sm text-gray-600">
-            Conecte seu Google Calendar para sincronizar automaticamente suas sessões.
+            Conecte sua conta Google para sincronizar sessões com o Calendar e receber avaliações pelo Google Meus Negócios.
           </p>
           <button onClick={handleConnect}
             className="flex items-center gap-2 border border-gray-300 text-gray-700 font-medium px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-colors text-sm">
@@ -54,7 +72,7 @@ export default function IntegracaoGoogle({ connected, calendarId }: Props) {
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
             </svg>
-            Conectar Google Calendar
+            Conectar Google
           </button>
         </div>
       )}
