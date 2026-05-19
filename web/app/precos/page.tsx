@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export const metadata: Metadata = { title: 'Preços — Prontuario.ai' }
+export const metadata: Metadata = { title: 'Preços — Agenda Online AI' }
 
 const features = [
   'Prontuário digital ilimitado',
@@ -22,7 +22,7 @@ export default function PrecosPage() {
       {/* Nav */}
       <nav className="bg-white border-b border-gray-100 px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <Link href="/" className="text-lg font-bold text-teal-700">Prontuario.ai</Link>
+          <Link href="/" className="text-lg font-bold text-teal-700">Agenda Online AI</Link>
           <div className="flex gap-3">
             <Link href="/login" className="text-sm text-gray-600 hover:text-gray-900 px-4 py-2 rounded-xl hover:bg-gray-50 transition-colors">
               Entrar
@@ -100,7 +100,7 @@ export default function PrecosPage() {
         {/* CTA final */}
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold text-gray-900">Pronto para começar?</h2>
-          <p className="text-gray-500">Junte-se a terapeutas que já usam o Prontuario.ai para cuidar melhor dos seus pacientes.</p>
+          <p className="text-gray-500">Junte-se a terapeutas que já usam o Agenda Online AI para cuidar melhor dos seus pacientes.</p>
           <Link href="/cadastro" className="inline-block bg-teal-600 hover:bg-teal-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors">
             Criar conta grátis
           </Link>

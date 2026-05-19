@@ -37,7 +37,7 @@ export default async function ConfiguracoesPage({
 
       {searchParams.checkout === 'success' && (
         <div className="bg-green-50 border border-green-200 rounded-2xl p-4 text-sm text-green-800">
-          ✅ Assinatura ativada com sucesso! Bem-vindo ao Prontuario.ai.
+          ✅ Assinatura ativada com sucesso! Bem-vindo ao Agenda Online AI.
         </div>
       )}
 

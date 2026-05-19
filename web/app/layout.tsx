@@ -2,10 +2,10 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: { default: 'Prontuario.ai', template: '%s | Prontuario.ai' },
+  title: { default: 'Agenda Online AI', template: '%s | Agenda Online AI' },
   description: 'Gestão clínica inteligente para terapeutas. Prontuário digital, IA e automações.',
   manifest: '/manifest.json',
-  appleWebApp: { capable: true, statusBarStyle: 'default', title: 'Prontuario.ai' },
+  appleWebApp: { capable: true, statusBarStyle: 'default', title: 'Agenda Online AI' },
 }
 
 export const viewport: Viewport = {

@@ -36,7 +36,7 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
     <aside className="w-60 bg-white border-r border-gray-100 flex flex-col h-full shrink-0">
       {/* Logo */}
       <div className="px-5 py-5 border-b border-gray-100">
-        <span className="text-lg font-bold text-teal-700">Prontuario.ai</span>
+        <span className="text-lg font-bold text-teal-700">Agenda Online AI</span>
       </div>
 
       {/* Nav */}

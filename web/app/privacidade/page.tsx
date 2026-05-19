@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Política de Privacidade — Prontuario.ai',
+  title: 'Política de Privacidade — Agenda Online AI',
 }
 
 export default function PrivacidadePage() {
@@ -14,7 +14,7 @@ export default function PrivacidadePage() {
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-gray-900">1. Quem somos</h2>
           <p className="text-gray-600 leading-relaxed">
-            O Prontuario.ai é uma plataforma SaaS voltada para psicólogos e terapeutas, que facilita o gerenciamento de prontuários, agendamentos, comunicação com pacientes e avaliações pós-sessão. O responsável pelo tratamento dos dados é o operador da plataforma, acessível em <strong>https://web-prontuario-ai-s-projects.vercel.app</strong>.
+            O Agenda Online AI é uma plataforma SaaS voltada para psicólogos e terapeutas, que facilita o gerenciamento de prontuários, agendamentos, comunicação com pacientes e avaliações pós-sessão. O responsável pelo tratamento dos dados é o operador da plataforma, acessível em <strong>https://agendaonlineai.com.br</strong>.
           </p>
         </section>
 

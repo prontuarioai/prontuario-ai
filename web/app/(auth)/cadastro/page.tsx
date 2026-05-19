@@ -13,7 +13,7 @@ export default function CadastroPage({
       {/* Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-teal-600 to-teal-800 flex-col justify-between p-12 text-white">
         <div className="flex items-center gap-2">
-          <span className="text-2xl font-bold">Prontuario.ai</span>
+          <span className="text-2xl font-bold">Agenda Online AI</span>
         </div>
         <div className="space-y-6">
           <div className="bg-white/10 rounded-2xl p-6 space-y-2">
@@ -34,14 +34,14 @@ export default function CadastroPage({
             ))}
           </div>
         </div>
-        <p className="text-teal-300 text-sm">© {new Date().getFullYear()} Prontuario.ai</p>
+        <p className="text-teal-300 text-sm">© {new Date().getFullYear()} Agenda Online AI</p>
       </div>
 
       {/* Formulário */}
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-sm space-y-8">
           <div className="lg:hidden text-center">
-            <span className="text-2xl font-bold text-teal-700">Prontuario.ai</span>
+            <span className="text-2xl font-bold text-teal-700">Agenda Online AI</span>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-gray-900">Criar conta grátis</h2>
