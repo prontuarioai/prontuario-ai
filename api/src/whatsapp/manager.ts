@@ -6,6 +6,7 @@ import makeWASocket, {
 } from '@whiskeysockets/baileys'
 import { Boom } from '@hapi/boom'
 import path from 'path'
+import fs from 'fs'
 import { createClient } from '../lib/supabase'
 import { handleIncomingMessage } from './handlers'
 
@@ -88,6 +89,7 @@ export async function createSession(terapeutaId: string) {
 }
 
 export async function disconnectSession(terapeutaId: string) {
+  const authDir = path.join(process.cwd(), 'sessions', terapeutaId)
   const session = sessions.get(terapeutaId)
   sessions.delete(terapeutaId)
   pendingQRs.delete(terapeutaId)
@@ -98,6 +100,7 @@ export async function disconnectSession(terapeutaId: string) {
       try { session.socket.end(undefined) } catch { /* ignore */ }
     }
   }
+  try { fs.rmSync(authDir, { recursive: true, force: true }) } catch { /* ignore */ }
 }
 
 export async function sendMessage(terapeutaId: string, to: string, text: string) {

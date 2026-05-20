@@ -45,7 +45,7 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
     setRemovendo(null)
   }
 
-  const linkPublico = `${typeof window !== 'undefined' ? window.location.origin : ''}/agendar/${slug}`
+  const linkPublico = `${process.env.NEXT_PUBLIC_APP_URL || (typeof window !== 'undefined' ? window.location.origin : '')}/agendar/${slug}`
 
   return (
     <div className="space-y-6">

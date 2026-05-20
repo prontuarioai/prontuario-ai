@@ -34,10 +34,8 @@ router.post('/connect/:terapeutaId', authMiddleware, async (req, res) => {
     res.json({ ok: true, connected: true })
     return
   }
-  // Recreate session to force fresh QR
-  if (existing) {
-    await disconnectSession(terapeutaId)
-  }
+  // Always disconnect and clear disk auth state to force fresh QR
+  await disconnectSession(terapeutaId)
   await createSession(terapeutaId)
   res.json({ ok: true })
 })
