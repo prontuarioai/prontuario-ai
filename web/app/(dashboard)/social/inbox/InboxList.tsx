@@ -64,7 +64,7 @@ export default function InboxList() {
             className={[
               'px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-colors',
               filtroRede === value
-                ? 'bg-teal-600 text-white'
+                ? 'bg-brand-600 text-white'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200',
             ].join(' ')}
           >
@@ -119,7 +119,7 @@ export default function InboxList() {
                   href={item.urlOriginal}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-teal-600 hover:underline"
+                  className="text-xs text-brand-600 hover:underline"
                 >
                   Ver original
                 </a>
@@ -141,7 +141,7 @@ export default function InboxList() {
                   onChange={e => setResposta(e.target.value)}
                   rows={3}
                   placeholder="Escreva sua resposta…"
-                  className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
+                  className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
                   autoFocus
                 />
                 <div className="flex gap-2">
@@ -154,7 +154,7 @@ export default function InboxList() {
                   <button
                     onClick={() => enviarResposta(item)}
                     disabled={enviando || !resposta.trim()}
-                    className="text-xs bg-teal-600 text-white rounded-xl px-3 py-1.5 disabled:opacity-50"
+                    className="text-xs bg-brand-600 text-white rounded-xl px-3 py-1.5 disabled:opacity-50"
                   >
                     {enviando ? 'Enviando…' : 'Enviar'}
                   </button>

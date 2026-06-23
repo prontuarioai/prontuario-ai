@@ -64,8 +64,11 @@ export default function IntegracaoWhatsApp({ terapeutaId, whatsappNumber }: Prop
   return (
     <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-gray-900">WhatsApp</h2>
-        <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+        <div>
+          <h2 className="font-semibold text-gray-900">WhatsApp do Profissional</h2>
+          <p className="text-xs text-gray-500 mt-0.5">Mensagens dos pacientes chegam aqui</p>
+        </div>
+        <span className={`text-xs font-medium px-2.5 py-1 rounded-full shrink-0 ${connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
           {connected ? 'Conectado' : 'Desconectado'}
         </span>
       </div>
@@ -75,7 +78,7 @@ export default function IntegracaoWhatsApp({ terapeutaId, whatsappNumber }: Prop
       ) : connected ? (
         <div className="space-y-3">
           <p className="text-sm text-gray-600">
-            WhatsApp conectado. Lembretes e triagens são enviados automaticamente.
+            Conectado. Mensagens enviadas pelos seus pacientes chegam aqui e são salvas no prontuário.
             {whatsappNumber && <span className="text-gray-400"> ({whatsappNumber})</span>}
           </p>
           <button onClick={handleDisconnect}
@@ -95,7 +98,7 @@ export default function IntegracaoWhatsApp({ terapeutaId, whatsappNumber }: Prop
           ) : (
             <div className="flex items-center justify-center h-48 bg-gray-50 rounded-xl border border-gray-200">
               <div className="text-center space-y-2">
-                <div className="w-6 h-6 rounded-full border-2 border-teal-500 border-t-transparent animate-spin mx-auto" />
+                <div className="w-6 h-6 rounded-full border-2 border-brand-500 border-t-transparent animate-spin mx-auto" />
                 <p className="text-xs text-gray-400">Gerando QR code…</p>
               </div>
             </div>

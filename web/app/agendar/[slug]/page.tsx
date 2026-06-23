@@ -31,7 +31,7 @@ export default async function AgendarPublicoPage({ params }: { params: { slug: s
       <div className="max-w-2xl mx-auto px-4 py-12 space-y-8">
         {/* Perfil do terapeuta */}
         <div className="text-center space-y-3">
-          <div className="w-20 h-20 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-bold text-2xl mx-auto">
+          <div className="w-20 h-20 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-bold text-2xl mx-auto">
             {terapeuta.nome.charAt(0).toUpperCase()}
           </div>
           <div>
@@ -41,7 +41,7 @@ export default async function AgendarPublicoPage({ params }: { params: { slug: s
           {terapeuta.especialidades?.length > 0 && (
             <div className="flex flex-wrap justify-center gap-2">
               {terapeuta.especialidades.map((e: string) => (
-                <span key={e} className="bg-teal-50 text-teal-700 text-xs px-3 py-1 rounded-full">{e}</span>
+                <span key={e} className="bg-brand-50 text-brand-700 text-xs px-3 py-1 rounded-full">{e}</span>
               ))}
             </div>
           )}

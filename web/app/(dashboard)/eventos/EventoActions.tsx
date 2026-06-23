@@ -48,7 +48,7 @@ export default function EventoActions({ eventoId, categoriaAtual, intensidadeAtu
       )}
       <button
         onClick={() => setAberto(!aberto)}
-        className="text-xs text-teal-600 hover:text-teal-700 transition-colors font-medium"
+        className="text-xs text-brand-600 hover:text-brand-700 transition-colors font-medium"
       >
         Categorizar
       </button>
@@ -61,7 +61,7 @@ export default function EventoActions({ eventoId, categoriaAtual, intensidadeAtu
               <button
                 key={c.value}
                 onClick={() => setCategoria(c.value)}
-                className={`text-left text-sm px-3 py-1.5 rounded-lg transition-colors ${categoria === c.value ? 'bg-teal-50 text-teal-700 font-medium' : 'hover:bg-gray-50 text-gray-700'}`}
+                className={`text-left text-sm px-3 py-1.5 rounded-lg transition-colors ${categoria === c.value ? 'bg-brand-50 text-brand-700 font-medium' : 'hover:bg-gray-50 text-gray-700'}`}
               >
                 {c.label}
               </button>
@@ -69,11 +69,11 @@ export default function EventoActions({ eventoId, categoriaAtual, intensidadeAtu
           </div>
           <div>
             <p className="text-xs font-semibold text-gray-700 mb-1">Intensidade: {intensidade}/10</p>
-            <input type="range" min={1} max={10} value={intensidade} onChange={e => setIntensidade(Number(e.target.value))} className="w-full accent-teal-600" />
+            <input type="range" min={1} max={10} value={intensidade} onChange={e => setIntensidade(Number(e.target.value))} className="w-full accent-brand-600" />
           </div>
           <div className="flex gap-2">
             <button onClick={() => setAberto(false)} className="flex-1 text-xs border border-gray-200 py-1.5 rounded-lg hover:bg-gray-50">Cancelar</button>
-            <button onClick={salvar} disabled={isPending} className="flex-1 text-xs bg-teal-600 text-white py-1.5 rounded-lg hover:bg-teal-700 disabled:opacity-60">
+            <button onClick={salvar} disabled={isPending} className="flex-1 text-xs bg-brand-600 text-white py-1.5 rounded-lg hover:bg-brand-700 disabled:opacity-60">
               {isPending ? '…' : 'Salvar'}
             </button>
           </div>

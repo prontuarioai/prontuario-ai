@@ -9,7 +9,7 @@ export default function DashboardError({ reset }: { error: Error; reset: () => v
         <p className="text-sm text-gray-500">Não foi possível carregar esta página.</p>
         <button
           onClick={reset}
-          className="bg-teal-600 hover:bg-teal-700 text-white font-medium px-5 py-2 rounded-xl transition-colors text-sm"
+          className="bg-brand-600 hover:bg-brand-700 text-white font-medium px-5 py-2 rounded-xl transition-colors text-sm"
         >
           Tentar novamente
         </button>

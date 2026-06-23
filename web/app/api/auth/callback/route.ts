@@ -4,11 +4,9 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
+  const token_hash = searchParams.get('token_hash')
+  const type = searchParams.get('type') as 'email' | 'recovery' | 'invite' | 'magiclink' | null
   const next = searchParams.get('next') ?? '/dashboard'
-
-  if (!code) {
-    return NextResponse.redirect(`${origin}/login?error=Link inválido ou expirado.`)
-  }
 
   const response = NextResponse.redirect(`${origin}${next}`)
 
@@ -27,10 +25,23 @@ export async function GET(request: NextRequest) {
     }
   )
 
-  const { error } = await supabase.auth.exchangeCodeForSession(code)
-  if (error) {
-    return NextResponse.redirect(`${origin}/login?error=Falha na autenticação.`)
+  const oauth_error = searchParams.get('error')
+  const oauth_error_desc = searchParams.get('error_description')
+  if (oauth_error) {
+    return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(oauth_error_desc ?? oauth_error)}`)
   }
 
-  return response
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    if (error) return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error.message)}`)
+    return response
+  }
+
+  if (token_hash && type) {
+    const { error } = await supabase.auth.verifyOtp({ token_hash, type })
+    if (error) return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error.message)}`)
+    return response
+  }
+
+  return NextResponse.redirect(`${origin}/login?error=Parâmetros ausentes no callback.`)
 }

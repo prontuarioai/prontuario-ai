@@ -105,7 +105,7 @@ export default function AgendaView({ sessoes, pacientes, semanaBase, pacientePre
           </Link>
           <button
             onClick={() => { setSlotSelecionado(null); setShowModal(true) }}
-            className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
+            className="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
           >
             + Agendar
           </button>
@@ -120,9 +120,9 @@ export default function AgendaView({ sessoes, pacientes, semanaBase, pacientePre
           {dias.map((dia, i) => {
             const ehHoje = dia.toDateString() === hoje.toDateString()
             return (
-              <div key={i} className={`p-3 text-center border-l border-gray-100 ${ehHoje ? 'bg-teal-50' : ''}`}>
+              <div key={i} className={`p-3 text-center border-l border-gray-100 ${ehHoje ? 'bg-brand-50' : ''}`}>
                 <p className="text-xs text-gray-400">{DIAS[i]}</p>
-                <p className={`text-lg font-semibold mt-0.5 ${ehHoje ? 'text-teal-700' : 'text-gray-900'}`}>
+                <p className={`text-lg font-semibold mt-0.5 ${ehHoje ? 'text-brand-700' : 'text-gray-900'}`}>
                   {dia.getDate()}
                 </p>
               </div>
@@ -143,7 +143,7 @@ export default function AgendaView({ sessoes, pacientes, semanaBase, pacientePre
                 return (
                   <div
                     key={di}
-                    className={`border-l border-gray-50 p-1 cursor-pointer hover:bg-gray-50 transition-colors ${ehHoje ? 'bg-teal-50/30' : ''}`}
+                    className={`border-l border-gray-50 p-1 cursor-pointer hover:bg-gray-50 transition-colors ${ehHoje ? 'bg-brand-50/30' : ''}`}
                     onClick={() => handleDayClick(dia, hora)}
                   >
                     {sessoesDaHora.map(s => (

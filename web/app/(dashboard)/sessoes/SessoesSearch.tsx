@@ -22,7 +22,7 @@ export default function SessoesSearch({ q }: { q?: string }) {
       defaultValue={q}
       onChange={handleChange}
       placeholder="Buscar por paciente…"
-      className="flex-1 rounded-xl border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+      className="flex-1 rounded-xl border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
     />
   )
 }

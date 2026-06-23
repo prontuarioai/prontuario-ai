@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import ImportarContatosButton from './ImportarContatosButton'
 
 export default async function PacientesPage({
   searchParams,
@@ -30,12 +31,15 @@ export default async function PacientesPage({
           <h1 className="text-2xl font-bold text-gray-900">Pacientes</h1>
           <p className="text-sm text-gray-500 mt-0.5">{pacientes?.length ?? 0} encontrados</p>
         </div>
-        <Link
-          href="/pacientes/novo"
-          className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
-        >
-          + Novo paciente
-        </Link>
+        <div className="flex items-center gap-2">
+          <ImportarContatosButton />
+          <Link
+            href="/pacientes/novo"
+            className="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
+          >
+            + Novo paciente
+          </Link>
+        </div>
       </div>
 
       {/* Filtros */}
@@ -70,7 +74,7 @@ export default async function PacientesPage({
               href={`/pacientes/${p.id}`}
               className="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 transition-colors first:rounded-t-2xl last:rounded-b-2xl"
             >
-              <div className="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm shrink-0">
+              <div className="w-9 h-9 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-semibold text-sm shrink-0">
                 {p.nome.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
@@ -93,7 +97,7 @@ export default async function PacientesPage({
             {searchParams.q ? 'Nenhum paciente encontrado.' : 'Nenhum paciente cadastrado ainda.'}
           </p>
           {!searchParams.q && (
-            <Link href="/pacientes/novo" className="mt-4 inline-block text-sm text-teal-600 font-medium hover:underline">
+            <Link href="/pacientes/novo" className="mt-4 inline-block text-sm text-brand-600 font-medium hover:underline">
               Cadastrar primeiro paciente
             </Link>
           )}
@@ -110,7 +114,7 @@ function PacientesSearch({ q }: { q?: string }) {
         name="q"
         defaultValue={q}
         placeholder="Buscar por nome…"
-        className="w-full rounded-xl border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+        className="w-full rounded-xl border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
       />
     </form>
   )

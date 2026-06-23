@@ -47,7 +47,7 @@ export default function TranscricaoPanel({ sessaoId, transcricaoInicial, resumoI
     return (
       <div className="bg-white rounded-2xl border border-gray-100 p-5">
         <div className="flex items-center gap-3">
-          <div className="w-5 h-5 rounded-full border-2 border-teal-500 border-t-transparent animate-spin" />
+          <div className="w-5 h-5 rounded-full border-2 border-brand-500 border-t-transparent animate-spin" />
           <div>
             <p className="text-sm font-medium text-gray-900">
               {transcricao.status === 'pendente' ? 'Aguardando processamento…' : 'Transcrevendo áudio com IA…'}
@@ -91,7 +91,7 @@ export default function TranscricaoPanel({ sessaoId, transcricaoInicial, resumoI
               <p className="text-xs font-medium text-gray-500 mb-2">Principais temas</p>
               <div className="flex flex-wrap gap-2">
                 {resumo.principais_temas.map(t => (
-                  <span key={t} className="bg-teal-50 text-teal-700 text-xs px-2.5 py-1 rounded-full">{t}</span>
+                  <span key={t} className="bg-brand-50 text-brand-700 text-xs px-2.5 py-1 rounded-full">{t}</span>
                 ))}
               </div>
             </div>

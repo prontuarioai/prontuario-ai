@@ -50,15 +50,15 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
   return (
     <div className="space-y-6">
       {/* Link público */}
-      <div className="bg-teal-50 border border-teal-200 rounded-2xl p-4 flex items-center justify-between gap-4">
+      <div className="bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-teal-900">Seu link de agendamento público</p>
-          <p className="text-xs text-teal-700 mt-0.5 font-mono break-all">/agendar/{slug}</p>
+          <p className="text-sm font-medium text-brand-900">Seu link de agendamento público</p>
+          <p className="text-xs text-brand-700 mt-0.5 font-mono break-all">/agendar/{slug}</p>
         </div>
         <button
           type="button"
           onClick={() => navigator.clipboard.writeText(linkPublico)}
-          className="shrink-0 text-xs text-teal-700 border border-teal-300 px-3 py-1.5 rounded-xl hover:bg-teal-100 transition-colors"
+          className="shrink-0 text-xs text-brand-700 border border-brand-300 px-3 py-1.5 rounded-xl hover:bg-brand-100 transition-colors"
         >
           Copiar link
         </button>
@@ -76,7 +76,7 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
             <select
               name="dia_semana"
               required
-              className="rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"
+              className="rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
             >
               {DIAS.map((d, i) => (
                 <option key={i} value={i}>{d}</option>
@@ -90,7 +90,7 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
               type="time"
               required
               defaultValue="08:00"
-              className="rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
             />
           </div>
           <div>
@@ -100,13 +100,13 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
               type="time"
               required
               defaultValue="18:00"
-              className="rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
             />
           </div>
           <button
             type="submit"
             disabled={isPending}
-            className="bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
+            className="bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
           >
             {isPending ? 'Adicionando…' : 'Adicionar'}
           </button>
@@ -132,14 +132,14 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
                   {slots.map(slot => (
                     <div
                       key={slot.id}
-                      className="flex items-center gap-1.5 bg-teal-50 text-teal-800 text-xs font-medium px-3 py-1.5 rounded-xl border border-teal-100"
+                      className="flex items-center gap-1.5 bg-brand-50 text-brand-800 text-xs font-medium px-3 py-1.5 rounded-xl border border-brand-100"
                     >
                       <span>{slot.hora_inicio.slice(0, 5)}–{slot.hora_fim.slice(0, 5)}</span>
                       <button
                         type="button"
                         onClick={() => handleRemove(slot.id)}
                         disabled={removendo === slot.id}
-                        className="text-teal-500 hover:text-red-500 transition-colors ml-1 disabled:opacity-40"
+                        className="text-brand-500 hover:text-red-500 transition-colors ml-1 disabled:opacity-40"
                         title="Remover"
                       >
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">

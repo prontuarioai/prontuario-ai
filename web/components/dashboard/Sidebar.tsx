@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { getBrand } from '@/lib/brands'
 
 type Role = 'admin' | 'profissional' | 'secretaria'
 
@@ -37,6 +38,7 @@ interface Props {
     trial_fim: string
     role: string
     enabled_modules?: string[]
+    brand_context?: string | null
   }
   eventosNaoLidos: number
   notificacoesNaoLidas: number
@@ -53,6 +55,7 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
   const router = useRouter()
   const role = (terapeuta.role ?? 'admin') as Role
   const enabledModules = terapeuta.enabled_modules ?? ['agenda']
+  const brandName = getBrand(terapeuta.brand_context).name
   const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -98,12 +101,12 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
         {/* Cabeçalho */}
         <div className="border-b border-gray-100 flex items-center h-[61px] px-3 gap-2">
           {!collapsed && (
-            <span className="text-base font-bold text-teal-700 flex-1 truncate hidden md:block">
-              Agenda Online AI
+            <span className="text-base font-bold text-brand-700 flex-1 truncate hidden md:block">
+              {brandName}
             </span>
           )}
-          <span className="text-base font-bold text-teal-700 flex-1 truncate md:hidden">
-            Agenda Online AI
+          <span className="text-base font-bold text-brand-700 flex-1 truncate md:hidden">
+            {brandName}
           </span>
 
           <button
@@ -137,7 +140,7 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
                   'flex items-center gap-3 py-2 rounded-xl text-sm font-medium transition-colors',
                   collapsed ? 'justify-center px-0' : 'px-3',
                   active
-                    ? 'bg-teal-50 text-teal-700'
+                    ? 'bg-brand-50 text-brand-700'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                 ].join(' ')}
               >
@@ -169,7 +172,7 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
 
         {/* Usuário */}
         <div className={['border-t border-gray-100 p-3 flex items-center gap-2', collapsed ? 'justify-center' : ''].join(' ')}>
-          <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm shrink-0">
+          <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-semibold text-sm shrink-0">
             {terapeuta.nome.charAt(0).toUpperCase()}
           </div>
           {!collapsed && (

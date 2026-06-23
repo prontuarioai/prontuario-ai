@@ -126,7 +126,7 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
           onChange={e => setComentario(e.target.value)}
           rows={4}
           placeholder="O que achou da sessão? O que poderia melhorar?"
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
+          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
         />
       </div>
 
@@ -137,7 +137,7 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
       <button
         onClick={handleSubmit}
         disabled={loading || !nota}
-        className="w-full bg-teal-600 hover:bg-teal-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors"
+        className="w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors"
       >
         {loading ? 'Enviando…' : 'Enviar avaliação'}
       </button>

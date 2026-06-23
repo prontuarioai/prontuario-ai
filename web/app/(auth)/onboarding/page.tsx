@@ -20,7 +20,7 @@ export default async function OnboardingPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
       <div className="w-full max-w-sm bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-6">
         <div className="text-center space-y-1">
-          <span className="text-2xl font-bold text-teal-700">Agenda Online AI</span>
+          <span className="text-2xl font-bold text-brand-700">Agenda Online AI</span>
           <h2 className="text-xl font-bold text-gray-900 mt-3">Bem-vindo(a)!</h2>
           <p className="text-sm text-gray-500">
             Vamos configurar sua prática em 30 segundos

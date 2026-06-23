@@ -33,7 +33,7 @@ export default function EscolherNegocio({ locais, redirectTo }: { locais: Local[
           onClick={() => setSelecionado(local.placeId ?? '')}
           className={`w-full text-left px-5 py-4 rounded-2xl border-2 transition-colors ${
             selecionado === local.placeId
-              ? 'border-teal-500 bg-teal-50'
+              ? 'border-brand-500 bg-brand-50'
               : 'border-gray-200 bg-white hover:border-gray-300'
           }`}
         >
@@ -52,7 +52,7 @@ export default function EscolherNegocio({ locais, redirectTo }: { locais: Local[
         <button
           onClick={handleSalvar}
           disabled={isPending || !selecionado}
-          className="w-full bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-semibold py-3 rounded-xl transition-colors text-sm"
+          className="w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white font-semibold py-3 rounded-xl transition-colors text-sm"
         >
           {isPending ? 'Salvando…' : 'Usar este negócio'}
         </button>

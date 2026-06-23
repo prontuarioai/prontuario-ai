@@ -55,7 +55,7 @@ export default function TriagemPublica({ token }: Props) {
       {/* Indicador de passo */}
       <div className="flex gap-2">
         {[1, 2, 3].map(s => (
-          <div key={s} className={`flex-1 h-1.5 rounded-full transition-colors ${s <= step ? 'bg-teal-500' : 'bg-gray-100'}`} />
+          <div key={s} className={`flex-1 h-1.5 rounded-full transition-colors ${s <= step ? 'bg-brand-500' : 'bg-gray-100'}`} />
         ))}
       </div>
 
@@ -67,7 +67,7 @@ export default function TriagemPublica({ token }: Props) {
           </div>
           <div className="space-y-4">
             <div className="flex justify-center">
-              <span className="text-4xl font-bold text-teal-600">{humor}</span>
+              <span className="text-4xl font-bold text-brand-600">{humor}</span>
             </div>
             <input
               type="range"
@@ -75,7 +75,7 @@ export default function TriagemPublica({ token }: Props) {
               max={10}
               value={humor}
               onChange={e => setHumor(Number(e.target.value))}
-              className="w-full accent-teal-600"
+              className="w-full accent-brand-600"
             />
             <div className="flex justify-between text-xs text-gray-400">
               <span>1 — Muito mal</span>
@@ -87,7 +87,7 @@ export default function TriagemPublica({ token }: Props) {
           </div>
           <button
             onClick={() => setStep(2)}
-            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl transition-colors"
+            className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 rounded-xl transition-colors"
           >
             Continuar
           </button>
@@ -105,13 +105,13 @@ export default function TriagemPublica({ token }: Props) {
             onChange={e => setEventos(e.target.value)}
             rows={5}
             placeholder="Ex: tive uma discussão no trabalho, consegui dormir melhor, sinto ansiedade ao sair de casa…"
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
+            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
           />
           <div className="flex gap-3">
             <button onClick={() => setStep(1)} className="flex-1 border border-gray-200 text-gray-600 py-2.5 rounded-xl text-sm hover:bg-gray-50 transition-colors">
               Voltar
             </button>
-            <button onClick={() => setStep(3)} className="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 rounded-xl text-sm transition-colors">
+            <button onClick={() => setStep(3)} className="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 rounded-xl text-sm transition-colors">
               Continuar
             </button>
           </div>
@@ -129,7 +129,7 @@ export default function TriagemPublica({ token }: Props) {
             onChange={e => setFoco(e.target.value)}
             rows={5}
             placeholder="Ex: quero entender minha relação com minha mãe, quero trabalhar o medo de rejeição…"
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
+            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
           />
           {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-xl border border-red-200">{error}</p>}
           <div className="flex gap-3">
@@ -139,7 +139,7 @@ export default function TriagemPublica({ token }: Props) {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="flex-1 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl text-sm transition-colors"
+              className="flex-1 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl text-sm transition-colors"
             >
               {loading ? 'Enviando…' : 'Enviar respostas'}
             </button>

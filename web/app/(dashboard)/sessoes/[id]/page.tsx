@@ -105,7 +105,7 @@ export default async function SessaoPage({ params }: { params: { id: string } })
                     <span className="text-sm text-gray-500">Humor geral:</span>
                     <div className="flex-1 bg-gray-100 rounded-full h-2">
                       <div
-                        className="bg-teal-500 h-2 rounded-full"
+                        className="bg-brand-500 h-2 rounded-full"
                         style={{ width: `${(triagem.humor_geral / 10) * 100}%` }}
                       />
                     </div>
@@ -123,7 +123,7 @@ export default async function SessaoPage({ params }: { params: { id: string } })
                       <p className="text-sm text-gray-700">{triagem.foco_sessao}</p>
                     </div>
                   )}
-                  <Link href={`/triagens/${triagem.id}`} className="text-xs text-teal-600 hover:underline font-medium">
+                  <Link href={`/triagens/${triagem.id}`} className="text-xs text-brand-600 hover:underline font-medium">
                     Ver análise completa →
                   </Link>
                 </div>
@@ -163,9 +163,9 @@ export default async function SessaoPage({ params }: { params: { id: string } })
             <h2 className="font-semibold text-gray-900">Paciente</h2>
             <Link
               href={`/pacientes/${paciente?.id}`}
-              className="flex items-center gap-3 hover:text-teal-700 transition-colors"
+              className="flex items-center gap-3 hover:text-brand-700 transition-colors"
             >
-              <div className="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm">
+              <div className="w-9 h-9 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-semibold text-sm">
                 {paciente?.nome.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -195,7 +195,7 @@ export default async function SessaoPage({ params }: { params: { id: string } })
                 <div>
                   <dt className="text-gray-500 mb-1">Link</dt>
                   <a href={sessao.link_meet} target="_blank" rel="noopener noreferrer"
-                    className="text-teal-600 hover:underline text-xs break-all">
+                    className="text-brand-600 hover:underline text-xs break-all">
                     {sessao.link_meet}
                   </a>
                 </div>

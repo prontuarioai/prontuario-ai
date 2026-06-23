@@ -53,7 +53,7 @@ export default async function TriagemDetalhe({ params }: { params: { id: string 
           {sessao && (
             <Link
               href={`/sessoes/${sessao.id}`}
-              className="text-sm text-teal-600 border border-teal-200 px-4 py-2 rounded-xl hover:bg-teal-50 transition-colors"
+              className="text-sm text-brand-600 border border-brand-200 px-4 py-2 rounded-xl hover:bg-brand-50 transition-colors"
             >
               Ver sessão
             </Link>
@@ -81,7 +81,7 @@ export default async function TriagemDetalhe({ params }: { params: { id: string 
             <div className="flex items-center gap-3">
               <div className="flex-1 bg-gray-100 rounded-full h-2.5">
                 <div
-                  className="bg-teal-500 h-2.5 rounded-full"
+                  className="bg-brand-500 h-2.5 rounded-full"
                   style={{ width: `${(triagem.humor_geral / 10) * 100}%` }}
                 />
               </div>
@@ -152,7 +152,7 @@ export default async function TriagemDetalhe({ params }: { params: { id: string 
                 </div>
                 <div className="relative h-2 bg-gray-100 rounded-full">
                   <div
-                    className="absolute h-2 rounded-full bg-teal-400"
+                    className="absolute h-2 rounded-full bg-brand-400"
                     style={{ width: `${((analise.arousal + 1) / 2) * 100}%` }}
                   />
                 </div>

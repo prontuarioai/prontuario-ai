@@ -35,11 +35,11 @@ export default async function TriagensPage() {
               className="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 transition-colors first:rounded-t-2xl last:rounded-b-2xl"
             >
               <div className="relative">
-                <div className="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm">
+                <div className="w-9 h-9 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-semibold text-sm">
                   {t.pacientes?.nome?.charAt(0).toUpperCase()}
                 </div>
                 {!t.lida_terapeuta && (
-                  <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-teal-500 rounded-full border-2 border-white" />
+                  <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-brand-500 rounded-full border-2 border-white" />
                 )}
               </div>
               <div className="flex-1 min-w-0">

@@ -153,7 +153,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                 <p className="text-xs text-gray-500 font-mono truncate flex-1">{link}</p>
                 <button
                   onClick={() => copyLink(link)}
-                  className="text-xs bg-teal-600 text-white px-2.5 py-1 rounded-lg whitespace-nowrap hover:bg-teal-700 transition-colors"
+                  className="text-xs bg-brand-600 text-white px-2.5 py-1 rounded-lg whitespace-nowrap hover:bg-brand-700 transition-colors"
                 >
                   {copied === link ? '✓ Copiado' : 'Copiar'}
                 </button>
@@ -164,7 +164,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
 
         <button
           onClick={redirectToCheckout}
-          className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
+          className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
         >
           Continuar para pagamento →
         </button>
@@ -180,18 +180,18 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={() => { setTipo('autonomo'); setStep('modulos') }}
-            className="flex flex-col items-center gap-2 border-2 border-gray-200 hover:border-teal-500 rounded-2xl p-5 transition-colors group"
+            className="flex flex-col items-center gap-2 border-2 border-gray-200 hover:border-brand-500 rounded-2xl p-5 transition-colors group"
           >
             <span className="text-3xl">👤</span>
-            <span className="text-sm font-semibold text-gray-700 group-hover:text-teal-700">Autônomo</span>
+            <span className="text-sm font-semibold text-gray-700 group-hover:text-brand-700">Autônomo</span>
             <span className="text-xs text-gray-400 text-center">Trabalho por conta própria</span>
           </button>
           <button
             onClick={() => { setTipo('equipe'); setStep('modulos') }}
-            className="flex flex-col items-center gap-2 border-2 border-gray-200 hover:border-teal-500 rounded-2xl p-5 transition-colors group"
+            className="flex flex-col items-center gap-2 border-2 border-gray-200 hover:border-brand-500 rounded-2xl p-5 transition-colors group"
           >
             <span className="text-3xl">👥</span>
-            <span className="text-sm font-semibold text-gray-700 group-hover:text-teal-700">Equipe</span>
+            <span className="text-sm font-semibold text-gray-700 group-hover:text-brand-700">Equipe</span>
             <span className="text-xs text-gray-400 text-center">Tenho colaboradores</span>
           </button>
         </div>
@@ -216,14 +216,14 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                 className={[
                   'w-full text-left flex items-start gap-3 border-2 rounded-2xl p-4 transition-colors',
                   ativo
-                    ? 'border-teal-500 bg-teal-50'
+                    ? 'border-brand-500 bg-brand-50'
                     : 'border-gray-200 bg-white hover:border-gray-300',
                   m.obrigatorio ? 'cursor-default' : 'cursor-pointer',
                 ].join(' ')}
               >
                 <div className={[
                   'mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0',
-                  ativo ? 'border-teal-500 bg-teal-500' : 'border-gray-300',
+                  ativo ? 'border-brand-500 bg-brand-500' : 'border-gray-300',
                 ].join(' ')}>
                   {ativo && (
                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -237,7 +237,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                 </div>
                 <span className={[
                   'text-xs font-medium shrink-0 mt-0.5',
-                  m.obrigatorio ? 'text-gray-400' : 'text-teal-700',
+                  m.obrigatorio ? 'text-gray-400' : 'text-brand-700',
                 ].join(' ')}>
                   {m.preco}
                 </span>
@@ -257,7 +257,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
           <button
             type="button"
             onClick={() => setStep('form')}
-            className="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
+            className="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
           >
             Continuar →
           </button>
@@ -284,7 +284,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
           value={nomeClinica}
           onChange={e => setNomeClinica(e.target.value)}
           placeholder={nomeDefault}
-          className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+          className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
         />
         <p className="text-xs text-gray-400 mt-1">Deixe em branco para usar seu nome</p>
       </div>
@@ -296,7 +296,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
             <button
               type="button"
               onClick={addMembro}
-              className="text-xs text-teal-600 hover:text-teal-800 font-medium"
+              className="text-xs text-brand-600 hover:text-brand-800 font-medium"
             >
               + Adicionar
             </button>
@@ -310,7 +310,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                   placeholder={`Nome do membro ${i + 1}`}
                   value={m.nome}
                   onChange={e => updateMembro(i, 'nome', e.target.value)}
-                  className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
                 />
                 {membros.length > 1 && (
                   <button
@@ -333,7 +333,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                       className={[
                         'flex items-start gap-2 rounded-lg border px-2.5 py-2 cursor-pointer transition-colors',
                         m.role === r.value
-                          ? 'border-teal-500 bg-teal-50'
+                          ? 'border-brand-500 bg-brand-50'
                           : 'border-gray-200 bg-white hover:border-gray-300',
                       ].join(' ')}
                     >
@@ -343,7 +343,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                         value={r.value}
                         checked={m.role === r.value}
                         onChange={() => updateMembro(i, 'role', r.value)}
-                        className="mt-0.5 accent-teal-600"
+                        className="mt-0.5 accent-brand-600"
                       />
                       <div>
                         <p className="text-xs font-medium text-gray-800">{r.label}</p>
@@ -373,7 +373,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
         <button
           type="submit"
           disabled={loading}
-          className="flex-1 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
+          className="flex-1 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
         >
           {loading ? 'Criando…' : 'Ir para pagamento →'}
         </button>

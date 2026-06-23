@@ -57,7 +57,7 @@ export default function AgendarModal({ pacientes, slotInicial, pacientePreSeleci
               name="paciente_id"
               required
               defaultValue={pacientePreSelecionado ?? ''}
-              className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"
+              className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
             >
               <option value="">Selecionar paciente</option>
               {pacientes.map(p => (
@@ -74,7 +74,7 @@ export default function AgendarModal({ pacientes, slotInicial, pacientePreSeleci
                 type="datetime-local"
                 required
                 defaultValue={defaultInicio}
-                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
             <div>
@@ -84,7 +84,7 @@ export default function AgendarModal({ pacientes, slotInicial, pacientePreSeleci
                 type="datetime-local"
                 required
                 defaultValue={defaultFim}
-                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function AgendarModal({ pacientes, slotInicial, pacientePreSeleci
               <select
                 name="modalidade"
                 defaultValue="presencial"
-                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"
+                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
               >
                 <option value="presencial">Presencial</option>
                 <option value="online">Online</option>
@@ -108,7 +108,7 @@ export default function AgendarModal({ pacientes, slotInicial, pacientePreSeleci
                 type="number"
                 step="0.01"
                 min="0"
-                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
                 placeholder="150,00"
               />
             </div>
@@ -119,7 +119,7 @@ export default function AgendarModal({ pacientes, slotInicial, pacientePreSeleci
             <input
               name="link_meet"
               type="url"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
               placeholder="https://meet.google.com/…"
             />
           </div>
@@ -135,7 +135,7 @@ export default function AgendarModal({ pacientes, slotInicial, pacientePreSeleci
             <button
               type="submit"
               disabled={isPending}
-              className="flex-1 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
+              className="flex-1 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
             >
               {isPending ? 'Agendando…' : 'Agendar'}
             </button>

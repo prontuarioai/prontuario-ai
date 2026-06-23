@@ -4,8 +4,47 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-:root {
-  --brand: #0d9488;
+/* ── Brand: Agenda Online AI (padrão / teal) ─────────── */
+:root,
+[data-brand="agenda_online_ai"] {
+  --brand-50:  240 253 250;
+  --brand-100: 204 251 241;
+  --brand-200: 153 246 228;
+  --brand-300:  94 234 212;
+  --brand-400:  45 212 191;
+  --brand-500:  20 184 166;
+  --brand-600:  13 148 136;
+  --brand-700:  15 118 110;
+  --brand-800:  17  94  89;
+  --brand-900:  19  78  74;
+}
+
+/* ── Brand: Fluxus Sermonis (verde) ─────────────────── */
+[data-brand="fluxus_sermonis"] {
+  --brand-50:  240 253 244;
+  --brand-100: 220 252 231;
+  --brand-200: 187 247 208;
+  --brand-300: 134 239 172;
+  --brand-400:  74 222 128;
+  --brand-500:  34 197  94;
+  --brand-600:  22 163  74;
+  --brand-700:  21 128  61;
+  --brand-800:  22 101  52;
+  --brand-900:  20  83  45;
+}
+
+/* ── Brand: Open Publisher (violeta) ────────────────── */
+[data-brand="open_publisher"] {
+  --brand-50:  245 243 255;
+  --brand-100: 237 233 254;
+  --brand-200: 221 214 254;
+  --brand-300: 196 181 253;
+  --brand-400: 167 139 250;
+  --brand-500: 139  92 246;
+  --brand-600: 124  58 237;
+  --brand-700: 109  40 217;
+  --brand-800:  91  33 182;
+  --brand-900:  76  29 149;
 }
 
 * {

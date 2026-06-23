@@ -56,14 +56,14 @@ export default function RecuperarSenhaForm() {
           required
           value={email}
           onChange={e => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+          className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
           placeholder="voce@email.com"
         />
       </div>
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
+        className="w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
       >
         {loading ? 'Enviando…' : 'Enviar link de recuperação'}
       </button>

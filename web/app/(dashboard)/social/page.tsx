@@ -33,7 +33,7 @@ export default async function SocialPage() {
         </div>
         <Link
           href="/social/publicar"
-          className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-4 py-2.5 rounded-2xl transition-colors"
+          className="bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2.5 rounded-2xl transition-colors"
         >
           + Criar post
         </Link>
@@ -70,7 +70,7 @@ export default async function SocialPage() {
           </p>
           <Link
             href="/social/contas"
-            className="inline-block bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+            className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
           >
             Conectar contas
           </Link>
@@ -83,7 +83,7 @@ export default async function SocialPage() {
           href="/social/inbox"
           className="flex items-center gap-4 border border-gray-200 rounded-2xl p-5 bg-white hover:bg-gray-50 transition-colors group"
         >
-          <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 group-hover:bg-teal-100 transition-colors">
+          <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 group-hover:bg-brand-100 transition-colors">
             <InboxIcon className="w-5 h-5" />
           </div>
           <div>
@@ -97,7 +97,7 @@ export default async function SocialPage() {
           href="/social/publicar"
           className="flex items-center gap-4 border border-gray-200 rounded-2xl p-5 bg-white hover:bg-gray-50 transition-colors group"
         >
-          <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 group-hover:bg-teal-100 transition-colors">
+          <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 group-hover:bg-brand-100 transition-colors">
             <PencilIcon className="w-5 h-5" />
           </div>
           <div>
@@ -110,7 +110,7 @@ export default async function SocialPage() {
 
       {/* Link para gerenciar contas */}
       <div className="flex justify-end">
-        <Link href="/social/contas" className="text-xs text-teal-600 hover:underline">
+        <Link href="/social/contas" className="text-xs text-brand-600 hover:underline">
           Gerenciar contas conectadas →
         </Link>
       </div>

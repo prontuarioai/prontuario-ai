@@ -38,7 +38,7 @@ export default async function EventosPage() {
           <h1 className="text-2xl font-bold text-gray-900">Eventos entre sessões</h1>
           <p className="text-sm text-gray-500 mt-0.5">
             Mensagens dos pacientes fora das sessões
-            {naoLidos > 0 && <span className="ml-2 bg-teal-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">{naoLidos} novo{naoLidos > 1 ? 's' : ''}</span>}
+            {naoLidos > 0 && <span className="ml-2 bg-brand-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">{naoLidos} novo{naoLidos > 1 ? 's' : ''}</span>}
           </p>
         </div>
         {naoLidos > 0 && <MarcarTodosButton />}
@@ -54,10 +54,10 @@ export default async function EventosPage() {
               <div className="flex items-start gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <a href={`/pacientes/${e.pacientes?.id}`} className="text-sm font-semibold text-gray-900 hover:text-teal-700 transition-colors">
+                    <a href={`/pacientes/${e.pacientes?.id}`} className="text-sm font-semibold text-gray-900 hover:text-brand-700 transition-colors">
                       {e.pacientes?.nome}
                     </a>
-                    {!e.lido && <div className="w-2 h-2 bg-teal-500 rounded-full" />}
+                    {!e.lido && <div className="w-2 h-2 bg-brand-500 rounded-full" />}
                     <span className="text-xs text-gray-400 ml-auto">
                       {new Date(e.created_at).toLocaleString('pt-BR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
                     </span>

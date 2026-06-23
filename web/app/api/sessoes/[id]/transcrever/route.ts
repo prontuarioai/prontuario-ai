@@ -55,7 +55,22 @@ async function processarEmBackground(
     const texto = result.text
     await service.from('transcricoes').update({ texto, status: 'concluido' }).eq('sessao_id', sessaoId)
 
-    const analise = await resumirSessao(texto)
+    // Anonimiza nome do paciente antes de enviar para a IA (LGPD)
+    const { data: sessaoInfo } = await service.from('sessoes').select('paciente_id').eq('id', sessaoId).single()
+    let textoAnonimizado = texto
+    if (sessaoInfo?.paciente_id) {
+      const { data: pac } = await service.from('pacientes').select('nome').eq('id', sessaoInfo.paciente_id).single()
+      if (pac?.nome) {
+        const nomeEscapado = pac.nome.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        textoAnonimizado = texto.replace(new RegExp(nomeEscapado, 'gi'), '[PACIENTE]')
+        const primeiroNome = pac.nome.split(' ')[0]
+        if (primeiroNome.length > 2) {
+          textoAnonimizado = textoAnonimizado.replace(new RegExp(primeiroNome.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '[PACIENTE]')
+        }
+      }
+    }
+
+    const analise = await resumirSessao(textoAnonimizado)
 
     await service.from('resumos_ia').upsert({
       sessao_id: sessaoId,

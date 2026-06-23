@@ -81,7 +81,7 @@ export default async function DashboardPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map(kpi => (
-          <Link key={kpi.label} href={kpi.href} className="bg-white rounded-2xl border border-gray-100 p-5 hover:border-teal-200 transition-colors">
+          <Link key={kpi.label} href={kpi.href} className="bg-white rounded-2xl border border-gray-100 p-5 hover:border-brand-200 transition-colors">
             <p className="text-2xl font-bold text-gray-900">{kpi.value}</p>
             <p className="text-xs text-gray-500 mt-0.5">{kpi.label}</p>
           </Link>
@@ -112,12 +112,12 @@ export default async function DashboardPage() {
         <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-gray-900">Próximas sessões</h2>
-            <Link href="/agenda" className="text-xs text-teal-600 hover:underline">Ver agenda →</Link>
+            <Link href="/agenda" className="text-xs text-brand-600 hover:underline">Ver agenda →</Link>
           </div>
           {proximasSessoes && proximasSessoes.length > 0 ? (
             <div className="space-y-2">
               {proximasSessoes.map((s: any) => (
-                <Link key={s.id} href={`/sessoes/${s.id}`} className="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0 hover:text-teal-700 transition-colors">
+                <Link key={s.id} href={`/sessoes/${s.id}`} className="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0 hover:text-brand-700 transition-colors">
                   <div>
                     <p className="text-sm font-medium text-gray-900">{s.pacientes?.nome}</p>
                     <p className="text-xs text-gray-400 capitalize">{s.modalidade}</p>

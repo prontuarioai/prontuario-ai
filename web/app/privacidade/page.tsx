@@ -46,7 +46,7 @@ export default function PrivacidadePage() {
           <div className="space-y-2 text-gray-600 leading-relaxed">
             <p><strong>Google Calendar:</strong> utilizamos o token de acesso fornecido pelo terapeuta exclusivamente para criar, atualizar e remover eventos de sessão no calendário do próprio terapeuta. Não lemos, modificamos nem acessamos outros eventos ou dados do calendário.</p>
             <p><strong>Google Meus Negócios:</strong> utilizamos a API do Google Business Profile exclusivamente para identificar a página do terapeuta e gerar links de avaliação no Google. Não publicamos, editamos nem acessamos outros dados da página do negócio.</p>
-            <p>O uso dos dados obtidos via APIs do Google segue a <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:underline">Política de Dados de Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado.</p>
+            <p>O uso dos dados obtidos via APIs do Google segue a <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Política de Dados de Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado.</p>
           </div>
         </section>
 
@@ -87,7 +87,7 @@ export default function PrivacidadePage() {
             <li>Portabilidade dos dados</li>
           </ul>
           <p className="text-gray-600 leading-relaxed">
-            Para exercer esses direitos, entre em contato pelo e-mail: <a href="mailto:aleepedro@gmail.com" className="text-teal-600 hover:underline">aleepedro@gmail.com</a>
+            Para exercer esses direitos, entre em contato pelo e-mail: <a href="mailto:aleepedro@gmail.com" className="text-brand-600 hover:underline">aleepedro@gmail.com</a>
           </p>
         </section>
 
@@ -101,7 +101,7 @@ export default function PrivacidadePage() {
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-gray-900">8. Contato</h2>
           <p className="text-gray-600 leading-relaxed">
-            Dúvidas sobre esta política? Entre em contato: <a href="mailto:aleepedro@gmail.com" className="text-teal-600 hover:underline">aleepedro@gmail.com</a>
+            Dúvidas sobre esta política? Entre em contato: <a href="mailto:aleepedro@gmail.com" className="text-brand-600 hover:underline">aleepedro@gmail.com</a>
           </p>
         </section>
       </div>

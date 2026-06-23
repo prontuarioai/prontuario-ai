@@ -84,7 +84,7 @@ export default function ContasManager({ contasIniciais, conectado }: Props) {
               <button
                 onClick={() => conectar(rede)}
                 disabled={isLoading}
-                className="text-xs bg-teal-600 hover:bg-teal-700 text-white rounded-xl px-3 py-1.5 transition-colors disabled:opacity-50"
+                className="text-xs bg-brand-600 hover:bg-brand-700 text-white rounded-xl px-3 py-1.5 transition-colors disabled:opacity-50"
               >
                 {isLoading ? 'Aguarde…' : 'Conectar'}
               </button>

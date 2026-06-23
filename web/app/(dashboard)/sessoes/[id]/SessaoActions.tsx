@@ -52,7 +52,7 @@ export default function SessaoActions({
           <button
             disabled={isPending}
             onClick={() => run(marcarRealizadaAction, 'Sessão marcada como realizada')}
-            className="w-full text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 disabled:opacity-50 px-4 py-2 rounded-xl transition-colors"
+            className="w-full text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 disabled:opacity-50 px-4 py-2 rounded-xl transition-colors"
           >
             {isPending ? 'Aguarde…' : 'Marcar como realizada'}
           </button>
@@ -61,7 +61,7 @@ export default function SessaoActions({
         <button
           disabled={isPending}
           onClick={() => run(enviarTriagemAction, triagemEnviada ? 'Triagem reenviada' : 'Triagem enviada')}
-          className="w-full text-sm font-medium text-teal-700 border border-teal-200 hover:bg-teal-50 disabled:opacity-50 px-4 py-2 rounded-xl transition-colors"
+          className="w-full text-sm font-medium text-brand-700 border border-brand-200 hover:bg-brand-50 disabled:opacity-50 px-4 py-2 rounded-xl transition-colors"
         >
           {isPending ? 'Aguarde…' : triagemEnviada ? 'Reenviar triagem' : 'Enviar triagem agora'}
         </button>

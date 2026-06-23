@@ -55,7 +55,7 @@ export default async function SessoesPage({
         </div>
         <Link
           href="/agenda"
-          className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
+          className="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
         >
           + Agendar
         </Link>
@@ -125,7 +125,7 @@ function EmptyState({ q }: { q?: string }) {
         {q ? 'Nenhuma sessão encontrada.' : 'Nenhuma sessão ainda.'}
       </p>
       {!q && (
-        <Link href="/agenda" className="mt-4 inline-block text-sm text-teal-600 font-medium hover:underline">
+        <Link href="/agenda" className="mt-4 inline-block text-sm text-brand-600 font-medium hover:underline">
           Agendar primeira sessão
         </Link>
       )}

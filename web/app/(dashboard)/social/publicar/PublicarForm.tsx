@@ -80,7 +80,7 @@ export default function PublicarForm({ contasConectadas }: Props) {
           maxLength={2200}
           rows={5}
           placeholder="O que você quer compartilhar com seus pacientes e seguidores?"
-          className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none transition"
+          className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none transition"
         />
         <p className="text-xs text-gray-400 mt-1 text-right">{conteudo.length}/2200</p>
       </div>
@@ -91,7 +91,7 @@ export default function PublicarForm({ contasConectadas }: Props) {
         {redesDisponiveis.length === 0 ? (
           <p className="text-sm text-gray-400">
             Nenhuma rede conectada.{' '}
-            <a href="/social/contas" className="text-teal-600 underline">Conectar agora</a>
+            <a href="/social/contas" className="text-brand-600 underline">Conectar agora</a>
           </p>
         ) : (
           <div className="grid grid-cols-2 gap-2">
@@ -103,14 +103,14 @@ export default function PublicarForm({ contasConectadas }: Props) {
                   key={conta.provider}
                   className={[
                     'flex items-center gap-2.5 border-2 rounded-2xl px-3 py-2.5 cursor-pointer transition-colors',
-                    selecionada ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:border-gray-300',
+                    selecionada ? 'border-brand-500 bg-brand-50' : 'border-gray-200 hover:border-gray-300',
                   ].join(' ')}
                 >
                   <input
                     type="checkbox"
                     checked={selecionada}
                     onChange={() => toggleRede(conta.provider)}
-                    className="accent-teal-600"
+                    className="accent-brand-600"
                   />
                   <span className="text-sm font-medium text-gray-700">{info.label}</span>
                   {conta.nome && <span className="text-xs text-gray-400 truncate">{conta.nome}</span>}
@@ -129,7 +129,7 @@ export default function PublicarForm({ contasConectadas }: Props) {
             onClick={() => setModoAgendar(false)}
             className={[
               'flex-1 py-2 rounded-xl text-sm font-medium transition-colors',
-              !modoAgendar ? 'bg-teal-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200',
+              !modoAgendar ? 'bg-brand-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200',
             ].join(' ')}
           >
             Publicar agora
@@ -139,7 +139,7 @@ export default function PublicarForm({ contasConectadas }: Props) {
             onClick={() => setModoAgendar(true)}
             className={[
               'flex-1 py-2 rounded-xl text-sm font-medium transition-colors',
-              modoAgendar ? 'bg-teal-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200',
+              modoAgendar ? 'bg-brand-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200',
             ].join(' ')}
           >
             Agendar
@@ -152,7 +152,7 @@ export default function PublicarForm({ contasConectadas }: Props) {
             value={agendarPara}
             onChange={e => setAgendarPara(e.target.value)}
             min={new Date().toISOString().slice(0, 16)}
-            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         )}
       </div>
@@ -175,7 +175,7 @@ export default function PublicarForm({ contasConectadas }: Props) {
       <button
         type="submit"
         disabled={loading || !conteudo.trim() || !redesSelecionadas.length}
-        className="w-full bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-semibold py-3 rounded-2xl transition-colors text-sm"
+        className="w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white font-semibold py-3 rounded-2xl transition-colors text-sm"
       >
         {loading ? 'Publicando…' : modoAgendar ? 'Agendar post' : 'Publicar agora'}
       </button>

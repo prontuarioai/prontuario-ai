@@ -22,12 +22,12 @@ export default function PrecosPage() {
       {/* Nav */}
       <nav className="bg-white border-b border-gray-100 px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <Link href="/" className="text-lg font-bold text-teal-700">Agenda Online AI</Link>
+          <Link href="/" className="text-lg font-bold text-brand-700">Agenda Online AI</Link>
           <div className="flex gap-3">
             <Link href="/login" className="text-sm text-gray-600 hover:text-gray-900 px-4 py-2 rounded-xl hover:bg-gray-50 transition-colors">
               Entrar
             </Link>
-            <Link href="/cadastro" className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors">
+            <Link href="/cadastro" className="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors">
               Começar grátis
             </Link>
           </div>
@@ -46,7 +46,7 @@ export default function PrecosPage() {
         {/* Card de preço */}
         <div className="max-w-sm mx-auto bg-white rounded-3xl border border-gray-100 shadow-sm p-8 space-y-6">
           <div>
-            <p className="text-sm font-medium text-teal-600 mb-1">Plano único</p>
+            <p className="text-sm font-medium text-brand-600 mb-1">Plano único</p>
             <div className="flex items-baseline gap-1">
               <span className="text-4xl font-bold text-gray-900">R$ 29</span>
               <span className="text-xl font-bold text-gray-900">,90</span>
@@ -55,16 +55,16 @@ export default function PrecosPage() {
             <p className="text-sm text-gray-500 mt-1">+ R$ 2,99 por paciente ativo/mês</p>
           </div>
 
-          <div className="bg-teal-50 rounded-2xl p-4 space-y-1">
-            <p className="text-sm font-semibold text-teal-900">Exemplo prático</p>
-            <p className="text-sm text-teal-700">10 pacientes = R$ 29,90 + R$ 29,90 = <strong>R$ 59,80/mês</strong></p>
-            <p className="text-sm text-teal-700">20 pacientes = R$ 29,90 + R$ 59,80 = <strong>R$ 89,70/mês</strong></p>
+          <div className="bg-brand-50 rounded-2xl p-4 space-y-1">
+            <p className="text-sm font-semibold text-brand-900">Exemplo prático</p>
+            <p className="text-sm text-brand-700">10 pacientes = R$ 29,90 + R$ 29,90 = <strong>R$ 59,80/mês</strong></p>
+            <p className="text-sm text-brand-700">20 pacientes = R$ 29,90 + R$ 59,80 = <strong>R$ 89,70/mês</strong></p>
           </div>
 
           <ul className="space-y-2.5">
             {features.map(f => (
               <li key={f} className="flex items-center gap-2.5 text-sm text-gray-700">
-                <svg className="w-4 h-4 text-teal-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 text-brand-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 {f}
@@ -74,7 +74,7 @@ export default function PrecosPage() {
 
           <Link
             href="/cadastro"
-            className="block w-full text-center bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl transition-colors"
+            className="block w-full text-center bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 rounded-xl transition-colors"
           >
             Começar 14 dias grátis
           </Link>
@@ -101,7 +101,7 @@ export default function PrecosPage() {
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold text-gray-900">Pronto para começar?</h2>
           <p className="text-gray-500">Junte-se a terapeutas que já usam o Agenda Online AI para cuidar melhor dos seus pacientes.</p>
-          <Link href="/cadastro" className="inline-block bg-teal-600 hover:bg-teal-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors">
+          <Link href="/cadastro" className="inline-block bg-brand-600 hover:bg-brand-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors">
             Criar conta grátis
           </Link>
         </div>

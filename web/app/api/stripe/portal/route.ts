@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Sem assinatura ativa.' }, { status: 400 })
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://agendaonlineai.com.br'
   const url = await createPortalSession(terapeuta.stripe_customer_id, `${appUrl}/configuracoes`)
   return NextResponse.json({ url })
 }

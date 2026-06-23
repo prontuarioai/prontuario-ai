@@ -84,7 +84,7 @@ export default function AudioUpload({ sessaoId, onUploadSuccess }: Props) {
           </div>
           <div className="w-full bg-gray-100 rounded-full h-2">
             <div
-              className="bg-teal-500 h-2 rounded-full transition-all"
+              className="bg-brand-500 h-2 rounded-full transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -96,7 +96,7 @@ export default function AudioUpload({ sessaoId, onUploadSuccess }: Props) {
           onDrop={handleDrop}
           onClick={() => inputRef.current?.click()}
           className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-colors ${
-            dragging ? 'border-teal-400 bg-teal-50' : 'border-gray-200 hover:border-teal-300 hover:bg-gray-50'
+            dragging ? 'border-brand-400 bg-brand-50' : 'border-gray-200 hover:border-brand-300 hover:bg-gray-50'
           }`}
         >
           <input
