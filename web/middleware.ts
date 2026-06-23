@@ -4,6 +4,8 @@ import { NextResponse, type NextRequest } from 'next/server'
 const PUBLIC_PATHS = [
   '/login',
   '/cadastro',
+  '/onboarding',
+  '/convite',
   '/recuperar-senha',
   '/redefinir-senha',
   '/precos',
@@ -17,6 +19,23 @@ const PUBLIC_PATHS = [
   '/api/stripe/webhook',
   '/api/agendar',
 ]
+
+const WHATSAPP_PATHS = [
+  '/chat/profissional',
+  '/chat/equipe',
+  '/chat/interno',
+  '/whatsapp',
+  '/api/whatsapp',
+]
+
+const SOCIAL_PATHS = [
+  '/social',
+  '/api/social',
+]
+
+function isApiPath(pathname: string) {
+  return pathname.startsWith('/api/')
+}
 
 export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
@@ -53,7 +72,7 @@ export async function middleware(request: NextRequest) {
     return redirectResponse
   }
 
-  if (user && (pathname === '/login' || pathname === '/cadastro')) {
+  if (user && pathname === '/login') {
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard'
     const redirectResponse = NextResponse.redirect(url)
@@ -61,6 +80,50 @@ export async function middleware(request: NextRequest) {
       redirectResponse.cookies.set(cookie.name, cookie.value, cookie)
     )
     return redirectResponse
+  }
+
+  // Module gating: only query DB when the path requires a non-default module
+  if (user) {
+    const requiresWhatsapp = WHATSAPP_PATHS.some(p => pathname.startsWith(p))
+    const requiresSocial = SOCIAL_PATHS.some(p => pathname.startsWith(p))
+
+    if (requiresWhatsapp || requiresSocial) {
+      const { data: terapeuta } = await supabase
+        .from('terapeutas')
+        .select('enabled_modules')
+        .eq('id', user.id)
+        .single()
+
+      const enabledModules: string[] = terapeuta?.enabled_modules ?? ['agenda']
+
+      if (requiresWhatsapp && !enabledModules.includes('whatsapp')) {
+        if (isApiPath(pathname)) {
+          return NextResponse.json({ error: 'Módulo não contratado' }, { status: 403 })
+        }
+        const url = request.nextUrl.clone()
+        url.pathname = '/dashboard'
+        url.searchParams.set('modulo', 'indisponivel')
+        const redirectResponse = NextResponse.redirect(url)
+        supabaseResponse.cookies.getAll().forEach(cookie =>
+          redirectResponse.cookies.set(cookie.name, cookie.value, cookie)
+        )
+        return redirectResponse
+      }
+
+      if (requiresSocial && !enabledModules.includes('social')) {
+        if (isApiPath(pathname)) {
+          return NextResponse.json({ error: 'Módulo não contratado' }, { status: 403 })
+        }
+        const url = request.nextUrl.clone()
+        url.pathname = '/dashboard'
+        url.searchParams.set('modulo', 'indisponivel')
+        const redirectResponse = NextResponse.redirect(url)
+        supabaseResponse.cookies.getAll().forEach(cookie =>
+          redirectResponse.cookies.set(cookie.name, cookie.value, cookie)
+        )
+        return redirectResponse
+      }
+    }
   }
 
   return supabaseResponse

@@ -10,11 +10,12 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   const { data: terapeuta } = await supabase
     .from('terapeutas')
-    .select('id, nome, foto_url, plano, trial_fim')
+    .select('id, nome, foto_url, plano, plano_cortesia, trial_fim, clinica_id, role, enabled_modules, brand_context')
     .eq('id', user.id)
     .single()
 
   if (!terapeuta) redirect('/cadastro?setup=1')
+  if (!terapeuta.clinica_id) redirect('/onboarding')
 
   const { count: eventosNaoLidos } = await supabase
     .from('eventos_entre_sessoes')

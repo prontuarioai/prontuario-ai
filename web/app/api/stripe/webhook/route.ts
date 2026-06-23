@@ -4,6 +4,19 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { syncPacientesStripe } from '@/lib/stripe'
 import Stripe from 'stripe'
 
+const MODULO_PRICE_MAP: Record<string, string> = {
+  agenda: process.env.STRIPE_PRICE_ID_AGENDA ?? '',
+  whatsapp: process.env.STRIPE_PRICE_ID_WHATSAPP ?? '',
+  social: process.env.STRIPE_PRICE_ID_SOCIAL ?? '',
+}
+
+function moduloFromPriceId(priceId: string): string | null {
+  for (const [modulo, pid] of Object.entries(MODULO_PRICE_MAP)) {
+    if (pid && pid === priceId) return modulo
+  }
+  return null
+}
+
 export async function POST(request: NextRequest) {
   const body = await request.text()
   const sig = request.headers.get('stripe-signature')!
@@ -25,17 +38,49 @@ export async function POST(request: NextRequest) {
       const terapeutaId = sub.metadata?.terapeuta_id
       if (!terapeutaId) break
 
+      const modulosStr = sub.metadata?.modulos ?? 'agenda'
+      const modulos = modulosStr.split(',').filter(Boolean)
       const status = sub.status === 'active' ? 'ativo' : sub.status === 'trialing' ? 'trial' : 'inativo'
-      await supabase.from('terapeutas').update({ plano: status }).eq('id', terapeutaId)
+
+      await supabase.from('terapeutas').update({
+        plano: status,
+        enabled_modules: modulos,
+      }).eq('id', terapeutaId)
+
       await supabase.from('assinaturas').upsert({
         terapeuta_id: terapeutaId,
         stripe_subscription_id: sub.id,
-        stripe_price_base: process.env.STRIPE_PRICE_ID_BASE,
+        stripe_price_base: process.env.STRIPE_PRICE_ID_AGENDA ?? process.env.STRIPE_PRICE_ID_BASE,
         stripe_price_pac: process.env.STRIPE_PRICE_ID_PACIENTE,
         status: sub.status,
         periodo_inicio: new Date(sub.current_period_start * 1000).toISOString(),
         periodo_fim: new Date(sub.current_period_end * 1000).toISOString(),
       }, { onConflict: 'stripe_subscription_id' })
+
+      for (const modulo of modulos) {
+        const item = sub.items.data.find(i => {
+          const priceId = typeof i.price === 'string' ? i.price : i.price?.id
+          return moduloFromPriceId(priceId ?? '') === modulo
+        })
+
+        const itemStatus = sub.status === 'active' || sub.status === 'trialing' ? 'active' : 'past_due'
+
+        await supabase.from('modulos_ativos').upsert({
+          terapeuta_id: terapeutaId,
+          modulo,
+          stripe_subscription_item_id: item?.id ?? null,
+          status: itemStatus,
+        }, { onConflict: 'terapeuta_id,modulo' })
+      }
+
+      // Cancel modules no longer in the subscription
+      if (modulos.length > 0) {
+        await supabase.from('modulos_ativos')
+          .update({ status: 'canceled' })
+          .eq('terapeuta_id', terapeutaId)
+          .not('modulo', 'in', `(${modulos.map(m => `"${m}"`).join(',')})`)
+      }
+
       break
     }
 
@@ -43,7 +88,8 @@ export async function POST(request: NextRequest) {
       const sub = event.data.object as Stripe.Subscription
       const terapeutaId = sub.metadata?.terapeuta_id
       if (!terapeutaId) break
-      await supabase.from('terapeutas').update({ plano: 'inativo' }).eq('id', terapeutaId)
+      await supabase.from('terapeutas').update({ plano: 'inativo', enabled_modules: [] }).eq('id', terapeutaId)
+      await supabase.from('modulos_ativos').update({ status: 'canceled' }).eq('terapeuta_id', terapeutaId)
       break
     }
 
