@@ -120,7 +120,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
 
   async function redirectToCheckout() {
     try {
-      const res = await fetch('/api/stripe/checkout', {
+      const res = await fetch('/api/asaas/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ modulos }),
