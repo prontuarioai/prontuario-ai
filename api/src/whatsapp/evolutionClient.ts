@@ -49,11 +49,17 @@ export async function setWebhook(instanceName: string, webhookUrl: string) {
   }
 }
 
+function selfBaseUrl(): string {
+  if (process.env.API_URL) return process.env.API_URL
+  if (process.env.RAILWAY_PUBLIC_DOMAIN) return `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
+  return ''
+}
+
 export async function createEvolutionInstance(sessionId: string): Promise<void> {
   const instanceName = sessionToInstance(sessionId)
   const isSecretaria = sessionId.startsWith('sec-')
   const id = isSecretaria ? sessionId.slice(4) : sessionId
-  const webhookUrl = `${process.env.API_URL || ''}/whatsapp/webhook/${isSecretaria ? `sec-${id}` : id}`
+  const webhookUrl = `${selfBaseUrl()}/whatsapp/webhook/${isSecretaria ? `sec-${id}` : id}`
 
   const res = await fetch(`${EVOLUTION_API_URL}/instance/create`, {
     method: 'POST',
