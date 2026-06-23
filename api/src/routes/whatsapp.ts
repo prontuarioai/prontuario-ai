@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express'
 import { createClient } from '../lib/supabase'
 import { getSessions, getQR, disconnectSession, sendMessage, createSession, secretariaSessionId, sendMessageViaSecretaria } from '../whatsapp/manager'
+import { getConnectionState, sessionToInstance } from '../whatsapp/evolutionClient'
 import { handleEvolutionWebhook } from '../whatsapp/handlers'
 
 const router = Router()
@@ -17,9 +18,9 @@ function authMiddleware(req: Request, res: Response, next: () => void) {
 // Rotas genéricas (por sessionId — profissional)
 // ──────────────────────────────────────────────
 
-router.get('/status/:sessionId', authMiddleware, (req, res) => {
-  const session = getSessions().get(req.params.sessionId)
-  res.json({ connected: session?.connected ?? false })
+router.get('/status/:sessionId', authMiddleware, async (req, res) => {
+  const state = await getConnectionState(sessionToInstance(req.params.sessionId)).catch(() => 'close')
+  res.json({ connected: state === 'open' })
 })
 
 router.get('/qr/:sessionId', authMiddleware, (req, res) => {
@@ -48,10 +49,10 @@ router.post('/disconnect/:sessionId', authMiddleware, async (req, res) => {
 // Rotas da secretária (por clinicaId)
 // ──────────────────────────────────────────────
 
-router.get('/secretaria/status/:clinicaId', authMiddleware, (req, res) => {
+router.get('/secretaria/status/:clinicaId', authMiddleware, async (req, res) => {
   const sid = secretariaSessionId(req.params.clinicaId)
-  const session = getSessions().get(sid)
-  res.json({ connected: session?.connected ?? false })
+  const state = await getConnectionState(sessionToInstance(sid)).catch(() => 'close')
+  res.json({ connected: state === 'open' })
 })
 
 router.get('/secretaria/qr/:clinicaId', authMiddleware, (req, res) => {

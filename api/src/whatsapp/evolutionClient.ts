@@ -1,3 +1,5 @@
+import QRCode from 'qrcode'
+
 const EVOLUTION_API_URL = process.env.EVOLUTION_API_URL || ''
 const EVOLUTION_API_KEY = process.env.EVOLUTION_API_KEY || ''
 
@@ -86,8 +88,17 @@ export async function getQRCode(instanceName: string): Promise<string | null> {
     headers: headers(),
   })
   if (!res.ok) return null
-  const data = await res.json() as { base64?: string; qrcode?: { base64?: string } }
-  return data?.base64 || data?.qrcode?.base64 || null
+  const data = await res.json() as { base64?: string; code?: string; qrcode?: { base64?: string; code?: string } }
+
+  // Prefer pre-rendered base64 PNG from Evolution API
+  const b64 = data?.base64 || data?.qrcode?.base64
+  if (b64) return b64
+
+  // Fallback: raw QR string → render locally as PNG
+  const code = data?.code || data?.qrcode?.code
+  if (code) return QRCode.toDataURL(code, { margin: 2, width: 256 })
+
+  return null
 }
 
 export async function sendTextMessage(
