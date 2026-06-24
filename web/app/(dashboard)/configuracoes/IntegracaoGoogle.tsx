@@ -23,10 +23,10 @@ export default function IntegracaoGoogle({ connected, calendarId, placeId }: Pro
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-gray-900">Google</h2>
-        <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+        <h2 className="font-semibold text-gray-900 dark:text-white">Google</h2>
+        <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'}`}>
           {connected ? 'Conectado' : 'Desconectado'}
         </span>
       </div>
@@ -34,14 +34,14 @@ export default function IntegracaoGoogle({ connected, calendarId, placeId }: Pro
       {connected ? (
         <div className="space-y-3">
           <div className="space-y-1.5">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
               <svg className="w-4 h-4 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>Google Calendar sincronizado</span>
               {calendarId && <span className="text-gray-400 text-xs">({calendarId})</span>}
             </div>
-            <div className={`flex items-center gap-2 text-sm ${placeId ? 'text-gray-600' : 'text-gray-400'}`}>
+            <div className={`flex items-center gap-2 text-sm ${placeId ? 'text-gray-600 dark:text-gray-300' : 'text-gray-400'}`}>
               {placeId ? (
                 <svg className="w-4 h-4 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -61,11 +61,11 @@ export default function IntegracaoGoogle({ connected, calendarId, placeId }: Pro
         </div>
       ) : (
         <div className="space-y-3">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             Conecte sua conta Google para sincronizar sessões com o Calendar e receber avaliações pelo Google Meus Negócios.
           </p>
           <button onClick={handleConnect}
-            className="flex items-center gap-2 border border-gray-300 text-gray-700 font-medium px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-colors text-sm">
+            className="flex items-center gap-2 border border-gray-300 text-gray-700 dark:text-gray-200 font-medium px-4 py-2.5 rounded-xl hover:bg-gray-50 dark:bg-gray-900 transition-colors text-sm">
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>

@@ -62,12 +62,12 @@ export default function PacienteForm({ action, defaultValues, profissionais, cur
       {/* Profissional responsável (só quando admin tem equipe) */}
       {profissionais && profissionais.length > 1 && (
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Profissional responsável *</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Profissional responsável *</label>
           <select
             name="profissional_id"
             required
             defaultValue={currentUserId ?? ''}
-            className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+            className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white dark:bg-gray-800"
           >
             <option value="">Selecionar profissional</option>
             {profissionais.map(p => (
@@ -79,7 +79,7 @@ export default function PacienteForm({ action, defaultValues, profissionais, cur
 
       {/* Nome */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Nome completo *</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nome completo *</label>
         <input
           name="nome"
           required
@@ -91,7 +91,7 @@ export default function PacienteForm({ action, defaultValues, profissionais, cur
 
       {/* WhatsApp: DDI + DDD + Número */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">WhatsApp</label>
         <div className="flex gap-2">
           <div className="w-20">
             <input
@@ -129,7 +129,7 @@ export default function PacienteForm({ action, defaultValues, profissionais, cur
       {/* Email e Data de nascimento */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Email</label>
           <input
             name="email"
             type="email"
@@ -139,7 +139,7 @@ export default function PacienteForm({ action, defaultValues, profissionais, cur
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Data de nascimento</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Data de nascimento</label>
           <input
             name="data_nascimento"
             type="date"
@@ -157,7 +157,7 @@ export default function PacienteForm({ action, defaultValues, profissionais, cur
           defaultChecked={defaultValues?.consentimento_lgpd ?? false}
           className="mt-0.5 h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
         />
-        <span className="text-sm text-gray-600">
+        <span className="text-sm text-gray-600 dark:text-gray-300">
           Paciente autorizou o tratamento de dados pessoais conforme a LGPD (Lei 13.709/2018).
         </span>
       </label>

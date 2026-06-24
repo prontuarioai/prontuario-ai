@@ -57,7 +57,7 @@ export default function ContasManager({ contasIniciais, conectado }: Props) {
         return (
           <div
             key={rede}
-            className="flex items-center justify-between border border-gray-200 rounded-2xl p-4 bg-white"
+            className="flex items-center justify-between border border-gray-200 dark:border-gray-700 rounded-2xl p-4 bg-white dark:bg-gray-800"
           >
             <div className="flex items-center gap-3">
               <RedeIcon rede={rede} className="w-8 h-8" />

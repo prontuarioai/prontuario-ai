@@ -27,7 +27,7 @@ const DIAS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
 const STATUS_COLOR: Record<string, string> = {
   agendada: 'bg-blue-100 text-blue-800 border-blue-200',
   realizada: 'bg-green-100 text-green-800 border-green-200',
-  cancelada: 'bg-gray-100 text-gray-500 border-gray-200',
+  cancelada: 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700',
   faltou: 'bg-red-100 text-red-700 border-red-200',
 }
 
@@ -72,8 +72,8 @@ export default function AgendaView({ sessoes, pacientes, semanaBase, pacientePre
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Agenda</h1>
-          <p className="text-sm text-gray-500">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Agenda</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {segunda.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })} —{' '}
             {dias[6].toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}
           </p>
@@ -81,25 +81,25 @@ export default function AgendaView({ sessoes, pacientes, semanaBase, pacientePre
         <div className="flex items-center gap-2">
           <button
             onClick={() => navSemana(-1)}
-            className="p-2 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors"
+            className="p-2 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
           >
             <ChevronLeft />
           </button>
           <button
             onClick={() => router.push('/agenda')}
-            className="px-3 py-2 text-sm rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors"
+            className="px-3 py-2 text-sm rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
           >
             Hoje
           </button>
           <button
             onClick={() => navSemana(1)}
-            className="p-2 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors"
+            className="p-2 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
           >
             <ChevronRight />
           </button>
           <Link
             href="/agenda/disponibilidades"
-            className="text-sm text-gray-600 border border-gray-200 px-4 py-2 rounded-xl hover:bg-gray-50 transition-colors ml-2"
+            className="text-sm text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-xl hover:bg-gray-50 dark:bg-gray-900 transition-colors ml-2"
           >
             Disponibilidade
           </Link>
@@ -113,16 +113,16 @@ export default function AgendaView({ sessoes, pacientes, semanaBase, pacientePre
       </div>
 
       {/* Grade semanal */}
-      <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
         {/* Cabeçalho dos dias */}
-        <div className="grid grid-cols-8 border-b border-gray-100">
+        <div className="grid grid-cols-8 border-b border-gray-100 dark:border-gray-700">
           <div className="p-3" />
           {dias.map((dia, i) => {
             const ehHoje = dia.toDateString() === hoje.toDateString()
             return (
-              <div key={i} className={`p-3 text-center border-l border-gray-100 ${ehHoje ? 'bg-brand-50' : ''}`}>
+              <div key={i} className={`p-3 text-center border-l border-gray-100 dark:border-gray-700 ${ehHoje ? 'bg-brand-50' : ''}`}>
                 <p className="text-xs text-gray-400">{DIAS[i]}</p>
-                <p className={`text-lg font-semibold mt-0.5 ${ehHoje ? 'text-brand-700' : 'text-gray-900'}`}>
+                <p className={`text-lg font-semibold mt-0.5 ${ehHoje ? 'text-brand-700' : 'text-gray-900 dark:text-white'}`}>
                   {dia.getDate()}
                 </p>
               </div>
@@ -143,7 +143,7 @@ export default function AgendaView({ sessoes, pacientes, semanaBase, pacientePre
                 return (
                   <div
                     key={di}
-                    className={`border-l border-gray-50 p-1 cursor-pointer hover:bg-gray-50 transition-colors ${ehHoje ? 'bg-brand-50/30' : ''}`}
+                    className={`border-l border-gray-50 p-1 cursor-pointer hover:bg-gray-50 dark:bg-gray-900 transition-colors ${ehHoje ? 'bg-brand-50/30' : ''}`}
                     onClick={() => handleDayClick(dia, hora)}
                   >
                     {sessoesDaHora.map(s => (

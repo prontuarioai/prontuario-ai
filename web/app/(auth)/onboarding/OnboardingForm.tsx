@@ -147,10 +147,10 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
 
         <div className="space-y-2">
           {conviteLinks.map(({ nome, link }) => (
-            <div key={link} className="border border-gray-200 rounded-xl p-3 space-y-1.5">
+            <div key={link} className="border border-gray-200 dark:border-gray-700 rounded-xl p-3 space-y-1.5">
               <p className="text-xs font-semibold text-gray-800">{nome}</p>
               <div className="flex items-center gap-2">
-                <p className="text-xs text-gray-500 font-mono truncate flex-1">{link}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 font-mono truncate flex-1">{link}</p>
                 <button
                   onClick={() => copyLink(link)}
                   className="text-xs bg-brand-600 text-white px-2.5 py-1 rounded-lg whitespace-nowrap hover:bg-brand-700 transition-colors"
@@ -176,22 +176,22 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
   if (step === 'tipo') {
     return (
       <div className="space-y-4">
-        <p className="text-sm text-gray-500 text-center">Como você trabalha atualmente?</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 text-center">Como você trabalha atualmente?</p>
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={() => { setTipo('autonomo'); setStep('modulos') }}
-            className="flex flex-col items-center gap-2 border-2 border-gray-200 hover:border-brand-500 rounded-2xl p-5 transition-colors group"
+            className="flex flex-col items-center gap-2 border-2 border-gray-200 dark:border-gray-700 hover:border-brand-500 rounded-2xl p-5 transition-colors group"
           >
             <span className="text-3xl">👤</span>
-            <span className="text-sm font-semibold text-gray-700 group-hover:text-brand-700">Autônomo</span>
+            <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 group-hover:text-brand-700">Autônomo</span>
             <span className="text-xs text-gray-400 text-center">Trabalho por conta própria</span>
           </button>
           <button
             onClick={() => { setTipo('equipe'); setStep('modulos') }}
-            className="flex flex-col items-center gap-2 border-2 border-gray-200 hover:border-brand-500 rounded-2xl p-5 transition-colors group"
+            className="flex flex-col items-center gap-2 border-2 border-gray-200 dark:border-gray-700 hover:border-brand-500 rounded-2xl p-5 transition-colors group"
           >
             <span className="text-3xl">👥</span>
-            <span className="text-sm font-semibold text-gray-700 group-hover:text-brand-700">Equipe</span>
+            <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 group-hover:text-brand-700">Equipe</span>
             <span className="text-xs text-gray-400 text-center">Tenho colaboradores</span>
           </button>
         </div>
@@ -203,7 +203,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
   if (step === 'modulos') {
     return (
       <div className="space-y-4">
-        <p className="text-sm text-gray-500 text-center">Quais módulos você precisa?</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 text-center">Quais módulos você precisa?</p>
         <div className="space-y-2">
           {MODULOS.map(m => {
             const ativo = modulos.includes(m.id)
@@ -217,7 +217,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                   'w-full text-left flex items-start gap-3 border-2 rounded-2xl p-4 transition-colors',
                   ativo
                     ? 'border-brand-500 bg-brand-50'
-                    : 'border-gray-200 bg-white hover:border-gray-300',
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300',
                   m.obrigatorio ? 'cursor-default' : 'cursor-pointer',
                 ].join(' ')}
               >
@@ -233,7 +233,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-gray-800">{m.label}</p>
-                  <p className="text-xs text-gray-500 leading-snug mt-0.5">{m.desc}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-snug mt-0.5">{m.desc}</p>
                 </div>
                 <span className={[
                   'text-xs font-medium shrink-0 mt-0.5',
@@ -250,7 +250,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
           <button
             type="button"
             onClick={() => setStep('tipo')}
-            className="flex-1 border border-gray-300 rounded-xl py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            className="flex-1 border border-gray-300 rounded-xl py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
           >
             Voltar
           </button>
@@ -276,7 +276,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
       )}
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Nome da {tipo === 'equipe' ? 'clínica' : 'prática'}
         </label>
         <input
@@ -292,7 +292,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
       {tipo === 'equipe' && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-700">Membros da equipe</p>
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-200">Membros da equipe</p>
             <button
               type="button"
               onClick={addMembro}
@@ -303,7 +303,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
           </div>
 
           {membros.map((m, i) => (
-            <div key={i} className="border border-gray-200 rounded-xl p-3 space-y-2 bg-gray-50">
+            <div key={i} className="border border-gray-200 dark:border-gray-700 rounded-xl p-3 space-y-2 bg-gray-50 dark:bg-gray-900">
               <div className="flex items-center gap-2">
                 <input
                   type="text"
@@ -325,7 +325,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
               </div>
 
               <div className="space-y-1.5">
-                <p className="text-xs text-gray-500">Nível de acesso:</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Nível de acesso:</p>
                 <div className="grid grid-cols-2 gap-2">
                   {ROLES.map(r => (
                     <label
@@ -334,7 +334,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
                         'flex items-start gap-2 rounded-lg border px-2.5 py-2 cursor-pointer transition-colors',
                         m.role === r.value
                           ? 'border-brand-500 bg-brand-50'
-                          : 'border-gray-200 bg-white hover:border-gray-300',
+                          : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300',
                       ].join(' ')}
                     >
                       <input
@@ -366,7 +366,7 @@ export default function OnboardingForm({ nomeDefault }: { nomeDefault: string })
         <button
           type="button"
           onClick={() => setStep('modulos')}
-          className="flex-1 border border-gray-300 rounded-xl py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+          className="flex-1 border border-gray-300 rounded-xl py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
         >
           Voltar
         </button>

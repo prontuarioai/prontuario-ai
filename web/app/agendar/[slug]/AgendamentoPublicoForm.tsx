@@ -109,8 +109,8 @@ export default function AgendamentoPublicoForm({ slug, terapeutaId, disponibilid
     return (
       <div className="text-center space-y-4 py-8">
         <p className="text-5xl">🎉</p>
-        <h3 className="text-xl font-bold text-gray-900">Agendamento solicitado!</h3>
-        <p className="text-sm text-gray-500">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Agendamento solicitado!</h3>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           Entraremos em contato para confirmar sua consulta.
           {whatsapp && ' Você receberá um lembrete pelo WhatsApp.'}
         </p>
@@ -132,7 +132,7 @@ export default function AgendamentoPublicoForm({ slug, terapeutaId, disponibilid
         </div>
         {error && <p className="text-sm text-red-600">{error}</p>}
         <div className="flex gap-3">
-          <button onClick={() => setStep('dados')} className="flex-1 border border-gray-200 text-gray-700 py-2.5 rounded-xl text-sm hover:bg-gray-50">
+          <button onClick={() => setStep('dados')} className="flex-1 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 py-2.5 rounded-xl text-sm hover:bg-gray-50 dark:bg-gray-900">
             Voltar
           </button>
           <button
@@ -156,25 +156,25 @@ export default function AgendamentoPublicoForm({ slug, terapeutaId, disponibilid
 
       <div className="grid grid-cols-2 gap-4">
         <div className="col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Nome completo *</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nome completo *</label>
           <input value={nome} onChange={e => setNome(e.target.value)} required
             className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
             placeholder="Seu nome" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Email *</label>
           <input type="email" value={email} onChange={e => setEmail(e.target.value)}
             className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
             placeholder="seu@email.com" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">WhatsApp</label>
           <input value={whatsapp} onChange={e => setWhatsapp(e.target.value)}
             className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
             placeholder="11999999999" />
         </div>
         <div className="col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Motivo da consulta</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Motivo da consulta</label>
           <textarea value={queixa} onChange={e => setQueixa(e.target.value)} rows={2}
             className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
             placeholder="Conte um pouco sobre o que te traz…" />
@@ -184,7 +184,7 @@ export default function AgendamentoPublicoForm({ slug, terapeutaId, disponibilid
       {proximasDatas.length > 0 ? (
         <>
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-2">Selecione uma data *</p>
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Selecione uma data *</p>
             <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
               {proximasDatas.slice(0, 14).map(d => {
                 const iso = d.toISOString().split('T')[0]
@@ -196,7 +196,7 @@ export default function AgendamentoPublicoForm({ slug, terapeutaId, disponibilid
                     className={`p-2 rounded-xl text-center border transition-colors ${
                       dataSelecionada === iso
                         ? 'bg-brand-600 text-white border-brand-600'
-                        : 'border-gray-200 hover:border-brand-300 text-gray-700'
+                        : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 text-gray-700 dark:text-gray-200'
                     }`}
                   >
                     <p className="text-xs">{diasNomes[d.getDay()]}</p>
@@ -209,7 +209,7 @@ export default function AgendamentoPublicoForm({ slug, terapeutaId, disponibilid
 
           {dataSelecionada && horas.length > 0 && (
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Selecione um horário *</p>
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Selecione um horário *</p>
               <div className="flex flex-wrap gap-2">
                 {horas.map(h => (
                   <button
@@ -219,7 +219,7 @@ export default function AgendamentoPublicoForm({ slug, terapeutaId, disponibilid
                     className={`px-4 py-2 rounded-xl text-sm border font-medium transition-colors ${
                       horaSelecionada === h
                         ? 'bg-brand-600 text-white border-brand-600'
-                        : 'border-gray-200 hover:border-brand-300 text-gray-700'
+                        : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 text-gray-700 dark:text-gray-200'
                     }`}
                   >
                     {h}

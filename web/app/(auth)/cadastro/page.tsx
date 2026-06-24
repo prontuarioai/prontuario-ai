@@ -19,7 +19,7 @@ export default function CadastroPage({
           <span className="text-2xl font-bold">Agenda Online AI</span>
         </div>
         <div className="space-y-6">
-          <div className="bg-white/10 rounded-2xl p-6 space-y-2">
+          <div className="bg-white dark:bg-gray-800/10 rounded-2xl p-6 space-y-2">
             <p className="text-3xl font-bold">14 dias grátis</p>
             <p className="text-brand-100">Sem cartão de crédito. Cancele quando quiser.</p>
           </div>
@@ -30,7 +30,7 @@ export default function CadastroPage({
               { label: 'IA inclusa', value: 'Sim' },
               { label: 'WhatsApp', value: 'Incluso' },
             ].map(item => (
-              <div key={item.label} className="bg-white/10 rounded-xl p-4">
+              <div key={item.label} className="bg-white dark:bg-gray-800/10 rounded-xl p-4">
                 <p className="text-brand-200 text-xs">{item.label}</p>
                 <p className="text-white font-semibold">{item.value}</p>
               </div>
@@ -47,10 +47,10 @@ export default function CadastroPage({
             <span className="text-2xl font-bold text-brand-700">Agenda Online AI</span>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               {isSetup ? 'Complete seu perfil' : 'Criar conta grátis'}
             </h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
               {isSetup
                 ? 'Informe seu nome para acessar o dashboard'
                 : '14 dias de teste, sem cartão de crédito'}
@@ -67,7 +67,7 @@ export default function CadastroPage({
 
           {!isSetup && (
             <>
-              <p className="text-center text-sm text-gray-500">
+              <p className="text-center text-sm text-gray-500 dark:text-gray-400">
                 Já tem conta?{' '}
                 <a href="/login" className="text-brand-600 font-medium hover:underline">
                   Entrar

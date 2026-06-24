@@ -32,7 +32,7 @@ export default function SetupForm() {
       )}
 
       <div>
-        <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="nome" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Nome completo
         </label>
         <input

@@ -33,8 +33,8 @@ export default function RecuperarSenhaForm() {
     return (
       <div className="text-center space-y-4">
         <div className="text-5xl">📬</div>
-        <p className="text-sm font-semibold text-gray-900">Email enviado!</p>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm font-semibold text-gray-900 dark:text-white">Email enviado!</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           Verifique sua caixa de entrada em <strong>{email}</strong> e clique no link para redefinir sua senha.
         </p>
       </div>
@@ -47,7 +47,7 @@ export default function RecuperarSenhaForm() {
         <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2">{error}</p>
       )}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Email da conta
         </label>
         <input

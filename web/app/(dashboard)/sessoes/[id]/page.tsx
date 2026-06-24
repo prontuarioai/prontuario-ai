@@ -40,7 +40,7 @@ export default async function SessaoPage({ params }: { params: { id: string } })
   const STATUS_COLOR: Record<string, string> = {
     agendada: 'bg-blue-50 text-blue-700 border-blue-200',
     realizada: 'bg-green-50 text-green-700 border-green-200',
-    cancelada: 'bg-gray-100 text-gray-500 border-gray-200',
+    cancelada: 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700',
     faltou: 'bg-red-50 text-red-600 border-red-200',
   }
 
@@ -49,10 +49,10 @@ export default async function SessaoPage({ params }: { params: { id: string } })
       {/* Cabeçalho */}
       <div className="flex items-start justify-between">
         <div>
-          <Link href="/sessoes" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">
+          <Link href="/sessoes" className="text-sm text-gray-400 hover:text-gray-600 dark:text-gray-300 transition-colors">
             ← Sessões
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900 mt-2">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mt-2">
             Sessão — {paciente?.nome}
           </h1>
           <p className="text-sm text-gray-400 mt-0.5">
@@ -86,9 +86,9 @@ export default async function SessaoPage({ params }: { params: { id: string } })
         <div className="lg:col-span-2 space-y-6">
           {/* Triagem pré-sessão */}
           {triagem && (
-            <div className="bg-white rounded-2xl border border-gray-100 p-5">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="font-semibold text-gray-900">Triagem pré-sessão</h2>
+                <h2 className="font-semibold text-gray-900 dark:text-white">Triagem pré-sessão</h2>
                 {triagem.risco_detectado && (
                   <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                     triagem.risco_detectado === 'alto' ? 'bg-red-100 text-red-700'
@@ -102,25 +102,25 @@ export default async function SessaoPage({ params }: { params: { id: string } })
               {triagem.respondida_em ? (
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <span className="text-sm text-gray-500">Humor geral:</span>
-                    <div className="flex-1 bg-gray-100 rounded-full h-2">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">Humor geral:</span>
+                    <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded-full h-2">
                       <div
                         className="bg-brand-500 h-2 rounded-full"
                         style={{ width: `${(triagem.humor_geral / 10) * 100}%` }}
                       />
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">{triagem.humor_geral}/10</span>
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white">{triagem.humor_geral}/10</span>
                   </div>
                   {triagem.eventos_relevantes && (
                     <div>
-                      <p className="text-xs font-medium text-gray-500 mb-1">Eventos relevantes</p>
-                      <p className="text-sm text-gray-700">{triagem.eventos_relevantes}</p>
+                      <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Eventos relevantes</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-200">{triagem.eventos_relevantes}</p>
                     </div>
                   )}
                   {triagem.foco_sessao && (
                     <div>
-                      <p className="text-xs font-medium text-gray-500 mb-1">Foco da sessão</p>
-                      <p className="text-sm text-gray-700">{triagem.foco_sessao}</p>
+                      <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Foco da sessão</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-200">{triagem.foco_sessao}</p>
                     </div>
                   )}
                   <Link href={`/triagens/${triagem.id}`} className="text-xs text-brand-600 hover:underline font-medium">
@@ -136,8 +136,8 @@ export default async function SessaoPage({ params }: { params: { id: string } })
           )}
 
           {/* Upload de áudio + transcrição IA */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-            <h2 className="font-semibold text-gray-900">Gravação da sessão</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-4">
+            <h2 className="font-semibold text-gray-900 dark:text-white">Gravação da sessão</h2>
             {!transcricao ? (
               <AudioUploadSection sessaoId={params.id} />
             ) : (
@@ -150,8 +150,8 @@ export default async function SessaoPage({ params }: { params: { id: string } })
           </div>
 
           {/* Notas do terapeuta */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
-            <h2 className="font-semibold text-gray-900 mb-4">Notas da sessão</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5">
+            <h2 className="font-semibold text-gray-900 dark:text-white mb-4">Notas da sessão</h2>
             <NotasForm sessaoId={params.id} notasIniciais={sessao.notas ?? ''} />
           </div>
         </div>
@@ -159,8 +159,8 @@ export default async function SessaoPage({ params }: { params: { id: string } })
         {/* Painel lateral */}
         <div className="space-y-4">
           {/* Info do paciente */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
-            <h2 className="font-semibold text-gray-900">Paciente</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-3">
+            <h2 className="font-semibold text-gray-900 dark:text-white">Paciente</h2>
             <Link
               href={`/pacientes/${paciente?.id}`}
               className="flex items-center gap-3 hover:text-brand-700 transition-colors"
@@ -169,31 +169,31 @@ export default async function SessaoPage({ params }: { params: { id: string } })
                 {paciente?.nome.charAt(0).toUpperCase()}
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-900">{paciente?.nome}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{paciente?.nome}</p>
                 <p className="text-xs text-gray-400">{paciente?.email ?? paciente?.whatsapp ?? '—'}</p>
               </div>
             </Link>
           </div>
 
           {/* Detalhes da sessão */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
-            <h2 className="font-semibold text-gray-900">Detalhes</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-3">
+            <h2 className="font-semibold text-gray-900 dark:text-white">Detalhes</h2>
             <dl className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <dt className="text-gray-500">Modalidade</dt>
-                <dd className="text-gray-900 font-medium capitalize">{sessao.modalidade}</dd>
+                <dt className="text-gray-500 dark:text-gray-400">Modalidade</dt>
+                <dd className="text-gray-900 dark:text-white font-medium capitalize">{sessao.modalidade}</dd>
               </div>
               {sessao.valor && (
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Valor</dt>
-                  <dd className="text-gray-900 font-medium">
+                  <dt className="text-gray-500 dark:text-gray-400">Valor</dt>
+                  <dd className="text-gray-900 dark:text-white font-medium">
                     {Number(sessao.valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                   </dd>
                 </div>
               )}
               {sessao.link_meet && (
                 <div>
-                  <dt className="text-gray-500 mb-1">Link</dt>
+                  <dt className="text-gray-500 dark:text-gray-400 mb-1">Link</dt>
                   <a href={sessao.link_meet} target="_blank" rel="noopener noreferrer"
                     className="text-brand-600 hover:underline text-xs break-all">
                     {sessao.link_meet}
@@ -216,8 +216,8 @@ export default async function SessaoPage({ params }: { params: { id: string } })
 
           {/* Avaliação pós-sessão */}
           {avaliacao && (
-            <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-2">
-              <h2 className="font-semibold text-gray-900">Avaliação pós-sessão</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-2">
+              <h2 className="font-semibold text-gray-900 dark:text-white">Avaliação pós-sessão</h2>
               {avaliacao.respondida_em ? (
                 <>
                   <div className="flex gap-1">
@@ -228,7 +228,7 @@ export default async function SessaoPage({ params }: { params: { id: string } })
                     ))}
                   </div>
                   {avaliacao.comentario && (
-                    <p className="text-sm text-gray-600 italic">"{avaliacao.comentario}"</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 italic">"{avaliacao.comentario}"</p>
                   )}
                 </>
               ) : (

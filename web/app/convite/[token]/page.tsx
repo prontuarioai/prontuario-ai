@@ -13,11 +13,11 @@ export default async function ConvitePage({ params }: { params: { token: string 
 
   if (!convite) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-6">
         <div className="text-center space-y-3">
           <p className="text-2xl">❌</p>
-          <h2 className="text-lg font-bold text-gray-900">Convite inválido</h2>
-          <p className="text-sm text-gray-500">Este convite não existe ou já foi utilizado.</p>
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">Convite inválido</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Este convite não existe ou já foi utilizado.</p>
           <a href="/login" className="block text-sm text-brand-600 hover:underline">
             Ir para o login
           </a>
@@ -36,11 +36,11 @@ export default async function ConvitePage({ params }: { params: { token: string 
   const clinicaNome = (convite.clinicas as { nome: string } | null)?.nome ?? 'Clínica'
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
-      <div className="w-full max-w-sm bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-6">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-6">
+      <div className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 space-y-6">
         <div className="text-center">
           <span className="text-2xl font-bold text-brand-700">Agenda Online AI</span>
-          <h2 className="text-xl font-bold text-gray-900 mt-3">Você foi convidado(a)!</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-3">Você foi convidado(a)!</h2>
         </div>
         <AcceptForm token={params.token} clinicaNome={clinicaNome} role={convite.role} />
       </div>

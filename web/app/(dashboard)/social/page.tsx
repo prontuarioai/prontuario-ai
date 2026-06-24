@@ -24,8 +24,8 @@ export default async function SocialPage() {
     <div className="p-6 max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Redes Sociais & Marketing</h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Redes Sociais & Marketing</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
             {contasConectadas.length > 0
               ? `${contasConectadas.length} ${contasConectadas.length === 1 ? 'rede conectada' : 'redes conectadas'}`
               : 'Nenhuma rede conectada ainda'}
@@ -45,7 +45,7 @@ export default async function SocialPage() {
           {contasConectadas.map(conta => {
             const info = REDES_INFO[conta.provider]
             return (
-              <div key={conta.provider} className="border border-gray-200 rounded-2xl p-4 bg-white space-y-2">
+              <div key={conta.provider} className="border border-gray-200 dark:border-gray-700 rounded-2xl p-4 bg-white dark:bg-gray-800 space-y-2">
                 <div
                   className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-xs font-bold"
                   style={{ backgroundColor: info.cor }}
@@ -62,9 +62,9 @@ export default async function SocialPage() {
           })}
         </div>
       ) : (
-        <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center space-y-3">
+        <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl p-8 text-center space-y-3">
           <p className="text-3xl">📱</p>
-          <p className="text-sm font-medium text-gray-700">Conecte suas redes sociais</p>
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-200">Conecte suas redes sociais</p>
           <p className="text-xs text-gray-400">
             Publique conteúdo e monitore comentários de Instagram, Facebook, Google Business e YouTube.
           </p>
@@ -81,7 +81,7 @@ export default async function SocialPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Link
           href="/social/inbox"
-          className="flex items-center gap-4 border border-gray-200 rounded-2xl p-5 bg-white hover:bg-gray-50 transition-colors group"
+          className="flex items-center gap-4 border border-gray-200 dark:border-gray-700 rounded-2xl p-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:bg-gray-900 transition-colors group"
         >
           <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 group-hover:bg-brand-100 transition-colors">
             <InboxIcon className="w-5 h-5" />
@@ -95,7 +95,7 @@ export default async function SocialPage() {
 
         <Link
           href="/social/publicar"
-          className="flex items-center gap-4 border border-gray-200 rounded-2xl p-5 bg-white hover:bg-gray-50 transition-colors group"
+          className="flex items-center gap-4 border border-gray-200 dark:border-gray-700 rounded-2xl p-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:bg-gray-900 transition-colors group"
         >
           <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 group-hover:bg-brand-100 transition-colors">
             <PencilIcon className="w-5 h-5" />

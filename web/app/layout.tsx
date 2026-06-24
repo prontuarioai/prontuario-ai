@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { headers } from 'next/headers'
 import './globals.css'
 import { brandFromHost, getBrand } from '@/lib/brands'
+import ThemeProvider from '@/components/ThemeProvider'
 
 export async function generateMetadata(): Promise<Metadata> {
   const host = (await headers()).get('host') ?? ''
@@ -26,8 +27,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="pt-BR" data-brand={brandCtx}>
-      <body className="bg-gray-50 text-gray-900 antialiased">
-        {children}
+      <body className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

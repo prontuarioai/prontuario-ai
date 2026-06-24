@@ -52,12 +52,12 @@ export default function ReceitaWidget({ plano, trialFim, totalPacientes, valorTo
   const total = valorTotal ?? (basePrice + totalPacientes * pacPrice)
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-sm font-semibold text-gray-900">Assinatura ativa</p>
+        <p className="text-sm font-semibold text-gray-900 dark:text-white">Assinatura ativa</p>
         <span className="text-xs text-green-700 bg-green-50 px-2 py-0.5 rounded-full font-medium">Ativo</span>
       </div>
-      <div className="space-y-1 text-sm text-gray-600">
+      <div className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
         <div className="flex justify-between">
           <span>Base</span>
           <span>R$ {basePrice.toFixed(2).replace('.', ',')}</span>
@@ -66,14 +66,14 @@ export default function ReceitaWidget({ plano, trialFim, totalPacientes, valorTo
           <span>{totalPacientes} paciente{totalPacientes !== 1 ? 's' : ''} × R$ {pacPrice.toFixed(2).replace('.', ',')}</span>
           <span>R$ {(totalPacientes * pacPrice).toFixed(2).replace('.', ',')}</span>
         </div>
-        <div className="flex justify-between font-semibold text-gray-900 pt-1 border-t border-gray-100">
+        <div className="flex justify-between font-semibold text-gray-900 dark:text-white pt-1 border-t border-gray-100 dark:border-gray-700">
           <span>Total/mês</span>
           <span>R$ {total.toFixed(2).replace('.', ',')}</span>
         </div>
       </div>
       <Link
         href="/configuracoes"
-        className="block text-center text-xs text-gray-400 hover:text-gray-600 transition-colors"
+        className="block text-center text-xs text-gray-400 hover:text-gray-600 dark:text-gray-300 transition-colors"
       >
         Gerenciar assinatura →
       </Link>

@@ -42,10 +42,10 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
 
   if (step === 'google') {
     return (
-      <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center space-y-5">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-8 text-center space-y-5">
         <p className="text-4xl">🌟</p>
-        <h2 className="text-xl font-bold text-gray-900">Que ótimo!</h2>
-        <p className="text-sm text-gray-500">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Que ótimo!</h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           Você avaliou com {nota} estrela{nota > 1 ? 's' : ''}. Que tal compartilhar sua experiência no Google também?
           Ajuda muito outros pacientes a encontrarem este profissional!
         </p>
@@ -64,7 +64,7 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
           </a>
           <button
             onClick={() => setStep('done')}
-            className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            className="text-sm text-gray-400 hover:text-gray-600 dark:text-gray-300 transition-colors"
           >
             Agora não
           </button>
@@ -75,10 +75,10 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
 
   if (step === 'done') {
     return (
-      <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center space-y-4">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-8 text-center space-y-4">
         <p className="text-5xl">💙</p>
-        <h2 className="text-xl font-bold text-gray-900">Obrigado pelo feedback!</h2>
-        <p className="text-sm text-gray-500">Sua avaliação foi enviada. Até a próxima sessão!</p>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Obrigado pelo feedback!</h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400">Sua avaliação foi enviada. Até a próxima sessão!</p>
       </div>
     )
   }
@@ -86,10 +86,10 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
   const displayNota = hovering || nota
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-6">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 space-y-6">
       {/* Estrelas */}
       <div className="text-center space-y-3">
-        <p className="text-sm text-gray-600">Toque nas estrelas para avaliar</p>
+        <p className="text-sm text-gray-600 dark:text-gray-300">Toque nas estrelas para avaliar</p>
         <div className="flex justify-center gap-2">
           {[1, 2, 3, 4, 5].map(i => (
             <button
@@ -110,7 +110,7 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
           ))}
         </div>
         {displayNota > 0 && (
-          <p className="text-sm font-medium text-gray-700">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-200">
             {['', 'Muito ruim', 'Ruim', 'Regular', 'Bom', 'Excelente'][displayNota]}
           </p>
         )}
@@ -118,7 +118,7 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
 
       {/* Comentário */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Comentário <span className="text-gray-400">(opcional)</span>
         </label>
         <textarea
@@ -126,7 +126,7 @@ export default function AvaliacaoPublica({ token, googlePlaceId }: Props) {
           onChange={e => setComentario(e.target.value)}
           rows={4}
           placeholder="O que achou da sessão? O que poderia melhorar?"
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
+          className="w-full rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
         />
       </div>
 

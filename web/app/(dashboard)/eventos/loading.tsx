@@ -4,7 +4,7 @@ export default function EventosLoading() {
       <div className="h-8 w-48 bg-gray-200 rounded-lg" />
       <div className="space-y-3">
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="bg-white rounded-2xl border border-gray-100 p-4 h-24" />
+          <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-4 h-24" />
         ))}
       </div>
     </div>

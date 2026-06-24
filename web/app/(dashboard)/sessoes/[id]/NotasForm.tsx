@@ -23,7 +23,7 @@ export default function NotasForm({ sessaoId, notasIniciais }: { sessaoId: strin
         onChange={e => { setNotas(e.target.value); setSaved(false) }}
         rows={6}
         placeholder="Anotações clínicas, observações, pontos importantes…"
-        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
+        className="w-full rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
       />
       <div className="flex items-center gap-3">
         <button

@@ -38,9 +38,9 @@ export default function PlanoSection({ plano, trialFim, totalPacientes, hasSubsc
   const diasRestantes = differenceInDays(new Date(trialFim), new Date())
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-5">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 space-y-5">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-gray-900">Plano e cobrança</h2>
+        <h2 className="font-semibold text-gray-900 dark:text-white">Plano e cobrança</h2>
         <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
           plano === 'ativo'  ? 'bg-green-100 text-green-700'
           : plano === 'trial' ? 'bg-amber-100 text-amber-700'
@@ -68,7 +68,7 @@ export default function PlanoSection({ plano, trialFim, totalPacientes, hasSubsc
         </div>
       )}
 
-      <div className="space-y-2 text-sm text-gray-600">
+      <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
         <div className="flex justify-between">
           <span>Taxa base</span>
           <span>R$ {BASE_PRICE.toFixed(2).replace('.', ',')}/mês</span>
@@ -77,7 +77,7 @@ export default function PlanoSection({ plano, trialFim, totalPacientes, hasSubsc
           <span>{totalPacientes} paciente{totalPacientes !== 1 ? 's' : ''} × R$ {PER_PATIENT_PRICE.toFixed(2).replace('.', ',')}</span>
           <span>R$ {(totalPacientes * PER_PATIENT_PRICE).toFixed(2).replace('.', ',')}/mês</span>
         </div>
-        <div className="flex justify-between font-semibold text-gray-900 pt-2 border-t border-gray-100">
+        <div className="flex justify-between font-semibold text-gray-900 dark:text-white pt-2 border-t border-gray-100 dark:border-gray-700">
           <span>Estimado este mês</span>
           <span>R$ {totalEstimado.toFixed(2).replace('.', ',')}</span>
         </div>
@@ -88,7 +88,7 @@ export default function PlanoSection({ plano, trialFim, totalPacientes, hasSubsc
 
       {plano === 'ativo' && hasSubscription ? (
         <button onClick={handlePortal} disabled={isPending}
-          className="w-full border border-gray-200 text-gray-700 font-medium py-2.5 rounded-xl hover:bg-gray-50 transition-colors text-sm disabled:opacity-60">
+          className="w-full border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-medium py-2.5 rounded-xl hover:bg-gray-50 dark:bg-gray-900 transition-colors text-sm disabled:opacity-60">
           {isPending ? 'Buscando…' : 'Ver fatura atual'}
         </button>
       ) : (

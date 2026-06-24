@@ -43,8 +43,8 @@ export default function LoginPage({
             <span className="text-2xl font-bold text-brand-700">Agenda Online AI</span>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Bem-vindo de volta</h2>
-            <p className="mt-1 text-sm text-gray-500">Entre com sua conta para continuar</p>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Bem-vindo de volta</h2>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Entre com sua conta para continuar</p>
           </div>
 
           {searchParams.error && (
@@ -60,7 +60,7 @@ export default function LoginPage({
 
           <LoginForm />
 
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             Não tem conta?{' '}
             <a href="/cadastro" className="text-brand-600 font-medium hover:underline">
               Criar conta grátis

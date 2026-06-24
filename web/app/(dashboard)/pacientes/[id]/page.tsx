@@ -105,8 +105,8 @@ export default async function PacientePage({
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <Link href="/pacientes" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">← Pacientes</Link>
-          <h1 className="text-2xl font-bold text-gray-900 mt-2">{paciente.nome}</h1>
+          <Link href="/pacientes" className="text-sm text-gray-400 hover:text-gray-600 dark:text-gray-300 transition-colors">← Pacientes</Link>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mt-2">{paciente.nome}</h1>
           <p className="text-sm text-gray-400">
             {paciente.whatsapp && <span>{paciente.whatsapp} · </span>}
             Desde {new Date(paciente.created_at).toLocaleDateString('pt-BR')}
@@ -137,7 +137,7 @@ export default async function PacientePage({
       )}
 
       {/* Navegação por abas */}
-      <div className="flex gap-1 border-b border-gray-100">
+      <div className="flex gap-1 border-b border-gray-100 dark:border-gray-700">
         {abas.map(aba => (
           <Link
             key={aba.id}
@@ -146,7 +146,7 @@ export default async function PacientePage({
               'px-4 py-2.5 text-sm font-medium rounded-t-xl transition-colors',
               abaAtiva === aba.id
                 ? 'text-brand-700 border-b-2 border-brand-600 bg-brand-50/50'
-                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50',
+                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:bg-gray-900',
             ].join(' ')}
           >
             {aba.label}
@@ -157,20 +157,20 @@ export default async function PacientePage({
       {/* === ABA: DADOS DE CONTATO === */}
       {abaAtiva === 'dados' && (
         <div className="grid lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 p-6">
-            <h2 className="font-semibold text-gray-900 mb-4">Dados de contato</h2>
+          <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6">
+            <h2 className="font-semibold text-gray-900 dark:text-white mb-4">Dados de contato</h2>
             <PacienteForm action={updateAction} defaultValues={paciente} />
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-            <h2 className="font-semibold text-gray-900">Sessões recentes</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-4">
+            <h2 className="font-semibold text-gray-900 dark:text-white">Sessões recentes</h2>
             {sessoes.length > 0 ? (
               <div className="space-y-2">
                 {sessoes.map((s: any) => (
                   <Link key={s.id} href={`/sessoes/${s.id}`}
                     className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0 hover:text-brand-700 transition-colors">
                     <div>
-                      <p className="text-xs font-medium text-gray-900">
+                      <p className="text-xs font-medium text-gray-900 dark:text-white">
                         {new Date(s.inicio).toLocaleDateString('pt-BR')}
                       </p>
                       <p className="text-xs text-gray-400">{s.modalidade}</p>
@@ -215,14 +215,14 @@ function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
     agendada:  'bg-blue-50 text-blue-700',
     realizada: 'bg-green-50 text-green-700',
-    cancelada: 'bg-gray-100 text-gray-500',
+    cancelada: 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400',
     faltou:    'bg-red-50 text-red-600',
   }
   const labels: Record<string, string> = {
     agendada: 'Agendada', realizada: 'Realizada', cancelada: 'Cancelada', faltou: 'Faltou',
   }
   return (
-    <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${map[status] ?? 'bg-gray-100 text-gray-500'}`}>
+    <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${map[status] ?? 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'}`}>
       {labels[status] ?? status}
     </span>
   )

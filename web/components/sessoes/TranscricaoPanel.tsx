@@ -45,11 +45,11 @@ export default function TranscricaoPanel({ sessaoId, transcricaoInicial, resumoI
 
   if (transcricao.status === 'pendente' || transcricao.status === 'processando') {
     return (
-      <div className="bg-white rounded-2xl border border-gray-100 p-5">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5">
         <div className="flex items-center gap-3">
           <div className="w-5 h-5 rounded-full border-2 border-brand-500 border-t-transparent animate-spin" />
           <div>
-            <p className="text-sm font-medium text-gray-900">
+            <p className="text-sm font-medium text-gray-900 dark:text-white">
               {transcricao.status === 'pendente' ? 'Aguardando processamento…' : 'Transcrevendo áudio com IA…'}
             </p>
             <p className="text-xs text-gray-400">Isso pode levar alguns minutos.</p>
@@ -72,8 +72,8 @@ export default function TranscricaoPanel({ sessaoId, transcricaoInicial, resumoI
     <div className="space-y-4">
       {/* Resumo IA */}
       {resumo && (
-        <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-          <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-4">
+          <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
             <span>✨</span> Resumo gerado por IA
           </h3>
 
@@ -88,7 +88,7 @@ export default function TranscricaoPanel({ sessaoId, transcricaoInicial, resumoI
 
           {resumo.principais_temas?.length > 0 && (
             <div>
-              <p className="text-xs font-medium text-gray-500 mb-2">Principais temas</p>
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">Principais temas</p>
               <div className="flex flex-wrap gap-2">
                 {resumo.principais_temas.map(t => (
                   <span key={t} className="bg-brand-50 text-brand-700 text-xs px-2.5 py-1 rounded-full">{t}</span>
@@ -99,7 +99,7 @@ export default function TranscricaoPanel({ sessaoId, transcricaoInicial, resumoI
 
           {resumo.emocoes_detectadas?.length > 0 && (
             <div>
-              <p className="text-xs font-medium text-gray-500 mb-2">Emoções detectadas</p>
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">Emoções detectadas</p>
               <div className="flex flex-wrap gap-2">
                 {resumo.emocoes_detectadas.map(e => (
                   <span key={e} className="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">{e}</span>
@@ -110,15 +110,15 @@ export default function TranscricaoPanel({ sessaoId, transcricaoInicial, resumoI
 
           {resumo.pontos_trabalhados && (
             <div>
-              <p className="text-xs font-medium text-gray-500 mb-1">Pontos trabalhados</p>
-              <p className="text-sm text-gray-700">{resumo.pontos_trabalhados}</p>
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Pontos trabalhados</p>
+              <p className="text-sm text-gray-700 dark:text-gray-200">{resumo.pontos_trabalhados}</p>
             </div>
           )}
 
           {resumo.plano_proxima_sessao && (
             <div>
-              <p className="text-xs font-medium text-gray-500 mb-1">Plano para próxima sessão</p>
-              <p className="text-sm text-gray-700">{resumo.plano_proxima_sessao}</p>
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Plano para próxima sessão</p>
+              <p className="text-sm text-gray-700 dark:text-gray-200">{resumo.plano_proxima_sessao}</p>
             </div>
           )}
         </div>
@@ -126,11 +126,11 @@ export default function TranscricaoPanel({ sessaoId, transcricaoInicial, resumoI
 
       {/* Transcrição completa */}
       {transcricao.texto && (
-        <details className="bg-white rounded-2xl border border-gray-100 p-5">
-          <summary className="text-sm font-medium text-gray-700 cursor-pointer select-none">
+        <details className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5">
+          <summary className="text-sm font-medium text-gray-700 dark:text-gray-200 cursor-pointer select-none">
             Ver transcrição completa
           </summary>
-          <div className="mt-4 text-sm text-gray-600 leading-relaxed whitespace-pre-wrap border-t border-gray-50 pt-4 max-h-64 overflow-y-auto">
+          <div className="mt-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap border-t border-gray-50 pt-4 max-h-64 overflow-y-auto">
             {transcricao.texto}
           </div>
         </details>

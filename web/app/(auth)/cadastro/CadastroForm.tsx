@@ -58,8 +58,8 @@ export default function CadastroForm() {
     return (
       <div className="text-center space-y-4">
         <div className="text-5xl">📧</div>
-        <h3 className="text-lg font-semibold text-gray-900">Confirme seu email</h3>
-        <p className="text-sm text-gray-500">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Confirme seu email</h3>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           Enviamos um link de confirmação para <strong>{email}</strong>.
           Clique no link para ativar sua conta.
         </p>
@@ -79,7 +79,7 @@ export default function CadastroForm() {
       )}
 
       <div>
-        <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="nome" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Nome completo
         </label>
         <input
@@ -94,7 +94,7 @@ export default function CadastroForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Email profissional
         </label>
         <input
@@ -109,7 +109,7 @@ export default function CadastroForm() {
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Senha
         </label>
         <input
@@ -134,10 +134,10 @@ export default function CadastroForm() {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200" />
+          <div className="w-full border-t border-gray-200 dark:border-gray-700" />
         </div>
-        <div className="relative flex justify-center text-xs text-gray-400 bg-white px-2">
-          <span className="px-2 bg-white">ou continue com</span>
+        <div className="relative flex justify-center text-xs text-gray-400 bg-white dark:bg-gray-800 px-2">
+          <span className="px-2 bg-white dark:bg-gray-800">ou continue com</span>
         </div>
       </div>
 
@@ -145,7 +145,7 @@ export default function CadastroForm() {
         type="button"
         onClick={handleGoogle}
         disabled={loadingGoogle}
-        className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-xl py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60 transition-colors"
+        className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-xl py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:bg-gray-900 disabled:opacity-60 transition-colors"
       >
         <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>

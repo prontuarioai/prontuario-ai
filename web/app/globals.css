@@ -47,6 +47,21 @@
   --brand-900:  76  29 149;
 }
 
+/* ── Dark mode: inverte brand-50/100 para tons escuros ─ */
+.dark :root,
+.dark [data-brand="agenda_online_ai"] {
+  --brand-50:  17  94  89;
+  --brand-100: 19  78  74;
+}
+.dark [data-brand="fluxus_sermonis"] {
+  --brand-50:  20  83  45;
+  --brand-100: 22 101  52;
+}
+.dark [data-brand="open_publisher"] {
+  --brand-50:  76  29 149;
+  --brand-100: 91  33 182;
+}
+
 * {
   box-sizing: border-box;
 }

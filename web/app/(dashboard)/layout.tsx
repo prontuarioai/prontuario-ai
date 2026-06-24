@@ -30,7 +30,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     .eq('lida', false)
 
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden" data-brand={terapeuta.brand_context ?? 'agenda_online_ai'}>
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden" data-brand={terapeuta.brand_context ?? 'agenda_online_ai'}>
       <Sidebar
         terapeuta={terapeuta}
         eventosNaoLidos={eventosNaoLidos ?? 0}

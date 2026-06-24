@@ -123,7 +123,7 @@ export default function ImportarContatosButton() {
     <>
       <button
         onClick={() => setAberto(true)}
-        className="border border-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-xl hover:bg-gray-50 transition-colors flex items-center gap-2"
+        className="border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-sm font-medium px-4 py-2 rounded-xl hover:bg-gray-50 dark:bg-gray-900 transition-colors flex items-center gap-2"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
@@ -133,11 +133,11 @@ export default function ImportarContatosButton() {
 
       {aberto && (
         <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[85vh] flex flex-col">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-lg max-h-[85vh] flex flex-col">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-gray-100">
-              <h2 className="font-semibold text-gray-900">Importar contatos</h2>
-              <button onClick={fechar} className="text-gray-400 hover:text-gray-600">
+            <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-700">
+              <h2 className="font-semibold text-gray-900 dark:text-white">Importar contatos</h2>
+              <button onClick={fechar} className="text-gray-400 hover:text-gray-600 dark:text-gray-300">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -151,10 +151,10 @@ export default function ImportarContatosButton() {
                 <div className="space-y-4">
                   <div
                     onClick={() => inputRef.current?.click()}
-                    className="border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center cursor-pointer hover:border-brand-400 hover:bg-brand-50/30 transition-colors"
+                    className="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl p-8 text-center cursor-pointer hover:border-brand-400 hover:bg-brand-50/30 transition-colors"
                   >
                     <p className="text-3xl mb-2">📁</p>
-                    <p className="text-sm font-medium text-gray-700">Clique para selecionar o arquivo</p>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-200">Clique para selecionar o arquivo</p>
                     <p className="text-xs text-gray-400 mt-1">Aceita .csv ou .xlsx</p>
                     <input
                       ref={inputRef}
@@ -169,8 +169,8 @@ export default function ImportarContatosButton() {
                     <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2">{erroArquivo}</p>
                   )}
 
-                  <div className="bg-gray-50 rounded-xl p-4 text-xs text-gray-500 space-y-1">
-                    <p className="font-medium text-gray-700 mb-2">Formato esperado das colunas:</p>
+                  <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-xs text-gray-500 dark:text-gray-400 space-y-1">
+                    <p className="font-medium text-gray-700 dark:text-gray-200 mb-2">Formato esperado das colunas:</p>
                     <p>• <strong>nome</strong> — Nome completo do paciente</p>
                     <p>• <strong>ddi</strong> — Código do país (ex: 55 para Brasil)</p>
                     <p>• <strong>ddd</strong> — Código de área (ex: 11)</p>
@@ -184,23 +184,23 @@ export default function ImportarContatosButton() {
               {/* === PREVIEW === */}
               {estado === 'preview' && (
                 <div className="space-y-3">
-                  <p className="text-sm text-gray-700">
+                  <p className="text-sm text-gray-700 dark:text-gray-200">
                     <strong>{contatos.length}</strong> contatos encontrados. Revise antes de importar:
                   </p>
-                  <div className="border border-gray-100 rounded-xl overflow-hidden max-h-64 overflow-y-auto">
+                  <div className="border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden max-h-64 overflow-y-auto">
                     <table className="w-full text-xs">
-                      <thead className="bg-gray-50 sticky top-0">
+                      <thead className="bg-gray-50 dark:bg-gray-900 sticky top-0">
                         <tr>
-                          <th className="text-left px-3 py-2 font-medium text-gray-600">Nome</th>
-                          <th className="text-left px-3 py-2 font-medium text-gray-600">WhatsApp</th>
-                          <th className="text-left px-3 py-2 font-medium text-gray-600">Email</th>
+                          <th className="text-left px-3 py-2 font-medium text-gray-600 dark:text-gray-300">Nome</th>
+                          <th className="text-left px-3 py-2 font-medium text-gray-600 dark:text-gray-300">WhatsApp</th>
+                          <th className="text-left px-3 py-2 font-medium text-gray-600 dark:text-gray-300">Email</th>
                         </tr>
                       </thead>
                       <tbody>
                         {contatos.map((c, i) => (
                           <tr key={i} className="border-t border-gray-50">
                             <td className="px-3 py-2 text-gray-800">{c.nome}</td>
-                            <td className="px-3 py-2 text-gray-500">{c.ddi}{c.ddd}{c.numero || <span className="text-red-400">sem número</span>}</td>
+                            <td className="px-3 py-2 text-gray-500 dark:text-gray-400">{c.ddi}{c.ddd}{c.numero || <span className="text-red-400">sem número</span>}</td>
                             <td className="px-3 py-2 text-gray-400 truncate max-w-[120px]">{c.email || '—'}</td>
                           </tr>
                         ))}
@@ -214,7 +214,7 @@ export default function ImportarContatosButton() {
               {estado === 'importando' && (
                 <div className="text-center py-8">
                   <div className="w-10 h-10 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-                  <p className="text-sm text-gray-600">Importando contatos…</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Importando contatos…</p>
                 </div>
               )}
 
@@ -239,10 +239,10 @@ export default function ImportarContatosButton() {
             </div>
 
             {/* Footer */}
-            <div className="p-4 border-t border-gray-100 flex gap-3 justify-end">
+            <div className="p-4 border-t border-gray-100 dark:border-gray-700 flex gap-3 justify-end">
               {estado === 'preview' && (
                 <>
-                  <button onClick={() => setEstado('idle')} className="text-sm text-gray-500 hover:text-gray-700 px-4 py-2">
+                  <button onClick={() => setEstado('idle')} className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:text-gray-200 px-4 py-2">
                     Voltar
                   </button>
                   <button
@@ -255,7 +255,7 @@ export default function ImportarContatosButton() {
               )}
               {(estado === 'idle' || estado === 'resultado') && (
                 <button onClick={estado === 'resultado' ? () => { fechar(); window.location.reload() } : fechar}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-5 py-2 rounded-xl transition-colors">
+                  className="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 text-gray-700 dark:text-gray-200 text-sm font-medium px-5 py-2 rounded-xl transition-colors">
                   {estado === 'resultado' ? 'Concluir' : 'Cancelar'}
                 </button>
               )}

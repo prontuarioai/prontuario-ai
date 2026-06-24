@@ -65,11 +65,11 @@ export default function EquipeSection({ membros, convites, currentUserId }: Prop
   }
 
   return (
-    <section className="bg-white rounded-2xl border border-gray-200 p-6 space-y-5">
+    <section className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-base font-semibold text-gray-900">Equipe</h2>
-          <p className="text-sm text-gray-500">Membros e convites pendentes</p>
+          <h2 className="text-base font-semibold text-gray-900 dark:text-white">Equipe</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Membros e convites pendentes</p>
         </div>
         <button
           onClick={() => setShowForm(v => !v)}
@@ -88,22 +88,22 @@ export default function EquipeSection({ membros, convites, currentUserId }: Prop
       )}
 
       {showForm && (
-        <form onSubmit={handleConvidar} className="border border-gray-100 rounded-xl p-4 space-y-3 bg-gray-50">
+        <form onSubmit={handleConvidar} className="border border-gray-100 dark:border-gray-700 rounded-xl p-4 space-y-3 bg-gray-50 dark:bg-gray-900">
           {error && <p className="text-xs text-red-600">{error}</p>}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Nome</label>
+              <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">Nome</label>
               <input name="nome" type="text" placeholder="Dr. João Silva"
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Email *</label>
+              <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">Email *</label>
               <input name="email" type="email" required placeholder="email@exemplo.com"
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
             </div>
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Cargo *</label>
+            <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">Cargo *</label>
             <select name="role" required
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
               <option value="">Selecionar cargo</option>
@@ -113,7 +113,7 @@ export default function EquipeSection({ membros, convites, currentUserId }: Prop
           </div>
           <div className="flex gap-2">
             <button type="button" onClick={() => setShowForm(false)}
-              className="flex-1 border border-gray-300 rounded-lg py-2 text-sm text-gray-600 hover:bg-gray-100 transition-colors">
+              className="flex-1 border border-gray-300 rounded-lg py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:bg-gray-700 transition-colors">
               Cancelar
             </button>
             <button type="submit" disabled={loading}
@@ -126,20 +126,20 @@ export default function EquipeSection({ membros, convites, currentUserId }: Prop
 
       {/* Membros ativos */}
       <div className="space-y-2">
-        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Membros</p>
+        <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Membros</p>
         {membros.map(m => (
-          <div key={m.id} className="flex items-center gap-3 py-2 px-3 rounded-xl hover:bg-gray-50">
+          <div key={m.id} className="flex items-center gap-3 py-2 px-3 rounded-xl hover:bg-gray-50 dark:bg-gray-900">
             <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-semibold text-sm shrink-0">
               {m.nome.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">{m.nome}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{m.nome}</p>
               <p className="text-xs text-gray-400 truncate">{m.email}</p>
             </div>
             <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
               m.role === 'admin'        ? 'bg-purple-50 text-purple-700' :
               m.role === 'profissional' ? 'bg-brand-50 text-brand-700' :
-                                          'bg-gray-100 text-gray-600'
+                                          'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
             }`}>
               {roleLabel[m.role] ?? m.role}
             </span>
@@ -156,12 +156,12 @@ export default function EquipeSection({ membros, convites, currentUserId }: Prop
       {/* Convites pendentes */}
       {convites.length > 0 && (
         <div className="space-y-2">
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Convites pendentes</p>
+          <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Convites pendentes</p>
           {convites.map(c => (
             <div key={c.id} className="flex items-center gap-3 py-2 px-3 rounded-xl bg-amber-50 border border-amber-100">
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-800 truncate">{c.nome || c.email}</p>
-                <p className="text-xs text-gray-500">{c.email} · {roleLabel[c.role]}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{c.email} · {roleLabel[c.role]}</p>
               </div>
               <button
                 onClick={() => copyLink(c.token)}

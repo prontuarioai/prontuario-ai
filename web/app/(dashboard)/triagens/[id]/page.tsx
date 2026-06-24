@@ -38,12 +38,12 @@ export default async function TriagemDetalhe({ params }: { params: { id: string 
   return (
     <div className="p-6 max-w-3xl mx-auto space-y-6">
       <div>
-        <Link href="/triagens" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">
+        <Link href="/triagens" className="text-sm text-gray-400 hover:text-gray-600 dark:text-gray-300 transition-colors">
           ← Triagens
         </Link>
         <div className="flex items-start justify-between mt-2">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Triagem — {paciente?.nome}</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Triagem — {paciente?.nome}</h1>
             <p className="text-sm text-gray-400 mt-0.5">
               Sessão em {sessao?.inicio && new Date(sessao.inicio).toLocaleDateString('pt-BR', {
                 weekday: 'long', day: 'numeric', month: 'long',
@@ -73,33 +73,33 @@ export default async function TriagemDetalhe({ params }: { params: { id: string 
 
       <div className="grid sm:grid-cols-2 gap-6">
         {/* Respostas do paciente */}
-        <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-          <h2 className="font-semibold text-gray-900">Respostas do paciente</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-4">
+          <h2 className="font-semibold text-gray-900 dark:text-white">Respostas do paciente</h2>
 
           <div>
-            <p className="text-xs font-medium text-gray-500 mb-2">Humor geral</p>
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">Humor geral</p>
             <div className="flex items-center gap-3">
-              <div className="flex-1 bg-gray-100 rounded-full h-2.5">
+              <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded-full h-2.5">
                 <div
                   className="bg-brand-500 h-2.5 rounded-full"
                   style={{ width: `${(triagem.humor_geral / 10) * 100}%` }}
                 />
               </div>
-              <span className="text-sm font-bold text-gray-900 w-8 text-right">{triagem.humor_geral}/10</span>
+              <span className="text-sm font-bold text-gray-900 dark:text-white w-8 text-right">{triagem.humor_geral}/10</span>
             </div>
           </div>
 
           {triagem.eventos_relevantes && (
             <div>
-              <p className="text-xs font-medium text-gray-500 mb-1">Eventos relevantes</p>
-              <p className="text-sm text-gray-700 leading-relaxed">{triagem.eventos_relevantes}</p>
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Eventos relevantes</p>
+              <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">{triagem.eventos_relevantes}</p>
             </div>
           )}
 
           {triagem.foco_sessao && (
             <div>
-              <p className="text-xs font-medium text-gray-500 mb-1">Foco desejado</p>
-              <p className="text-sm text-gray-700 leading-relaxed">{triagem.foco_sessao}</p>
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Foco desejado</p>
+              <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">{triagem.foco_sessao}</p>
             </div>
           )}
 
@@ -110,12 +110,12 @@ export default async function TriagemDetalhe({ params }: { params: { id: string 
 
         {/* Análise da IA */}
         {analise && (
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-            <h2 className="font-semibold text-gray-900">Análise por IA</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-4">
+            <h2 className="font-semibold text-gray-900 dark:text-white">Análise por IA</h2>
 
             {analise.emocoes?.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-gray-500 mb-2">Emoções detectadas</p>
+                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">Emoções detectadas</p>
                 <div className="flex flex-wrap gap-1.5">
                   {analise.emocoes.map((e: string) => (
                     <span key={e} className="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">{e}</span>
@@ -127,10 +127,10 @@ export default async function TriagemDetalhe({ params }: { params: { id: string 
             <div className="space-y-3">
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-xs font-medium text-gray-500">Valência emocional</p>
+                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400">Valência emocional</p>
                   <span className="text-xs text-gray-400">{analise.valence > 0 ? '+' : ''}{analise.valence?.toFixed(2)}</span>
                 </div>
-                <div className="relative h-2 bg-gray-100 rounded-full">
+                <div className="relative h-2 bg-gray-100 dark:bg-gray-700 rounded-full">
                   <div
                     className={`absolute h-2 rounded-full ${analise.valence >= 0 ? 'bg-green-400' : 'bg-red-400'}`}
                     style={{
@@ -147,10 +147,10 @@ export default async function TriagemDetalhe({ params }: { params: { id: string 
 
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-xs font-medium text-gray-500">Ativação (arousal)</p>
+                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400">Ativação (arousal)</p>
                   <span className="text-xs text-gray-400">{analise.arousal > 0 ? '+' : ''}{analise.arousal?.toFixed(2)}</span>
                 </div>
-                <div className="relative h-2 bg-gray-100 rounded-full">
+                <div className="relative h-2 bg-gray-100 dark:bg-gray-700 rounded-full">
                   <div
                     className="absolute h-2 rounded-full bg-brand-400"
                     style={{ width: `${((analise.arousal + 1) / 2) * 100}%` }}

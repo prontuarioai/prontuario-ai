@@ -26,8 +26,8 @@ export default async function ContasPage({
   return (
     <div className="p-6 max-w-2xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Contas Conectadas</h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Contas Conectadas</h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           Conecte suas redes sociais para publicar e monitorar comentários diretamente da plataforma.
         </p>
       </div>

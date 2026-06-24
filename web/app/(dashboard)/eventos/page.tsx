@@ -7,7 +7,7 @@ const CATEGORIA_COLOR: Record<string, string> = {
   recaida: 'border-l-orange-400 bg-orange-50',
   progresso: 'border-l-green-500 bg-green-50',
   cotidiano: 'border-l-blue-400 bg-blue-50',
-  outro: 'border-l-gray-300 bg-white',
+  outro: 'border-l-gray-300 bg-white dark:bg-gray-800',
 }
 
 const CATEGORIA_LABEL: Record<string, string> = {
@@ -35,8 +35,8 @@ export default async function EventosPage() {
     <div className="p-6 max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Eventos entre sessões</h1>
-          <p className="text-sm text-gray-500 mt-0.5">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Eventos entre sessões</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
             Mensagens dos pacientes fora das sessões
             {naoLidos > 0 && <span className="ml-2 bg-brand-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">{naoLidos} novo{naoLidos > 1 ? 's' : ''}</span>}
           </p>
@@ -49,12 +49,12 @@ export default async function EventosPage() {
           {eventos.map((e: any) => (
             <div
               key={e.id}
-              className={`rounded-2xl border-l-4 border border-gray-100 p-4 transition-colors ${CATEGORIA_COLOR[e.categoria ?? 'outro']}`}
+              className={`rounded-2xl border-l-4 border border-gray-100 dark:border-gray-700 p-4 transition-colors ${CATEGORIA_COLOR[e.categoria ?? 'outro']}`}
             >
               <div className="flex items-start gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <a href={`/pacientes/${e.pacientes?.id}`} className="text-sm font-semibold text-gray-900 hover:text-brand-700 transition-colors">
+                    <a href={`/pacientes/${e.pacientes?.id}`} className="text-sm font-semibold text-gray-900 dark:text-white hover:text-brand-700 transition-colors">
                       {e.pacientes?.nome}
                     </a>
                     {!e.lido && <div className="w-2 h-2 bg-brand-500 rounded-full" />}
@@ -62,9 +62,9 @@ export default async function EventosPage() {
                       {new Date(e.created_at).toLocaleString('pt-BR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-700 leading-relaxed">{e.mensagem}</p>
+                  <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">{e.mensagem}</p>
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-xs text-gray-500">{CATEGORIA_LABEL[e.categoria ?? 'outro']}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{CATEGORIA_LABEL[e.categoria ?? 'outro']}</span>
                     {e.intensidade_emocional && (
                       <span className="text-xs text-gray-400">· Intensidade: {e.intensidade_emocional}/10</span>
                     )}
@@ -81,7 +81,7 @@ export default async function EventosPage() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-white rounded-2xl border border-gray-100">
+        <div className="text-center py-16 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
           <p className="text-4xl mb-3">💬</p>
           <p className="text-sm text-gray-400">Nenhum evento registrado.</p>
           <p className="text-xs text-gray-400 mt-1">Mensagens do WhatsApp aparecem aqui automaticamente.</p>

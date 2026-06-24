@@ -27,7 +27,7 @@ export default async function AgendarPublicoPage({ params }: { params: { slug: s
     .gte('inicio', new Date().toISOString())
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-2xl mx-auto px-4 py-12 space-y-8">
         {/* Perfil do terapeuta */}
         <div className="text-center space-y-3">
@@ -35,8 +35,8 @@ export default async function AgendarPublicoPage({ params }: { params: { slug: s
             {terapeuta.nome.charAt(0).toUpperCase()}
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{terapeuta.nome}</h1>
-            {terapeuta.bio && <p className="text-sm text-gray-500 mt-1 max-w-sm mx-auto">{terapeuta.bio}</p>}
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{terapeuta.nome}</h1>
+            {terapeuta.bio && <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">{terapeuta.bio}</p>}
           </div>
           {terapeuta.especialidades?.length > 0 && (
             <div className="flex flex-wrap justify-center gap-2">
@@ -47,8 +47,8 @@ export default async function AgendarPublicoPage({ params }: { params: { slug: s
           )}
         </div>
 
-        <div className="bg-white rounded-2xl border border-gray-100 p-6">
-          <h2 className="font-semibold text-gray-900 mb-5">Solicitar agendamento</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6">
+          <h2 className="font-semibold text-gray-900 dark:text-white mb-5">Solicitar agendamento</h2>
           <AgendamentoPúblicoForm
             slug={params.slug}
             terapeutaId={terapeuta.id}

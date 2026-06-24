@@ -59,9 +59,9 @@ export default function ChatEquipeClient({
   return (
     <div className="flex h-[calc(100vh-64px)] overflow-hidden">
       {/* Lista de conversas */}
-      <div className="w-72 shrink-0 border-r border-gray-100 bg-white flex flex-col">
-        <div className="p-4 border-b border-gray-100">
-          <h1 className="text-base font-bold text-gray-900">Chat de Agendamento</h1>
+      <div className="w-72 shrink-0 border-r border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex flex-col">
+        <div className="p-4 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-base font-bold text-gray-900 dark:text-white">Chat de Agendamento</h1>
           <p className="text-xs text-gray-400 mt-0.5">Mensagens via WhatsApp da Secretária</p>
         </div>
 
@@ -78,7 +78,7 @@ export default function ChatEquipeClient({
                 key={c.pacienteId}
                 onClick={() => setSelecionado(c.pacienteId)}
                 className={[
-                  'w-full text-left px-4 py-3 border-b border-gray-50 hover:bg-gray-50 transition-colors',
+                  'w-full text-left px-4 py-3 border-b border-gray-50 hover:bg-gray-50 dark:bg-gray-900 transition-colors',
                   selecionado === c.pacienteId ? 'bg-brand-50 border-l-2 border-l-brand-500' : '',
                 ].join(' ')}
               >
@@ -88,7 +88,7 @@ export default function ChatEquipeClient({
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-gray-900 truncate">{c.pacienteNome}</p>
+                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{c.pacienteNome}</p>
                       {c.naoLidos > 0 && (
                         <span className="bg-purple-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shrink-0">
                           {c.naoLidos > 9 ? '9+' : c.naoLidos}
@@ -105,7 +105,7 @@ export default function ChatEquipeClient({
       </div>
 
       {/* Área da conversa */}
-      <div className="flex-1 flex flex-col bg-gray-50">
+      <div className="flex-1 flex flex-col bg-gray-50 dark:bg-gray-900">
         {!selecionado || !conversaAtual ? (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
@@ -115,12 +115,12 @@ export default function ChatEquipeClient({
           </div>
         ) : (
           <>
-            <div className="bg-white border-b border-gray-100 px-5 py-3 flex items-center gap-3">
+            <div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 px-5 py-3 flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 font-semibold">
                 {conversaAtual.pacienteNome.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-gray-900">{conversaAtual.pacienteNome}</p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">{conversaAtual.pacienteNome}</p>
                 <p className="text-xs text-gray-400">Via WhatsApp da Secretária</p>
               </div>
               <Link
@@ -142,7 +142,7 @@ export default function ChatEquipeClient({
                     <div className={`max-w-[75%] rounded-2xl px-3 py-2 ${
                       m.direcao === 'saida'
                         ? 'bg-purple-600 text-white rounded-br-sm'
-                        : 'bg-white text-gray-800 rounded-bl-sm shadow-sm'
+                        : 'bg-white dark:bg-gray-800 text-gray-800 rounded-bl-sm shadow-sm'
                     }`}>
                       <p className="text-sm whitespace-pre-wrap">{m.mensagem}</p>
                       <p className={`text-xs mt-1 ${m.direcao === 'saida' ? 'text-purple-200' : 'text-gray-400'}`}>
@@ -156,13 +156,13 @@ export default function ChatEquipeClient({
             </div>
 
             {(role === 'admin' || role === 'secretaria') && (
-              <div className="bg-white border-t border-gray-100 p-3">
+              <div className="bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 p-3">
                 <p className="text-xs text-gray-400 mb-2">Resposta via WhatsApp da Secretária</p>
                 <form className="flex gap-2">
                   <input
                     placeholder="Envio manual via secretária (em breve)…"
                     disabled
-                    className="flex-1 rounded-xl border border-gray-200 px-3 py-2 text-sm bg-gray-50 text-gray-400 cursor-not-allowed"
+                    className="flex-1 rounded-xl border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm bg-gray-50 dark:bg-gray-900 text-gray-400 cursor-not-allowed"
                   />
                 </form>
               </div>

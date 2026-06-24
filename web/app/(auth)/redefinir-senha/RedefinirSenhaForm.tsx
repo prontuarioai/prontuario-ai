@@ -42,7 +42,7 @@ export default function RedefinirSenhaForm() {
         <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2">{error}</p>
       )}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Nova senha</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nova senha</label>
         <input
           type="password"
           required
@@ -54,7 +54,7 @@ export default function RedefinirSenhaForm() {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Confirmar senha</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Confirmar senha</label>
         <input
           type="password"
           required

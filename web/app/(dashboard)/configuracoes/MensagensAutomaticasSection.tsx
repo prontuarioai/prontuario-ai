@@ -23,9 +23,9 @@ export default function MensagensAutomaticasSection({ mensagemAniversario, horaM
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-5">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 space-y-5">
       <div>
-        <h2 className="font-semibold text-gray-900">Mensagens automáticas</h2>
+        <h2 className="font-semibold text-gray-900 dark:text-white">Mensagens automáticas</h2>
         <p className="text-xs text-gray-400 mt-0.5">Personalize as mensagens enviadas automaticamente via WhatsApp</p>
       </div>
 
@@ -48,7 +48,7 @@ export default function MensagensAutomaticasSection({ mensagemAniversario, horaM
             placeholder="Olá, {nome}! Feliz aniversário! 🎉"
           />
           <p className="text-xs text-gray-400">
-            Use <code className="bg-gray-100 px-1 rounded">{'{nome}'}</code> para incluir o nome do paciente.
+            Use <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">{'{nome}'}</code> para incluir o nome do paciente.
             Enviada no dia do aniversário no horário configurado abaixo.
           </p>
         </div>
@@ -56,7 +56,7 @@ export default function MensagensAutomaticasSection({ mensagemAniversario, horaM
         {/* Horário */}
         <div className="flex items-center gap-4">
           <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Horário de envio</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Horário de envio</label>
             <input
               name="hora_mensagens_automaticas"
               type="time"

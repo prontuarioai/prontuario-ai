@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { getBrand } from '@/lib/brands'
+import ThemeToggle from '@/components/ThemeToggle'
 
 type Role = 'admin' | 'profissional' | 'secretaria'
 
@@ -75,7 +76,7 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
       {/* Botão hambúrguer — mobile only */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="md:hidden fixed top-3 left-3 z-30 p-2 rounded-xl bg-white border border-gray-200 shadow-sm text-gray-600"
+        className="md:hidden fixed top-3 left-3 z-30 p-2 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-600 dark:text-gray-300"
         aria-label="Abrir menu"
       >
         <MenuIcon className="w-5 h-5" />
@@ -92,14 +93,14 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
       {/* Sidebar */}
       <aside
         className={[
-          'flex flex-col h-full bg-white border-r border-gray-100 shrink-0 transition-all duration-200',
+          'flex flex-col h-full bg-white dark:bg-gray-900 border-r border-gray-100 dark:border-gray-800 shrink-0 transition-all duration-200',
           collapsed ? 'md:w-16' : 'md:w-60',
           'fixed md:relative inset-y-0 left-0 z-50 md:z-auto w-64',
           mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
         ].join(' ')}
       >
         {/* Cabeçalho */}
-        <div className="border-b border-gray-100 flex items-center h-[61px] px-3 gap-2">
+        <div className="border-b border-gray-100 dark:border-gray-800 flex items-center h-[61px] px-3 gap-2">
           {!collapsed && (
             <span className="text-base font-bold text-brand-700 flex-1 truncate hidden md:block">
               {brandName}
@@ -111,7 +112,7 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
 
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="hidden md:flex items-center justify-center w-8 h-8 rounded-xl hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors ml-auto shrink-0"
+            className="hidden md:flex items-center justify-center w-8 h-8 rounded-xl hover:bg-gray-100 dark:bg-gray-700 text-gray-400 hover:text-gray-600 dark:text-gray-300 transition-colors ml-auto shrink-0"
             title={collapsed ? 'Expandir menu' : 'Recolher menu'}
           >
             {collapsed ? <ChevronRightIcon className="w-4 h-4" /> : <ChevronLeftIcon className="w-4 h-4" />}
@@ -119,7 +120,7 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
 
           <button
             onClick={() => setMobileOpen(false)}
-            className="md:hidden flex items-center justify-center w-8 h-8 rounded-xl hover:bg-gray-100 text-gray-400 shrink-0 ml-auto"
+            className="md:hidden flex items-center justify-center w-8 h-8 rounded-xl hover:bg-gray-100 dark:bg-gray-700 text-gray-400 shrink-0 ml-auto"
             aria-label="Fechar menu"
           >
             <XIcon className="w-4 h-4" />
@@ -140,8 +141,8 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
                   'flex items-center gap-3 py-2 rounded-xl text-sm font-medium transition-colors',
                   collapsed ? 'justify-center px-0' : 'px-3',
                   active
-                    ? 'bg-brand-50 text-brand-700'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                    ? 'bg-brand-50 text-brand-700 dark:bg-brand-900/20 dark:text-brand-400'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 hover:text-gray-900 dark:text-white dark:hover:text-gray-100',
                 ].join(' ')}
               >
                 <item.icon className="w-4 h-4 shrink-0" />
@@ -171,19 +172,20 @@ export default function Sidebar({ terapeuta, eventosNaoLidos }: Props) {
         )}
 
         {/* Usuário */}
-        <div className={['border-t border-gray-100 p-3 flex items-center gap-2', collapsed ? 'justify-center' : ''].join(' ')}>
-          <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-semibold text-sm shrink-0">
+        <div className={['border-t border-gray-100 dark:border-gray-800 p-3 flex items-center gap-2', collapsed ? 'justify-center' : ''].join(' ')}>
+          <div className="w-8 h-8 rounded-full bg-brand-100 dark:bg-gray-700 flex items-center justify-center text-brand-700 dark:text-gray-200 font-semibold text-sm shrink-0">
             {terapeuta.nome.charAt(0).toUpperCase()}
           </div>
           {!collapsed && (
             <>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium text-gray-900 truncate">{terapeuta.nome}</p>
+                <p className="text-xs font-medium text-gray-900 dark:text-white truncate">{terapeuta.nome}</p>
                 <p className="text-xs text-gray-400">{roleLabel[role] ?? role}</p>
               </div>
+              <ThemeToggle />
               <button
                 onClick={handleLogout}
-                className="text-gray-400 hover:text-red-500 transition-colors p-1 rounded-lg"
+                className="text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors p-1 rounded-lg"
                 title="Sair"
               >
                 <LogoutIcon className="w-4 h-4" />

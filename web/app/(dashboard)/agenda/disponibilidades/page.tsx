@@ -26,7 +26,7 @@ export default async function DisponibilidadesPage() {
       <div className="flex items-center gap-3">
         <Link
           href="/agenda"
-          className="text-gray-400 hover:text-gray-600 transition-colors"
+          className="text-gray-400 hover:text-gray-600 dark:text-gray-300 transition-colors"
           title="Voltar"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -34,8 +34,8 @@ export default async function DisponibilidadesPage() {
           </svg>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Disponibilidade</h1>
-          <p className="text-sm text-gray-500 mt-0.5">Configure seus horários para agendamento online</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Disponibilidade</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Configure seus horários para agendamento online</p>
         </div>
       </div>
 

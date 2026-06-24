@@ -73,12 +73,12 @@ export default function SuperAdminClient({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-gray-900">⚙️ Super Admin</h1>
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white">⚙️ Super Admin</h1>
             <p className="text-xs text-gray-400">Painel interno — Agenda Online AI</p>
           </div>
           <a href="/dashboard" className="text-sm text-brand-600 hover:underline">← Voltar ao dashboard</a>
@@ -90,12 +90,12 @@ export default function SuperAdminClient({
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { label: 'Contas (admin)', value: stats.totalUsuarios, color: 'text-gray-700' },
+            { label: 'Contas (admin)', value: stats.totalUsuarios, color: 'text-gray-700 dark:text-gray-200' },
             { label: 'Plano ativo',   value: stats.totalAtivos,   color: 'text-green-600' },
             { label: 'Trial',         value: stats.totalTrial,    color: 'text-amber-600' },
             { label: 'Cortesia 🎁',  value: stats.totalCortesia, color: 'text-purple-600' },
           ].map(s => (
-            <div key={s.label} className="bg-white rounded-2xl border border-gray-100 p-4 text-center">
+            <div key={s.label} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-4 text-center">
               <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
               <p className="text-xs text-gray-400 mt-0.5">{s.label}</p>
             </div>
@@ -117,23 +117,23 @@ export default function SuperAdminClient({
             Buscar
           </button>
           {q && (
-            <a href="/super-admin" className="border border-gray-200 text-gray-600 text-sm px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-colors">
+            <a href="/super-admin" className="border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 text-sm px-4 py-2.5 rounded-xl hover:bg-gray-50 dark:bg-gray-900 transition-colors">
               Limpar
             </a>
           )}
         </form>
 
         {/* Tabela de usuários */}
-        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-gray-50 border-b border-gray-100">
+              <thead className="bg-gray-50 dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700">
                 <tr>
-                  <th className="text-left px-4 py-3 font-medium text-gray-600">Usuário</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-600">Clínica</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-600">Plano</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-600">Cadastro</th>
-                  <th className="text-right px-4 py-3 font-medium text-gray-600">Ação</th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-600 dark:text-gray-300">Usuário</th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-600 dark:text-gray-300">Clínica</th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-600 dark:text-gray-300">Plano</th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-600 dark:text-gray-300">Cadastro</th>
+                  <th className="text-right px-4 py-3 font-medium text-gray-600 dark:text-gray-300">Ação</th>
                 </tr>
               </thead>
               <tbody>
@@ -145,19 +145,19 @@ export default function SuperAdminClient({
                   </tr>
                 )}
                 {usuarios.map(u => (
-                  <tr key={u.id} className="border-t border-gray-50 hover:bg-gray-50/50">
+                  <tr key={u.id} className="border-t border-gray-50 hover:bg-gray-50 dark:bg-gray-900/50">
                     <td className="px-4 py-3">
-                      <p className="font-medium text-gray-900">{u.nome}</p>
+                      <p className="font-medium text-gray-900 dark:text-white">{u.nome}</p>
                       <p className="text-xs text-gray-400">{u.email}</p>
                     </td>
-                    <td className="px-4 py-3 text-gray-500 text-xs">{u.clinica_nome ?? '—'}</td>
+                    <td className="px-4 py-3 text-gray-500 dark:text-gray-400 text-xs">{u.clinica_nome ?? '—'}</td>
                     <td className="px-4 py-3">{planoBadge(u)}</td>
                     <td className="px-4 py-3 text-xs text-gray-400">
                       {new Date(u.created_at).toLocaleDateString('pt-BR')}
                     </td>
                     <td className="px-4 py-3 text-right">
                       {feedback?.id === u.id && (
-                        <span className="text-xs text-gray-500 mr-3">{feedback.msg}</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 mr-3">{feedback.msg}</span>
                       )}
                       {u.plano_cortesia ? (
                         <button

@@ -78,11 +78,11 @@ export default function AudioUpload({ sessaoId, onUploadSuccess }: Props) {
 
       {uploading ? (
         <div className="space-y-2">
-          <div className="flex justify-between text-sm text-gray-600">
+          <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300">
             <span>{progress < 100 ? 'Enviando…' : 'Processando…'}</span>
             <span>{progress}%</span>
           </div>
-          <div className="w-full bg-gray-100 rounded-full h-2">
+          <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2">
             <div
               className="bg-brand-500 h-2 rounded-full transition-all"
               style={{ width: `${progress}%` }}
@@ -96,7 +96,7 @@ export default function AudioUpload({ sessaoId, onUploadSuccess }: Props) {
           onDrop={handleDrop}
           onClick={() => inputRef.current?.click()}
           className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-colors ${
-            dragging ? 'border-brand-400 bg-brand-50' : 'border-gray-200 hover:border-brand-300 hover:bg-gray-50'
+            dragging ? 'border-brand-400 bg-brand-50' : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 hover:bg-gray-50 dark:bg-gray-900'
           }`}
         >
           <input
@@ -107,7 +107,7 @@ export default function AudioUpload({ sessaoId, onUploadSuccess }: Props) {
             onChange={e => { if (e.target.files?.[0]) uploadFile(e.target.files[0]) }}
           />
           <p className="text-3xl mb-2">🎙️</p>
-          <p className="text-sm font-medium text-gray-700">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-200">
             Arraste o áudio ou clique para selecionar
           </p>
           <p className="text-xs text-gray-400 mt-1">

@@ -24,8 +24,8 @@ const categoriaColor: Record<string, string> = {
   crise: 'bg-red-100 text-red-700',
   recaida: 'bg-amber-100 text-amber-700',
   progresso: 'bg-green-100 text-green-700',
-  cotidiano: 'bg-gray-100 text-gray-600',
-  outro: 'bg-gray-100 text-gray-600',
+  cotidiano: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300',
+  outro: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300',
 }
 
 export default function ComunicacaoSection({ pacienteId, eventos }: { pacienteId: string; eventos: Evento[] }) {
@@ -51,8 +51,8 @@ export default function ComunicacaoSection({ pacienteId, eventos }: { pacienteId
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-      <h2 className="font-semibold text-gray-900">Comunicação via WhatsApp</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-4">
+      <h2 className="font-semibold text-gray-900 dark:text-white">Comunicação via WhatsApp</h2>
 
       {eventos.length === 0 ? (
         <p className="text-sm text-gray-400">Nenhuma mensagem ainda. Quando o paciente enviar mensagens pelo WhatsApp elas aparecerão aqui.</p>
@@ -66,7 +66,7 @@ export default function ComunicacaoSection({ pacienteId, eventos }: { pacienteId
               <div className={`max-w-[80%] rounded-2xl px-3 py-2 ${
                 ev.direcao === 'saida'
                   ? 'bg-brand-600 text-white rounded-br-sm'
-                  : 'bg-gray-100 text-gray-800 rounded-bl-sm'
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-800 rounded-bl-sm'
               }`}>
                 <p className="text-sm whitespace-pre-wrap">{ev.mensagem}</p>
                 <div className="flex items-center gap-1.5 mt-1">

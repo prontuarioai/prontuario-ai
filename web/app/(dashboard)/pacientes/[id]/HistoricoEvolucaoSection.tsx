@@ -49,8 +49,8 @@ const CATEGORIA_BADGE: Record<string, string> = {
   crise:    'bg-red-100 text-red-700',
   recaida:  'bg-amber-100 text-amber-700',
   progresso:'bg-green-100 text-green-700',
-  cotidiano:'bg-gray-100 text-gray-600',
-  outro:    'bg-gray-100 text-gray-500',
+  cotidiano:'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300',
+  outro:    'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400',
 }
 
 const CATEGORIA_LABEL: Record<string, string> = {
@@ -100,9 +100,9 @@ export default function HistoricoEvolucaoSection({ triagens, avaliacoes, eventos
   ]
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-4">
       <div className="flex items-center justify-between flex-wrap gap-2">
-        <h2 className="font-semibold text-gray-900">Histórico e Evolução</h2>
+        <h2 className="font-semibold text-gray-900 dark:text-white">Histórico e Evolução</h2>
         <div className="flex gap-1 flex-wrap">
           {filtros.map(f => (
             <button
@@ -112,7 +112,7 @@ export default function HistoricoEvolucaoSection({ triagens, avaliacoes, eventos
                 'text-xs font-medium px-3 py-1.5 rounded-full border transition-colors',
                 filtro === f.key
                   ? 'bg-brand-600 text-white border-brand-600'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300',
+                  : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-gray-300',
               ].join(' ')}
             >
               {f.label}
@@ -129,14 +129,14 @@ export default function HistoricoEvolucaoSection({ triagens, avaliacoes, eventos
       ) : (
         <div className="relative">
           {/* Linha vertical */}
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-100" />
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-100 dark:bg-gray-700" />
 
           <div className="space-y-3 pl-10">
             {itens.map((item, i) => {
               // ── TRIAGEM ──
               if (item.tipo === 'triagem') {
                 const t = item.payload as Triagem
-                const riscoBg = RISCO_BADGE[t.risco_detectado ?? 'baixo'] ?? 'bg-gray-100 text-gray-600'
+                const riscoBg = RISCO_BADGE[t.risco_detectado ?? 'baixo'] ?? 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                 return (
                   <div key={`triagem-${t.id}`} className="relative">
                     <div className="absolute -left-6 top-2 w-3 h-3 rounded-full bg-blue-400 border-2 border-white" />
@@ -151,13 +151,13 @@ export default function HistoricoEvolucaoSection({ triagens, avaliacoes, eventos
                         <span className="text-xs text-gray-400 ml-auto">{formatDate(t.respondida_em)}</span>
                       </div>
                       {t.humor_geral != null && (
-                        <p className="text-xs text-gray-600">Humor geral: <strong>{t.humor_geral}/10</strong></p>
+                        <p className="text-xs text-gray-600 dark:text-gray-300">Humor geral: <strong>{t.humor_geral}/10</strong></p>
                       )}
                       {t.eventos_relevantes && (
-                        <p className="text-xs text-gray-700 leading-relaxed">"{t.eventos_relevantes}"</p>
+                        <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed">"{t.eventos_relevantes}"</p>
                       )}
                       {t.foco_sessao && (
-                        <p className="text-xs text-gray-500">Foco: {t.foco_sessao}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Foco: {t.foco_sessao}</p>
                       )}
                     </div>
                   </div>
@@ -168,7 +168,7 @@ export default function HistoricoEvolucaoSection({ triagens, avaliacoes, eventos
               if (item.tipo === 'avaliacao') {
                 const a = item.payload as Avaliacao
                 const estrelas = '⭐'.repeat(a.nota ?? 0)
-                const notaBg = (a.nota ?? 0) >= 4 ? 'bg-green-50 border-green-100' : 'bg-gray-50 border-gray-100'
+                const notaBg = (a.nota ?? 0) >= 4 ? 'bg-green-50 border-green-100' : 'bg-gray-50 dark:bg-gray-900 border-gray-100 dark:border-gray-700'
                 return (
                   <div key={`av-${a.id}`} className="relative">
                     <div className="absolute -left-6 top-2 w-3 h-3 rounded-full bg-green-400 border-2 border-white" />
@@ -176,11 +176,11 @@ export default function HistoricoEvolucaoSection({ triagens, avaliacoes, eventos
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-xs font-semibold text-green-700">✅ Avaliação pós-consulta</span>
                         <span className="text-sm">{estrelas}</span>
-                        <span className="text-xs font-bold text-gray-700">{a.nota}/5</span>
+                        <span className="text-xs font-bold text-gray-700 dark:text-gray-200">{a.nota}/5</span>
                         <span className="text-xs text-gray-400 ml-auto">{formatDate(a.respondida_em!)}</span>
                       </div>
                       {a.comentario && (
-                        <p className="text-xs text-gray-700 leading-relaxed">"{a.comentario}"</p>
+                        <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed">"{a.comentario}"</p>
                       )}
                     </div>
                   </div>
@@ -191,12 +191,12 @@ export default function HistoricoEvolucaoSection({ triagens, avaliacoes, eventos
               if (item.tipo === 'mensagem') {
                 const e = item.payload as Evento
                 const entrada = e.direcao === 'entrada'
-                const catBg = CATEGORIA_BADGE[e.categoria ?? 'outro'] ?? 'bg-gray-100 text-gray-500'
+                const catBg = CATEGORIA_BADGE[e.categoria ?? 'outro'] ?? 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
                 const fonteLabel = e.fonte === 'secretaria' ? '📅 Secretária' : '👨‍⚕️ Profissional'
                 return (
                   <div key={`ev-${e.id}`} className="relative">
                     <div className={`absolute -left-6 top-2 w-3 h-3 rounded-full border-2 border-white ${entrada ? 'bg-brand-400' : 'bg-gray-300'}`} />
-                    <div className="bg-white border border-gray-100 rounded-xl p-3 shadow-sm space-y-1">
+                    <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl p-3 shadow-sm space-y-1">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-xs text-gray-400">{entrada ? '📨 Recebido' : '📤 Enviado'} · {fonteLabel}</span>
                         {e.categoria && e.categoria !== 'cotidiano' && (
@@ -206,7 +206,7 @@ export default function HistoricoEvolucaoSection({ triagens, avaliacoes, eventos
                         )}
                         <span className="text-xs text-gray-400 ml-auto">{formatDate(e.created_at)}</span>
                       </div>
-                      <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">{e.mensagem}</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{e.mensagem}</p>
                     </div>
                   </div>
                 )

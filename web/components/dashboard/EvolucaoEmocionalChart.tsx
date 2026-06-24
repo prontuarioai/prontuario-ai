@@ -31,12 +31,12 @@ export default function EvolucaoEmocionalChart({ dados }: Props) {
   const media = ultimos7.reduce((s, p) => s + p.valor, 0) / ultimos7.length
   const primeira = ultimos7[0]?.valor ?? 5
   const tendencia = media > primeira + 0.5 ? '↑' : media < primeira - 0.5 ? '↓' : '→'
-  const tendenciaColor = tendencia === '↑' ? 'text-green-600' : tendencia === '↓' ? 'text-red-500' : 'text-gray-500'
+  const tendenciaColor = tendencia === '↑' ? 'text-green-600' : tendencia === '↓' ? 'text-red-500' : 'text-gray-500 dark:text-gray-400'
 
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <p className="text-xs text-gray-500">Últimos 30 dias</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">Últimos 30 dias</p>
         <span className={`text-sm font-semibold ${tendenciaColor}`}>
           {tendencia} {tendencia === '↑' ? 'Melhora' : tendencia === '↓' ? 'Queda' : 'Estável'}
         </span>

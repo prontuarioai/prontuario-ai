@@ -34,10 +34,10 @@ export default function EscolherNegocio({ locais, redirectTo }: { locais: Local[
           className={`w-full text-left px-5 py-4 rounded-2xl border-2 transition-colors ${
             selecionado === local.placeId
               ? 'border-brand-500 bg-brand-50'
-              : 'border-gray-200 bg-white hover:border-gray-300'
+              : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300'
           }`}
         >
-          <p className="font-medium text-gray-900">{local.nome}</p>
+          <p className="font-medium text-gray-900 dark:text-white">{local.nome}</p>
           {local.placeId && (
             <p className="text-xs text-gray-400 mt-0.5 truncate">{local.placeId}</p>
           )}
@@ -58,7 +58,7 @@ export default function EscolherNegocio({ locais, redirectTo }: { locais: Local[
         </button>
         <button
           onClick={() => router.push(redirectTo)}
-          className="w-full text-sm text-gray-400 hover:text-gray-600 py-2 transition-colors"
+          className="w-full text-sm text-gray-400 hover:text-gray-600 dark:text-gray-300 py-2 transition-colors"
         >
           Pular por agora
         </button>

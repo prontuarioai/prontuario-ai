@@ -62,22 +62,22 @@ export default function IntegracaoWhatsApp({ terapeutaId, whatsappNumber }: Prop
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-semibold text-gray-900">WhatsApp do Profissional</h2>
-          <p className="text-xs text-gray-500 mt-0.5">Mensagens dos pacientes chegam aqui</p>
+          <h2 className="font-semibold text-gray-900 dark:text-white">WhatsApp do Profissional</h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Mensagens dos pacientes chegam aqui</p>
         </div>
-        <span className={`text-xs font-medium px-2.5 py-1 rounded-full shrink-0 ${connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+        <span className={`text-xs font-medium px-2.5 py-1 rounded-full shrink-0 ${connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'}`}>
           {connected ? 'Conectado' : 'Desconectado'}
         </span>
       </div>
 
       {loading ? (
-        <div className="h-10 bg-gray-100 rounded-xl animate-pulse" />
+        <div className="h-10 bg-gray-100 dark:bg-gray-700 rounded-xl animate-pulse" />
       ) : connected ? (
         <div className="space-y-3">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             Conectado. Mensagens enviadas pelos seus pacientes chegam aqui e são salvas no prontuário.
             {whatsappNumber && <span className="text-gray-400"> ({whatsappNumber})</span>}
           </p>
@@ -88,22 +88,22 @@ export default function IntegracaoWhatsApp({ terapeutaId, whatsappNumber }: Prop
         </div>
       ) : (
         <div className="space-y-3">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             Escaneie o QR code com seu WhatsApp para conectar.
           </p>
           {qr ? (
             <div className="flex justify-center">
-              <img src={qr} alt="QR Code WhatsApp" className="w-48 h-48 rounded-xl border border-gray-200" />
+              <img src={qr} alt="QR Code WhatsApp" className="w-48 h-48 rounded-xl border border-gray-200 dark:border-gray-700" />
             </div>
           ) : (
-            <div className="flex items-center justify-center h-48 bg-gray-50 rounded-xl border border-gray-200">
+            <div className="flex items-center justify-center h-48 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
               <div className="text-center space-y-2">
                 <div className="w-6 h-6 rounded-full border-2 border-brand-500 border-t-transparent animate-spin mx-auto" />
                 <p className="text-xs text-gray-400">Gerando QR code…</p>
               </div>
             </div>
           )}
-          <button onClick={startPolling} className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+          <button onClick={startPolling} className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:text-gray-200 transition-colors">
             Atualizar
           </button>
         </div>

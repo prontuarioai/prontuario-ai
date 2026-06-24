@@ -65,18 +65,18 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
       </div>
 
       {/* Adicionar slot */}
-      <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
-        <h3 className="font-semibold text-gray-900">Adicionar horário disponível</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 space-y-4">
+        <h3 className="font-semibold text-gray-900 dark:text-white">Adicionar horário disponível</h3>
         {error && (
           <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2">{error}</p>
         )}
         <form onSubmit={handleAdd} className="flex flex-wrap items-end gap-3">
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Dia da semana</label>
+            <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">Dia da semana</label>
             <select
               name="dia_semana"
               required
-              className="rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+              className="rounded-xl border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white dark:bg-gray-800"
             >
               {DIAS.map((d, i) => (
                 <option key={i} value={i}>{d}</option>
@@ -84,7 +84,7 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Das</label>
+            <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">Das</label>
             <input
               name="hora_inicio"
               type="time"
@@ -94,7 +94,7 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Até</label>
+            <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">Até</label>
             <input
               name="hora_fim"
               type="time"
@@ -117,15 +117,15 @@ export default function DisponibilidadesForm({ disponibilidades, slug }: Props) 
       </div>
 
       {/* Grade por dia */}
-      <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
-        <h3 className="font-semibold text-gray-900">Sua disponibilidade semanal</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 space-y-4">
+        <h3 className="font-semibold text-gray-900 dark:text-white">Sua disponibilidade semanal</h3>
         {disponibilidades.length === 0 ? (
           <p className="text-sm text-gray-400">Nenhum horário cadastrado. Adicione acima para que pacientes possam agendar.</p>
         ) : (
           <div className="space-y-3">
             {porDia.filter(d => d.slots.length > 0).map(({ dia, slots }) => (
               <div key={dia} className="flex items-start gap-3">
-                <span className="w-8 text-xs font-semibold text-gray-500 pt-1.5 shrink-0">
+                <span className="w-8 text-xs font-semibold text-gray-500 dark:text-gray-400 pt-1.5 shrink-0">
                   {DIAS_CURTOS[dia]}
                 </span>
                 <div className="flex flex-wrap gap-2 flex-1">

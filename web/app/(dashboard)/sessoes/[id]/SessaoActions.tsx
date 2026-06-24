@@ -34,8 +34,8 @@ export default function SessaoActions({
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
-      <h2 className="font-semibold text-gray-900">Ações</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 space-y-3">
+      <h2 className="font-semibold text-gray-900 dark:text-white">Ações</h2>
 
       {msg && (
         <p className={`text-xs rounded-xl px-3 py-2 ${
